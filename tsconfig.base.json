@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ngx-fast-icon": [
+        "packages/ngx-fast-lib/src/index.ts",
+        "packages/ngx-fast-lib/src/lib/*"
+      ],
+      "@push-based/ngx-fast-icon": ["packages/test/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

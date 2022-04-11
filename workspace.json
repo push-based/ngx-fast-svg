@@ -1,4 +1,8 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "ngx-fast-icon-demo": "packages/ngx-fast-icon-demo",
+    "ngx-fast-icon-demo-e2e": "packages/ngx-fast-icon-demo-e2e",
+    "ngx-fast-lib": "packages/ngx-fast-lib"
+  }
 }
