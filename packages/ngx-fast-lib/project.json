@@ -1,0 +1,83 @@
+{
+  "projectType": "library",
+  "root": "packages/ngx-fast-lib",
+  "sourceRoot": "packages/ngx-fast-lib/src",
+  "prefix": "ngx-fast-icon",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/packages/test"],
+      "options": {
+        "project": "packages/ngx-fast-lib/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/ngx-fast-lib/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/ngx-fast-lib/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/ngx-fast-lib"],
+      "options": {
+        "jestConfig": "packages/ngx-fast-lib/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/ngx-fast-lib/src/**/*.ts",
+          "packages/ngx-fast-lib/src/**/*.html"
+        ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "options": {
+        "postTargets": ["cli:npm", "cli:github"],
+        "commitMessageFormat": "release(${projectName}): ${version}",
+        "noVerify": true,
+        "push": true
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "npm": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public"
+      }
+    },
+    "link": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "cd ./dist/packages/cli"
+          },
+          {
+            "command": "npm link -f"
+          }
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,28 @@
+{
+  "root": "packages/ngx-fast-icon-demo-e2e",
+  "sourceRoot": "packages/ngx-fast-icon-demo-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/ngx-fast-icon-demo-e2e/cypress.json",
+        "devServerTarget": "ngx-fast-icon-demo:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "ngx-fast-icon-demo:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/ngx-fast-icon-demo-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["ngx-fast-icon-demo"]
+}
