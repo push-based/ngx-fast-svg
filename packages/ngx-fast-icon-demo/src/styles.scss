@@ -4,6 +4,29 @@ ul.loading-demo {
   list-style: none;
 }
 ul.loading-demo li {
-  margin-bottom: 600px;
+  margin-bottom: 400px;
   text-decoration: none;
+}
+
+/* All Work
+Changing width does trigger geometry changes and therefore layout.
+Changing color does trigger paint.
+*/
+.animation {
+  width: 300px;
+  background-color: transparent;
+}
+.animation:hover {
+  animation: a 500ms infinite alternate;
+}
+
+@keyframes a {
+  0% {
+    background-color: red;
+    width: 300px;
+  }
+  100% {
+    background-color: blue;
+    width: 100px;
+  }
 }

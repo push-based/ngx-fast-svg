@@ -1,48 +1,33 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { FastIconModule } from '@ngx-fast-icon';
-import { FAST_ICON_PROVIDERS } from './ngx-fast-icon-setup/movie.icon.provider';
-import { FastIconListComponent } from './fast-icon-list.component';
-import { IconListComponent } from './icon-list.component';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, FastIconListComponent, IconListComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    RouterModule,
     RouterModule.forRoot([
       {
-        path:'',
+        path: '',
         pathMatch: 'full',
         redirectTo: 'ngx-fast-icon'
       },
       {
-        path:'ngx-fast-icon',
-        component: FastIconListComponent
-      },/*
-      {
-        path:'angular-material-icon',
-        loadChildren: () => import('./angular-material-icons-list/angular-material-icons-list.module').then(m => m.AngularMaterialIconsListModule)
-      },*/
-      {
-        path:'icon',
-        component: IconListComponent
+        path: 'ngx-fast-icon',
+        loadChildren: () => import('./comparison/ngx-fast-svg/fast-svg-list.module').then(m => m.FastSvgListModule)
       },
-    ], { initialNavigation: 'enabledBlocking' }),
-    FastIconModule.forClient(),
-    // MatIconModule,
-   AngularSvgIconModule.forRoot()
+      {
+        path: 'icon',
+        loadChildren: () => import('./comparison/angular-svg-icon/angular-svg-icon-list.module').then(m => m.AngularSvgIconListModule)
+      }
+      /* {
+        path:'angular-material-icon',
+        loadChildren: () => import('./angular-material-icons-list/angular-material-icons-list.module').then(m => m.AngularMaterialIconListModule)
+      },*/
+    ], { initialNavigation: 'enabledBlocking' })
   ],
-  providers: [
-    FAST_ICON_PROVIDERS
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

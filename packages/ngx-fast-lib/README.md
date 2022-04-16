@@ -7,3 +7,39 @@
 # Why another icon lib? 
 
 svg icons are bad for perf
+
+
+# Install
+
+```bash
+npm install @push-based/ngx-fast-svg --save
+# or
+yarn add @push-based/ngx-fast-svg
+```
+
+# Setup
+
+**app.module.ts**
+```typescript
+// ...
+import { FAST_ICON_PROVIDERS } from './ngx-fast-icon-ssr/movie.icon.provider';
+import { HttpClientModule } from '@angular/common/http';
+import { FastIconModule } from '@ngx-fast-icon';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FastIconModule.forRoot({
+      
+    })
+  ]
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+
+}
+
+```

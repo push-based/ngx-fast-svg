@@ -1,22 +1,22 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { SUPPORTED_ICONS } from '../icon-data';
+import { SUPPORTED_ICONS } from '../../icon-data';
 
 @Component({
-  selector: 'angular-material-icon',
+  selector: 'fast-svg-list',
   template: `
-    <h2>angular-material-icon</h2>
+    <h2>ngx-fast-icon</h2>
     <p>
-      <button (click)="add()">add list</button>
+      <button data-test="add" (click)="add()">add list</button>
     </p>
-    <ul class="loading-demo" *ngFor="let list of lists">
+    <ul  data-test="list" class="loading-demo" *ngFor="let list of lists">
       <li *ngFor="let icon of list">
-        <mat-icon [name]="icon">{{icon}}</mat-icon>
+        <fast-icon [name]="icon"></fast-icon>
       </li>
     </ul>
   `,
   encapsulation: ViewEncapsulation.None
 })
-export class AngularMaterialIconListComponent {
+export class FastSvgListComponent {
   readonly icons: string[] = [...SUPPORTED_ICONS];
   lists: string[][] = [];
 

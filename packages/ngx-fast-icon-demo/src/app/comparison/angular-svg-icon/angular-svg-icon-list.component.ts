@@ -1,14 +1,14 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { SUPPORTED_ICONS } from './icon-data';
+import { SUPPORTED_ICONS } from '../../icon-data';
 
 @Component({
-  selector: 'icon-list',
+  selector: 'angular-svg-icon-list',
   template: `
     <h2>angular-svg-icon</h2>
     <p>
-      <button (click)="add()">add list</button>
+      <button data-test="add" (click)="add()">add list</button>
     </p>
-    <ul class="loading-demo" *ngFor="let list of lists">
+    <ul data-test="list" class="loading-demo" *ngFor="let list of lists">
       <li *ngFor="let icon of list">
         <svg-icon [src]="'assets/svg-icons/'+icon+'.svg'"></svg-icon>
       </li>
@@ -16,7 +16,7 @@ import { SUPPORTED_ICONS } from './icon-data';
   `,
   encapsulation: ViewEncapsulation.None
 })
-export class IconListComponent {
+export class AngularSvgIconListComponent {
   readonly icons: string[] = [...SUPPORTED_ICONS];
   lists: string[][] = [];
 

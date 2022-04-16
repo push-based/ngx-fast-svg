@@ -6,18 +6,22 @@ import {
   Inject,
   Input,
   OnDestroy,
-  PLATFORM_ID, Renderer2
+  PLATFORM_ID,
+  Renderer2,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IconRegistry } from './icon-registry.service';
-import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { isPlatformServer } from '@angular/common';
 
 let element: HTMLElement = undefined as any;
 
 function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
-  if(element === undefined) {
-    element = renderer.createElement('img')
-    element.setAttribute('style', 'display: none; contain: content; content-visibility: auto;');
+  if (element === undefined) {
+    element = renderer.createElement('img');
+    element.setAttribute(
+      'style',
+      'display: none; contain: content; content-visibility: auto;'
+    );
     element.setAttribute('loading', 'lazy');
     element.setAttribute('width', '0');
     element.setAttribute('height', '0');
@@ -27,7 +31,7 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
     const e = element.cloneNode(true) as HTMLElement;
     e.setAttribute('src', src);
     return e;
-  }
+  };
 }
 
 /**
@@ -74,7 +78,7 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
   @Input()
   name: string = '';
   @Input()
-  size: string = this.registry.iconProvider.defaultSize + '';
+  size: string = this.registry.defaultSize;
   @Input()
   width: string = '';
   @Input()
@@ -82,14 +86,12 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
   // When the browser loaded the icon resource we trigger the caching mechanism
   // re-fetch -> cache-hit -> get SVG -> cache in DOM
   loadedListener = () => {
-    console.log('loadedListener');
     this.registry.fetchIcon(this.name);
-  }
+  };
 
   constructor(
     @Inject(PLATFORM_ID)
     private platform: Object,
-    @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private registry: IconRegistry,
     private element: ElementRef<HTMLElement>
@@ -105,10 +107,10 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
     const svg = elem.querySelector('svg') as SVGElement;
     // apply size
     if (this.size && svg) {
+      // We apply fixed dimensions
+      // Additionally to SEO rules, to avoid any scroll flicker caused by `content-visibility:auto` defined in component styles
       svg.setAttribute('width', this.width || this.size);
       svg.setAttribute('height', this.height || this.width || this.size);
-      // To avoid any scroll flicker caused by `content-visibility:auto` defined in component styles
-      svg.style.setProperty('contain-intrinsic-size', this.height || this.size);
     }
 
     let img: HTMLImageElement | null = null;
@@ -138,13 +140,14 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
        - the image needs to have display other than none
 
        */
-      const i = this.getImg(this.registry.iconProvider.url(this.name));
+      const i = this.getImg(this.registry.url(this.name));
       this.renderer.appendChild(this.element.nativeElement, i);
 
       // get img
       img = elem.querySelector('img');
       img?.addEventListener('load', this.loadedListener);
     }
+
     // Listen to icon changes
     // This potentially could already receive the icon from the cache and drop the img from the DOM before it gets activated for lazy loading.
     // NOTICE:
@@ -169,7 +172,7 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
     if (isPlatformServer(this.platform)) {
       // No lazy loading hack used on SSR so we could remove the img tag
       // this.img.remove(); @Doublecheck
-      // if SSR load icons on server => HTTP transfer state
+      // if SSR load icons on server => ends up in DOM cache and ships to the client
       this.registry.fetchIcon(this.name);
     }
     // CSR

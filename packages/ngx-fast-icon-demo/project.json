@@ -8,7 +8,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/ngx-fast-icon-demo",
+        "outputPath": "dist/packages/browser/ngx-fast-icon-demo",
         "index": "packages/ngx-fast-icon-demo/src/index.html",
         "main": "packages/ngx-fast-icon-demo/src/main.ts",
         "polyfills": "packages/ngx-fast-icon-demo/src/polyfills.ts",
@@ -88,6 +88,71 @@
         "jestConfig": "packages/ngx-fast-icon-demo/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "build-server": {
+      "builder": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/ngx-fast-icon-demo/server",
+        "main": "server.ts",
+        "tsConfig": "packages/ngx-fast-icon-demo/tsconfig.server.json",
+        "optimization": false,
+        "sourceMap": true,
+        "extractLicenses": false
+      },
+      "configurations": {
+        "development": {
+          "outputHashing": "none",
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": true
+        },
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "packages/ngx-fast-icon-demo/src/environments/environment.ts",
+              "with": "packages/ngx-fast-icon-demo/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "sourceMap": false,
+          "extractLicenses": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "builder": "@nguniversal/builders:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "ngx-fast-icon-demo:build:development",
+          "serverTarget": "ngx-fast-icon-demo:build-server:development"
+        },
+        "production": {
+          "browserTarget": "ngx-fast-icon-demo:build:production",
+          "serverTarget": "ngx-fast-icon-demo:build-server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "builder": "@nguniversal/builders:prerender",
+      "options": {
+        "browserTarget": "ngx-fast-icon-demo:build:production",
+        "serverTarget": "ngx-fast-icon-demo:build-server:production",
+        "routesFile": "routes.txt"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "ngx-fast-icon-demo:build:production",
+          "serverTarget": "ngx-fast-icon-demo:build-server:production"
+        },
+        "development": {
+          "browserTarget": "ngx-fast-icon-demo:build:development",
+          "serverTarget": "ngx-fast-icon-demo:build-server:development"
+        }
+      },
+      "defaultConfiguration": "development"
     }
   },
   "tags": []
