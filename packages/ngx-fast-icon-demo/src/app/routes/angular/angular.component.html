@@ -1,0 +1,14 @@
+<h1>Angular svg icon demo</h1>
+
+<button (click)="add()">Add</button>
+
+<div class="row">
+  <ul class="group" *ngFor="let list of lists">
+    <li *ngFor="let icon of list">
+      <svg-icon
+        [src]="'assets/svg-icons/account.svg'"
+        [svgStyle]="{ 'width.px': 30 }"
+      ></svg-icon>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,11 @@
+<h1>Ant design icon demo</h1>
+
+<button (click)="add()">Add</button>
+
+<div class="row">
+  <ul class="group" *ngFor="let list of lists">
+    <li *ngFor="let icon of list">
+      <i antIcon type="ant-cloud" theme="outline"></i>
+    </li>
+  </ul>
+</div>
