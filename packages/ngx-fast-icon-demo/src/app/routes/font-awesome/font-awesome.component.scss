@@ -1,0 +1,11 @@
+.group {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 160px;
+}
+
+li {
+  width: 30px;
+  height: 30px;
+}

@@ -1,0 +1,10 @@
+<h1>Font awesome icon demo</h1>
+<button (click)="add()">Add</button>
+
+<div class="row">
+  <ul class="group" *ngFor="let list of lists">
+    <li *ngFor="let icon of list">
+      <fa-icon size="lg" [icon]="icon"></fa-icon>
+    </li>
+  </ul>
+</div>

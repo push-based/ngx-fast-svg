@@ -1,0 +1,10 @@
+<h1>Material icon demo</h1>
+<button (click)="add()">Add</button>
+
+<div class="row">
+  <ul class="group" *ngFor="let list of lists">
+    <li *ngFor="let icon of list">
+      <mat-icon class="mat-icon-rtl-mirror" svgIcon="account"></mat-icon>
+    </li>
+  </ul>
+</div>

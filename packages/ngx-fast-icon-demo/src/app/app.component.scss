@@ -1,3 +1,150 @@
-.animation {
+.header {
+  position: relative;
+  z-index: 1090;
+  border-right: 3px solid;
+  height: 100%;
+  transition: border-color 0.2s ease-in-out;
+}
 
+.link {
+  padding: 16px;
+  display: block;
+  transition: background-color 0.2s ease-in-out;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: none !important;
+
+  &.active {
+    &.description {
+      background-color: var(--description-border-color) !important;
+    }
+    &.angular {
+      background-color: var(--angular-border-color) !important;
+    }
+    &.ant {
+      background-color: var(--ant-border-color) !important;
+    }
+    &.ionic {
+      background-color: var(--ionic-border-color) !important;
+    }
+    &.font-awesome {
+      background-color: var(--font-awesome-border-color) !important;
+    }
+    &.fast-icon {
+      background-color: var(--pb-border-color) !important;
+    }
+    &.material {
+      background-color: var(--material-border-color) !important;
+    }
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  width: 320px;
+  height: 100%;
+}
+
+.content {
+  width: calc(100% - 320px);
+  padding: 0 16px;
+}
+
+:host::ng-deep {
+  .angular {
+    background-color: var(--angular-color);
+
+    button {
+      background-color: var(--angular-border-color);
+    }
+  }
+  .description {
+    background-color: var(--description-color);
+  }
+  .ant {
+    background-color: var(--ant-color);
+
+    button {
+      background-color: var(--ant-border-color);
+    }
+  }
+  .ionic {
+    background-color: var(--ionic-color);
+
+    button {
+      background-color: var(--ionic-border-color);
+    }
+  }
+  .font-awesome {
+    background-color: var(--font-awesome-color);
+
+    button {
+      background-color: var(--font-awesome-border-color);
+    }
+  }
+  .fast-icon {
+    background-color: var(--pb-color);
+
+    button {
+      background-color: var(--pb-border-color);
+    }
+  }
+  .material {
+    background-color: var(--material-color);
+
+    button {
+      background-color: var(--material-border-color);
+    }
+  }
+}
+
+:host::ng-deep .root {
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
+
+  &.angular {
+    .header {
+      border-right-color: var(--angular-border-color);
+    }
+  }
+  &.description {
+    .header {
+      border-right-color: var(--description-border-color);
+    }
+  }
+  &.ant {
+    .header {
+      border-right-color: var(--ant-border-color);
+    }
+  }
+  &.ionic {
+    .header {
+      border-right-color: var(--ionic-border-color);
+    }
+  }
+  &.font-awesome {
+    .header {
+      border-right-color: var(--font-awesome-border-color);
+    }
+  }
+  &.fast-icon {
+    .header {
+      border-right-color: var(--pb-border-color);
+    }
+  }
+  &.material {
+    .header {
+      border-right-color: var(--material-border-color);
+    }
+  }
 }
