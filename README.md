@@ -1,4 +1,12 @@
+# Measures
 
+**Cold add icons x 15**
+
+**Hot (all icons) add icons x 15**
+
+**SSR (viewport icons) + add icons x 15**
+
+**SSR (all icons) + add icons x 15**
 
 # NgxFastIcon
 
