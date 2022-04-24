@@ -26,6 +26,7 @@ export async function run(): Promise<void> {
     return ({
       name: fileName,
       size: fs.statSync(filePath).size,
+      path: filePath,
       elements: countSvgElements(fs.readFileSync(filePath, {encoding: 'utf8'}).toString())
     })
   });
@@ -35,12 +36,12 @@ export async function run(): Promise<void> {
     top +
     `
 <!-- file-info-start -->
-| Names             |       Size |       Elements |
-| ---               | ---        | ---            |`;
+| Image             | Names             |       Size |       Elements |
+| ---               | ---               | ---        | ---            |`;
 
-  initialAssets.forEach(({name, size, elements}) => {
+  initialAssets.forEach(({name,path, size, elements}) => {
     statsContent += `
-| ${name}           | ${formatBytes(size)} | ${elements}`;
+| ![${name}](${path}) | ${name}           | ${formatBytes(size)} | ${elements}`;
   });
 
   statsContent += `<!-- file-info-end -->` + bottom;
