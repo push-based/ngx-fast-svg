@@ -15,7 +15,9 @@
     "build:prod": "npm run build -- --configuration production",
     "build-server": "nx build-server ngx-fast-icon-demo",
     "build:prod:ssr": "npm run build:prod && npm run build-server",
-    "postinstall": "ngcc --properties es2015 browser module main"
+    "postinstall": "ngcc --properties es2015 browser module main",
+    "update-bundle-state:readme": "npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-bundle-stats --stats=./measures/bundle-size/stats.json --target=./README.md",
+    "update-svg-size:readme": "npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-svg-size --folder=./packages/ngx-fast-icon-demo/src/assets/svg-icons --target=./README.md"
   },
   "private": true,
   "dependencies": {
@@ -67,6 +69,7 @@
     "@typescript-eslint/parser": "~5.10.0",
     "compression": "^1.7.4",
     "cypress": "^9.5.4",
+    "domino": "^2.1.6",
     "eslint": "~8.7.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.12.1",

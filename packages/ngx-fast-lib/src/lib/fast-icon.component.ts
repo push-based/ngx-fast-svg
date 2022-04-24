@@ -13,8 +13,32 @@ import { Subscription } from 'rxjs';
 import { IconRegistry } from './icon-registry.service';
 import { isPlatformServer } from '@angular/common';
 
-let element: HTMLElement = undefined as any;
+const w = window as any;
 
+/**
+ * getZoneUnPatchedApi
+ *
+ * @description
+ *
+ * This function returns the zone un-patched API for the a specific Browser API.
+ * If no element is passed the window is used instead
+ *
+ * @param name {string} - The name of the API to check.
+ * @param elem {any} - The elem to get un-patched API from.
+ * @return {Function} - The zone un-patched API in question.
+ *
+ */
+function getZoneUnPatchedApi<T = Function>(name: string, elem: HTMLElement): T {
+  // @ts-ignore
+  return elem['__zone_symbol__' + name] !== undefined ? elem['__zone_symbol__' + name] : elem[name];
+}
+
+const addEventListener = (elem: HTMLElement, name: string, listener: Function) => getZoneUnPatchedApi(
+  'addEventListener',
+  elem,
+).bind(elem)(name, listener);
+
+let element: HTMLElement = undefined as any;
 function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
   if (element === undefined) {
     element = renderer.createElement('img');
@@ -144,8 +168,8 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
       this.renderer.appendChild(this.element.nativeElement, i);
 
       // get img
-      img = elem.querySelector('img');
-      img?.addEventListener('load', this.loadedListener);
+      img = elem.querySelector('img') as HTMLImageElement;
+      addEventListener(img, 'load', this.loadedListener);
     }
 
     // Listen to icon changes
@@ -156,7 +180,7 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
       // The first child is the `use` tag. The value of href gets displayed as SVG
       svg.children[0].setAttribute('href', href);
 
-      // early exit no image
+      // early exvit no image
       if (!img) return;
 
       // If the img is present
@@ -164,14 +188,13 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
       // Remove the element from the DOM as it is no longer needed
       if (href.includes(this.name)) {
         img.removeEventListener('load', this.loadedListener);
+        // removeEventListener.bind(img, 'load', this.loadedListener);
         img.remove();
       }
     });
 
     // SSR
     if (isPlatformServer(this.platform)) {
-      // No lazy loading hack used on SSR so we could remove the img tag
-      // this.img.remove(); @Doublecheck
       // if SSR load icons on server => ends up in DOM cache and ships to the client
       this.registry.fetchIcon(this.name);
     }
