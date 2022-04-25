@@ -16,12 +16,7 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "packages/ngx-fast-icon-demo/src/favicon.ico",
-          "packages/ngx-fast-icon-demo/src/assets",
-          {
-            "glob": "**/*.svg",
-            "input": "node_modules/ionicons/dist/ionicons/svg",
-            "output": "./svg"
-          }
+          "packages/ngx-fast-icon-demo/src/assets"
         ],
         "styles": ["packages/ngx-fast-icon-demo/src/styles.scss"],
         "scripts": []

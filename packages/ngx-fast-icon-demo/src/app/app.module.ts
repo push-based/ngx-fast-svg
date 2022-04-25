@@ -2,41 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { IconModule as AntIconsModule } from '@ant-design/icons-angular';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IonicModule } from '@ionic/angular';
-import { FastIconModule } from '@ngx-fast-icon';
 import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { AngularComponent } from './routes/angular/angular.component';
-import { IonicComponent } from './routes/ionic/ionic.component';
-import { FastIconRouteComponent } from './routes/fast-icon/fast-icon.component';
-import { AntComponent } from './routes/ant/ant.component';
-import { FontAwesomeComponent } from './routes/font-awesome/font-awesome.component';
-import { MaterialComponent } from './routes/material/material.component';
 import { DescriptionComponent } from './routes/description/description.component';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    AngularComponent,
-    IonicComponent,
-    FastIconRouteComponent,
-    AntComponent,
-    FontAwesomeComponent,
-    MaterialComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
+    CommonModule,
     BrowserModule,
-    AntIconsModule,
-    FontAwesomeModule,
     HttpClientModule,
-    MatIconModule,
-    AngularSvgIconModule.forRoot(),
     IonicModule.forRoot(),
-    FastIconModule.forRoot({
-      url: (name: string) => `assets/svg-icons/${name}.svg`,
-    }),
     RouterModule.forRoot(
       [
         {
@@ -47,16 +24,16 @@ import { DescriptionComponent } from './routes/description/description.component
         {
           path: 'ngx-fast-icon',
           loadChildren: () =>
-            import('./comparison/ngx-fast-svg/fast-svg-list.module').then(
+            import('./misc/ngx-fast-svg/fast-svg-list.module').then(
               (m) => m.FastSvgListModule
             ),
         },
         {
           path: 'icon',
           loadChildren: () =>
-            import(
-              './comparison/angular-svg-icon/angular-svg-icon-list.module'
-            ).then((m) => m.AngularSvgIconListModule),
+            import('./misc/angular-svg-icon/angular-svg-icon-list.module').then(
+              (m) => m.AngularSvgIconListModule
+            ),
         },
         {
           path: 'description',
@@ -64,27 +41,43 @@ import { DescriptionComponent } from './routes/description/description.component
         },
         {
           path: 'angular',
-          component: AngularComponent,
+          loadChildren: () =>
+            import('./comparison/angular/angular.module').then(
+              (m) => m.AngularModule
+            ),
         },
         {
           path: 'material',
-          component: MaterialComponent,
+          loadChildren: () =>
+            import('./comparison/material/material.module').then(
+              (m) => m.MaterialComponentModule
+            ),
         },
         {
           path: 'ant',
-          component: AntComponent,
+          loadChildren: () =>
+            import('./comparison/ant/ant.module').then((m) => m.AntModule),
         },
         {
           path: 'ionic',
-          component: IonicComponent,
+          loadChildren: () =>
+            import('./comparison/ionic/ionic.module').then(
+              (m) => m.IonicComponentModule
+            ),
         },
         {
           path: 'font-awesome',
-          component: FontAwesomeComponent,
+          loadChildren: () =>
+            import('./comparison/font-awesome/font-awesome.module').then(
+              (m) => m.FontAwesomeRouteModule
+            ),
         },
         {
           path: 'fast-icon',
-          component: FastIconRouteComponent,
+          loadChildren: () =>
+            import('./comparison/fast-icon/fast-icon.module').then(
+              (m) => m.FastIconRouteModule
+            ),
         },
         /* {
         path:'angular-material-icon',

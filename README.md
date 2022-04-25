@@ -16,12 +16,26 @@
 
 ![ngx-fast-icon](https://user-images.githubusercontent.com/10064416/164747072-8292d8e8-fcc2-481c-ad0d-f4385db8abda.PNG)
 
+
+
+
+
+
 <!-- bundle-stats-start -->
 | Names             |       Size |
 | ---               | ---        |
-| ngx-fast-svg-fast-svg           | 1.38 KB |
-| angular-svg-icon-angular-svg-icon           | 1.37 KB |
+| font-awesome-font-awesome-module           | 64.75 KB |
+| ant-ant-module           | 24.38 KB |
+| material-material-module           | 16.92 KB |
+| angular-angular-module           | 1.54 KB |
+| fast-icon-fast-icon-module           | 1.52 KB |
+| ionic-ionic-module           | 1.44 KB |
 <!-- bundle-stats-end -->
+
+
+
+
+
 
 # Sample set SVG icons
 
