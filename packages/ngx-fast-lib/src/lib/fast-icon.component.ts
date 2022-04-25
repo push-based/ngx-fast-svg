@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -29,14 +30,16 @@ const w = window as any;
  *
  */
 function getZoneUnPatchedApi<T = Function>(name: string, elem: HTMLElement): T {
-  // @ts-ignore
-  return elem['__zone_symbol__' + name] !== undefined ? elem['__zone_symbol__' + name] : elem[name];
+  return (elem as any)['__zone_symbol__' + name] !== undefined
+    ? (elem as any)['__zone_symbol__' + name]
+    : (elem as any)[name];
 }
 
-const addEventListener = (elem: HTMLElement, name: string, listener: Function) => getZoneUnPatchedApi(
-  'addEventListener',
-  elem,
-).bind(elem)(name, listener);
+const addEventListener = (
+  elem: HTMLElement,
+  name: string,
+  listener: Function
+) => getZoneUnPatchedApi('addEventListener', elem).bind(elem)(name, listener);
 
 let element: HTMLElement = undefined as any;
 function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
@@ -100,13 +103,13 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
   private readonly getImg = createGetImgFn(this.renderer);
 
   @Input()
-  name: string = '';
+  name = '';
   @Input()
   size: string = this.registry.defaultSize;
   @Input()
-  width: string = '';
+  width = '';
   @Input()
-  height: string = '';
+  height = '';
   // When the browser loaded the icon resource we trigger the caching mechanism
   // re-fetch -> cache-hit -> get SVG -> cache in DOM
   loadedListener = () => {
@@ -115,7 +118,7 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     @Inject(PLATFORM_ID)
-    private platform: Object,
+    private platform: Record<string, unknown>,
     private renderer: Renderer2,
     private registry: IconRegistry,
     private element: ElementRef<HTMLElement>
