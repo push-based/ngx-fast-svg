@@ -1,24 +1,29 @@
+# View settings
+- all icons fixed size e.g. `30px`
+- button to align all icons distributes
+- button to align all icons onscreen
+- button to align all icons offscreen
+
+# Numbers
+- bundle size (bundles in angular app)
+- html size (list inc icons and cache)
+
 # Measures
-
-**Cold add icons x 15**
-
-**Hot (all icons) add icons x 15**
-
-**SSR (viewport icons) + add icons x 15**
-
-**SSR (all icons) + add icons x 15**
+- Cold add icons x 15
+- Hot (all icons) add icons x 15
+- SSR (viewport icons) + add icons x 15
+- SSR (all icons) + add icons x 15
 
 ![ngx-fast-icon](https://user-images.githubusercontent.com/10064416/164747072-8292d8e8-fcc2-481c-ad0d-f4385db8abda.PNG)
 
+<!-- bundle-stats-start -->
+| Names             |       Size |
+| ---               | ---        |
+| ngx-fast-svg-fast-svg           | 1.38 KB |
+| angular-svg-icon-angular-svg-icon           | 1.37 KB |
+<!-- bundle-stats-end -->
 
-
-
-
-
-
-
-
-
+# Sample set SVG icons
 
 <!-- file-info-start -->
 | Image             | Names             |       Size |       Elements |

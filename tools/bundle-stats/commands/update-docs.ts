@@ -24,10 +24,13 @@ export async function run(): Promise<void> {
   const restAssets: [string, number][] = stats.assets
     .filter(
       (o: any) =>
-        !o.name.match(/main|styles|runtime|polyfills+[.]/g) &&
+      //  !o.name.match(/main|styles|runtime|polyfills+[.]/g) &&
+        Array.isArray(o.chunkNames) && o.chunkNames[0] !== undefined &&
+        o.chunkNames[0].includes('comparison') &&
         o.name.endsWith('.js')
     )
-    .map(({ name, size }: any) => [name, size]);
+    .map(v => { console.log(v.chunkNames[0]); return v})
+    .map(({ chunkNames, size }: any) => [chunkNames[0].replace('comparison-', '').replace('-list-module', ''), size]);
 
   let statsContent =
     top +
@@ -35,17 +38,6 @@ export async function run(): Promise<void> {
 <!-- bundle-stats-start -->
 | Names             |       Size |
 | ---               | ---        |`;
-
-  initialAssets.forEach(([name, size]) => {
-    statsContent += `
-| ${formatChunkName(name)}           | ${formatBytes(size)} |`;
-  });
-  statsContent += `
-  | **Initial Total** | **${formatBytes(
-    initialAssets.reduce((a, [_, s]) => a + s, 0)
-  )}** |`;
-  statsContent += `
-  | Names             |       Size |`;
 
   restAssets.forEach(([name, size]) => {
     statsContent += `
