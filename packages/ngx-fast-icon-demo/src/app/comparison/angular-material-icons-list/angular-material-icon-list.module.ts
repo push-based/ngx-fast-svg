@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
   declarations: [AngularMaterialIconListComponent],
   imports: [
     CommonModule,
+    MatIconModule,
     RouterModule.forChild([
       {
         path: '',

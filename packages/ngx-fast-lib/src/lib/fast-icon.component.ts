@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,8 +15,34 @@ import { Subscription } from 'rxjs';
 import { IconRegistry } from './icon-registry.service';
 import { isPlatformServer } from '@angular/common';
 
-let element: HTMLElement = undefined as any;
+const w = window as any;
 
+/**
+ * getZoneUnPatchedApi
+ *
+ * @description
+ *
+ * This function returns the zone un-patched API for the a specific Browser API.
+ * If no element is passed the window is used instead
+ *
+ * @param name {string} - The name of the API to check.
+ * @param elem {any} - The elem to get un-patched API from.
+ * @return {Function} - The zone un-patched API in question.
+ *
+ */
+function getZoneUnPatchedApi<T = Function>(name: string, elem: HTMLElement): T {
+  return (elem as any)[`__zone_symbol__${name}`] !== undefined
+    ? (elem as any)['__zone_symbol__' + name]
+    : (elem as any)[name];
+}
+
+const addEventListener = (
+  elem: HTMLElement,
+  name: string,
+  listener: Function
+) => getZoneUnPatchedApi('addEventListener', elem).bind(elem)(name, listener);
+
+let element: HTMLElement = undefined as any;
 function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
   if (element === undefined) {
     element = renderer.createElement('img');
@@ -79,7 +106,7 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
   @Input()
   name = '';
   @Input()
-  size = this.registry.defaultSize;
+  size: string = this.registry.defaultSize;
   @Input()
   width = '';
   @Input()
@@ -121,34 +148,34 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
       // if icon is not in cache we append
       if (!this.registry.isIconCached(this.name)) {
         /**
-         CSR - Browser native lazy loading hack
+       CSR - Browser native lazy loading hack
 
-         We use an img element here to leverage the browsers native features:
-         - lazy loading (loading="lazy") to only load the icons that are actually visible
-         - priority hints to down prioritize the fetch to avoid delaying the LCP
+       We use an img element here to leverage the browsers native features:
+       - lazy loading (loading="lazy") to only load the icons that are actually visible
+       - priority hints to down prioritize the fetch to avoid delaying the LCP
 
-         While the SVG is loading we display a fallback SVG.
-         After the image is loaded we remove it from the DOM. (IMG load event)
-         When the new icon arrives we append it to the template.
+       While the SVG is loading we display a fallback SVG.
+       After the image is loaded we remove it from the DOM. (IMG load event)
+       When the new icon arrives we append it to the template.
 
-         Note:
-         - the image is styled with display none. this prevents any loading of the resource ever.
-         on component bootstrap we decide what we want to do. when we remove display none it performs the browser native behavior
-         - the image has 0 height and with and containment as well as contnet-visibility to recuce any performance impact
+       Note:
+       - the image is styled with display none. this prevents any loading of the resource ever.
+       on component bootstrap we decide what we want to do. when we remove display none it performs the browser native behavior
+       - the image has 0 height and with and containment as well as contnet-visibility to recuce any performance impact
 
 
-         Edge cases:
-         - only resources that are not loaded in the current session of the browser will get lazy loaded (same URL to trigger loading is not possible)
-         - already loaded resources will get emitted from the cache immediately, even if loading is set to lazy :o
-         - the image needs to have display other than none
+       Edge cases:
+       - only resources that are not loaded in the current session of the browser will get lazy loaded (same URL to trigger loading is not possible)
+       - already loaded resources will get emitted from the cache immediately, even if loading is set to lazy :o
+       - the image needs to have display other than none
 
-         */
+       */
         const i = this.getImg(this.registry.url(this.name));
         this.renderer.appendChild(this.element.nativeElement, i);
 
         // get img
-        img = elem.querySelector('img');
-        img?.addEventListener('load', this.loadedListener);
+        img = elem.querySelector('img') as HTMLImageElement;
+        addEventListener(img, 'load', this.loadedListener);
       }
 
       // Listen to icon changes
@@ -159,7 +186,7 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
         // The first child is the `use` tag. The value of href gets displayed as SVG
         svg.children[0].setAttribute('href', href);
 
-        // early exit no image
+        // early exvit no image
         if (!img) return;
 
         // If the img is present
@@ -167,14 +194,13 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
         // Remove the element from the DOM as it is no longer needed
         if (href.includes(this.name)) {
           img.removeEventListener('load', this.loadedListener);
+          // removeEventListener.bind(img, 'load', this.loadedListener);
           img.remove();
         }
       });
 
       // SSR
       if (isPlatformServer(this.platform)) {
-        // No lazy loading hack used on SSR so we could remove the img tag
-        // this.img.remove(); @Doublecheck
         // if SSR load icons on server => ends up in DOM cache and ships to the client
         this.registry.fetchIcon(this.name);
       }
