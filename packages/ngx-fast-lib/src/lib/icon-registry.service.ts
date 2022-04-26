@@ -8,7 +8,7 @@ import { IconLoadStrategy } from './token/icon-load.strategy.model';
 
 // @TODO compose icons in 1 sprite and fetch by id as before
 
-let element: HTMLElement | undefined = undefined;
+const element: HTMLElement | undefined = undefined;
 
 function createDomParser(document: Document): (s: string) => HTMLElement {
   const e = element || document.createElement('DIV');
