@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { IconService as AntIconService } from '@ant-design/icons-angular';
+import { AccountBookFill } from '@ant-design/icons-angular/icons';
 
 @Component({
   templateUrl: './ant.component.html',
@@ -21,6 +23,10 @@ export class AntComponent {
   ];
 
   lists: string[][] = [];
+
+  constructor(private _iconService: AntIconService) {
+    this._iconService.addIcon(...[AccountBookFill]);
+  }
 
   add() {
     for (let i = 0; i < 30; i++) {

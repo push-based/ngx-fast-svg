@@ -1,10 +1,11 @@
-<h1>Ionic icon demo</h1>
+<h1>Ant design icon demo</h1>
+
 <button (click)="add()">Add</button>
 
 <div class="row">
   <ul class="group" *ngFor="let list of lists">
     <li *ngFor="let icon of list">
-      <ion-icon size="large" src="assets/svg-icons/account.svg"></ion-icon>
+      <i antIcon type="account-book" theme="fill"></i>
     </li>
   </ul>
 </div>

@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
-import {
-  IconDefinition,
-  IconService as AntIconService,
-} from '@ant-design/icons-angular';
-import * as AllIcons from '@ant-design/icons-angular/icons';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+
 import { filter, map, startWith } from 'rxjs';
 
 @Component({
@@ -16,11 +9,6 @@ import { filter, map, startWith } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  faCircleUser = faCircleUser;
-  iconUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
-    'assets/svg-icons/account.svg'
-  );
-
   links = [
     'description',
     'fast-icon',
@@ -36,21 +24,7 @@ export class AppComponent {
     startWith({ urlAfterRedirects: this.router.url }),
     map((e) => this.getClassFromUrl((e as NavigationEnd).urlAfterRedirects))
   );
-  constructor(
-    private _iconService: AntIconService,
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer,
-    private router: Router
-  ) {
-    const antDesignIcons = AllIcons as {
-      [key: string]: IconDefinition;
-    };
-    this._iconService.addIcon(
-      ...Object.keys(antDesignIcons).map((key) => antDesignIcons[key])
-    );
-
-    this.matIconRegistry.addSvgIcon('account', this.iconUrl);
-  }
+  constructor(private router: Router) {}
 
   getClassFromUrl(url: string): string {
     if (url.includes('angular')) {
