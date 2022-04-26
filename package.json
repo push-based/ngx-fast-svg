@@ -19,8 +19,8 @@
     "build:prod:ssr": "npm run build:prod && npm run build-server",
     "postinstall": "ngcc --properties es2015 browser module main",
     "user-flow:collect": "npx @push-based/user-flow -p ./packages/ngx-fast-icon-demo/perf/.user-flowrc.json collect -v",
-    "update-bundle-state:readme": "npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-bundle-stats --stats=./dist/packages/browser/ngx-fast-icon-demo/stats.json --target=./README.md",
-    "update-svg-size:readme": "npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-svg-size --folder=./packages/ngx-fast-icon-demo/src/assets/svg-icons --target=./README.md"
+    "update-bundle-state:readme": "npm run build:prod:stats && npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-bundle-stats --stats=./dist/packages/browser/ngx-fast-icon-demo/stats.json --target=./README.md",
+    "update-svg-size:readme": "npm run build:prod:stats && npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-svg-size --folder=./packages/ngx-fast-icon-demo/src/assets/svg-icons --target=./README.md"
   },
   "private": true,
   "dependencies": {
