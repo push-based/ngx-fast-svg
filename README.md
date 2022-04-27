@@ -17,7 +17,20 @@
 - SSR (viewport icons) + add icons x 15
 - SSR (all icons) + add icons x 15
 
-![ngx-fast-icon](https://user-images.githubusercontent.com/10064416/164747072-8292d8e8-fcc2-481c-ad0d-f4385db8abda.PNG)
+![ngx-fast-svg](https://user-images.githubusercontent.com/10064416/164747072-8292d8e8-fcc2-481c-ad0d-f4385db8abda.PNG)
+
+# Overview
+
+| Names                                                                           | Lazyloading      | Preloading | SSR | Prerendering |
+| ------------------------------------------------------------------------------- | ---------------- | ---------- | --- | ------------ |
+| [ngx-fast-svg](https://www.npmjs.com/package/@ionic/angular)                    | native           |            |     |              |
+| [ionic-ionic](https://www.npmjs.com/package/@ant-design/icons-angular)          | programmatically |            |     |              |
+| [font-awesome](https://www.npmjs.com/package/@fortawesome/angular-fontawesome)  |                  |            |     |              |
+| [ant](https://www.npmjs.com/package/@ant-design/icons-angular)                  |                  |            |     |              |
+| [material-module](https://www.npmjs.com/package/@angular/material)              |                  |            |     |              |
+| [angular](https://www.npmjs.com/package/angular-svg-icon)                       |                  |            |     |              |
+
+
 
 <!-- bundle-stats-start -->
 
