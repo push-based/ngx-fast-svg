@@ -31,6 +31,7 @@
 | [angular](https://www.npmjs.com/package/angular-svg-icon)                       |                  |            |     |              |
 
 
+https://bundlephobia.com/api/size?package=@ant-design/icons-angular@13.1.0
 
 <!-- bundle-stats-start -->
 
