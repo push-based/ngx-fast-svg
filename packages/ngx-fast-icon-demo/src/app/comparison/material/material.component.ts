@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SUPPORTED_ICONS } from '../../icon-data';
+import { IconTester } from '../../misc/icons-tester/icon-tester.service';
 
 @Component({
   templateUrl: './material.component.html',
@@ -10,33 +12,19 @@ export class MaterialComponent {
   iconUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
     'assets/svg-icons/account.svg'
   );
-  readonly icons: string[] = [
-    'account',
-    'account',
-    'account',
-    'account',
-    'account',
-    'account',
-    'account',
-    'account',
-    'account',
-    'account',
-    'account',
-    'account',
-  ];
-
   constructor(
     private domSanitizer: DomSanitizer,
-    private matIconRegistry: MatIconRegistry
+    private matIconRegistry: MatIconRegistry,
+    public tester: IconTester
   ) {
-    this.matIconRegistry.addSvgIcon('account', this.iconUrl);
-  }
-
-  lists: string[][] = [];
-
-  add() {
-    for (let i = 0; i < 30; i++) {
-      this.lists.push(this.icons);
-    }
+    this.tester.defineSet(SUPPORTED_ICONS);
+    SUPPORTED_ICONS.forEach((i) => {
+      this.matIconRegistry.addSvgIcon(
+        i,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          `assets/svg-icons/${i}.svg`
+        )
+      );
+    });
   }
 }

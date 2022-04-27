@@ -1,11 +1,25 @@
 <h1>Ant design icon demo</h1>
+<h4>Layout setting</h4>
+<div class="buttons-wrapper">
+  <button
+    [ngClass]="{ active: button === tester.setting }"
+    *ngFor="let button of tester.buttons"
+    (click)="tester.setLayout(button)"
+  >
+    {{ button }}
+  </button>
+</div>
+<h4>Content controls</h4>
+<div class="buttons-wrapper">
+  <button (click)="tester.add()">Add</button>
+  <button (click)="tester.remove()">Remove</button>
+  <button (click)="tester.reload()">Reload page</button>
+</div>
 
-<button (click)="add()">Add</button>
-
-<div class="row">
-  <ul class="group" *ngFor="let list of lists">
+<div class="row icons" *ngIf="tester.showContainer">
+  <ul class="group" *ngFor="let list of tester.lists">
     <li *ngFor="let icon of list">
-      <i antIcon type="account-book" theme="fill"></i>
+      <i antIcon [type]="icon" theme="fill"></i>
     </li>
   </ul>
 </div>

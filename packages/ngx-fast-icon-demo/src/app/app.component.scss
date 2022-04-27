@@ -55,6 +55,8 @@
 
 .content {
   width: calc(100% - 320px);
+  height: 100%;
+  overflow: auto;
   padding: 0 16px;
 }
 
@@ -64,6 +66,11 @@
 
     button {
       background-color: var(--angular-border-color);
+
+      &.active {
+        background: transparent;
+        border: 2px solid var(--angular-border-color);
+      }
     }
   }
   .description {
@@ -74,6 +81,11 @@
 
     button {
       background-color: var(--ant-border-color);
+
+      &.active {
+        background: transparent;
+        border: 2px solid var(--ant-border-color);
+      }
     }
   }
   .ionic {
@@ -81,6 +93,11 @@
 
     button {
       background-color: var(--ionic-border-color);
+
+      &.active {
+        background: transparent;
+        border: 2px solid var(--ionic-border-color);
+      }
     }
   }
   .font-awesome {
@@ -88,6 +105,11 @@
 
     button {
       background-color: var(--font-awesome-border-color);
+
+      &.active {
+        background: transparent;
+        border: 2px solid var(--font-awesome-border-color);
+      }
     }
   }
   .fast-icon {
@@ -95,6 +117,11 @@
 
     button {
       background-color: var(--pb-border-color);
+
+      &.active {
+        background: transparent;
+        border: 2px solid var(--pb-border-color);
+      }
     }
   }
   .material {
@@ -102,8 +129,17 @@
 
     button {
       background-color: var(--material-border-color);
+
+      &.active {
+        background: transparent;
+        border: 2px solid var(--material-border-color);
+      }
     }
   }
+}
+
+button {
+  border: 2px solid transparent;
 }
 
 :host::ng-deep .root {

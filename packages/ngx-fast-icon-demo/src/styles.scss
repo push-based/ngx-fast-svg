@@ -13,6 +13,8 @@
   --pb-border-color: #22004f;
   --description-color: #864bd3;
   --description-border-color: #6b3ca8;
+  --row-margin-top: 32px;
+  --group-margin: 0;
 }
 
 html,
@@ -59,8 +61,14 @@ button {
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
   border-radius: 4px;
-  width: 200px;
+  min-width: 200px;
   font-size: 16px;
+  margin-right: 16px;
+}
+
+.buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @keyframes a {
@@ -81,4 +89,13 @@ ol {
 .row {
   display: flex;
   flex-wrap: wrap;
+
+  &.icons {
+    margin-top: var(--row-margin-top);
+  }
+}
+
+.group,
+li {
+  margin: var(--group-margin);
 }
