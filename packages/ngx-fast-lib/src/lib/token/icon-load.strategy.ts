@@ -1,15 +1,16 @@
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { from, Observable, of, switchMap } from 'rxjs';
 import { Injectable } from '@angular/core';
-
+import { fromFetch } from 'rxjs/fetch';
 @Injectable()
 export class IconLoadStrategyImpl {
-
-  constructor(private http: HttpClient) {
-  }
-
   load(url: string): Observable<string> {
-    return this.http.get(url, { responseType: 'text' });
+    return fromFetch(url).pipe(
+      switchMap((res) => {
+        if (!res.ok) {
+          return of('');
+        }
+        return from(res.text());
+      })
+    );
   }
 }
-

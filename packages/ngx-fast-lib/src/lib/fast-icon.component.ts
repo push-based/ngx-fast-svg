@@ -203,7 +203,7 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
     else {
       // Activate the lazy loading hack
       // Loading is triggered in the template over loading="lazy" and onload
-      // Than the same image is fetched over HTTPClient and rendered as SVG. (This will result in a cache hit for this svg)
+      // Than the same image is fetched over fromFetch and rendered as SVG. (This will result in a cache hit for this svg)
       //
       // If the img is present activate it
       img && img.style.setProperty('display', 'block');
