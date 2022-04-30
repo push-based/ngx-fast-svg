@@ -14,8 +14,6 @@ import { Subscription } from 'rxjs';
 import { IconRegistry } from './icon-registry.service';
 import { isPlatformServer } from '@angular/common';
 
-const w = window as any;
-
 /**
  * getZoneUnPatchedApi
  *

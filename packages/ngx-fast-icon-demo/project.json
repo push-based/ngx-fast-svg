@@ -8,7 +8,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/browser/ngx-fast-icon-demo",
+        "outputPath": "dist/ngx-fast-icon-demo/browser",
         "index": "packages/ngx-fast-icon-demo/src/index.html",
         "main": "packages/ngx-fast-icon-demo/src/main.ts",
         "polyfills": "packages/ngx-fast-icon-demo/src/polyfills.ts",
@@ -91,7 +91,7 @@
       "builder": "@angular-devkit/build-angular:server",
       "options": {
         "outputPath": "dist/ngx-fast-icon-demo/server",
-        "main": "server.ts",
+        "main": "packages/ngx-fast-icon-demo/src/server.ts",
         "tsConfig": "packages/ngx-fast-icon-demo/tsconfig.server.json",
         "optimization": false,
         "sourceMap": true,

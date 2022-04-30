@@ -5,7 +5,7 @@ import * as express from 'express';
 import { join } from 'path';
 import * as compressionModule from 'compression';
 
-import { AppServerModule } from './src/main.server';
+import { AppServerModule } from './main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
@@ -16,7 +16,7 @@ export function app(): express.Express {
   const distFolder = join(process.cwd(), 'dist/ngx-fast-icon-demo/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
     ? 'index.original.html'
-    : 'index';
+    : 'index.html';
 
   // patchWindow(indexHtml);
 
@@ -28,7 +28,7 @@ export function app(): express.Express {
   server.engine(
     'html',
     ngExpressEngine({
-      bootstrap: AppServerModule
+      bootstrap: AppServerModule,
     })
   );
 
@@ -44,7 +44,7 @@ export function app(): express.Express {
       maxAge: '1y',
 
       // missing assets results in 404 instead of continuing to next route handler (and rendering route)
-      fallthrough: false
+      fallthrough: false,
     })
   );
 
@@ -56,9 +56,9 @@ export function app(): express.Express {
       providers: [
         {
           provide: APP_BASE_HREF,
-          useValue: req.baseUrl
-        }
-      ]
+          useValue: req.baseUrl,
+        },
+      ],
     });
   });
 
@@ -85,4 +85,4 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }
 
-export * from './src/main.server';
+export * from './main.server';
