@@ -4,10 +4,9 @@
 
 #### Fast icons powered by browser native features with performance in mind
 
-# Why another icon lib? 
+# Why another icon lib?
 
 svg icons are bad for perf
-
 
 # Install
 
@@ -20,19 +19,18 @@ yarn add @push-based/ngx-fast-svg
 # Setup
 
 **app.module.ts**
+
 ```typescript
 // ...
 import { FAST_ICON_PROVIDERS } from './ngx-fast-icon-ssr/movie.icon.provider';
-import { HttpClientModule } from '@angular/common/http';
 import { FastIconModule } from '@ngx-fast-icon';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FastIconModule.forRoot({
-      
+
     })
   ]
   providers: [],

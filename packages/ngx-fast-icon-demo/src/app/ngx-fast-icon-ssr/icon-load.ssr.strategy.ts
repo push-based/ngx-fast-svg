@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable, of, switchMap } from 'rxjs';
 import { IconLoadStrategy } from '@ngx-fast-icon';
+import { fromFetch } from 'rxjs/fetch';
 
 @Injectable()
 export class IconLoadStrategySsr implements IconLoadStrategy {
-  constructor(private http: HttpClient) {
-  }
-
   load(url: string): Observable<string> {
-    return this.http.get('http://localhost:4200' + url, { responseType: 'text' });
+    return fromFetch('http://localhost:4200' + url).pipe(
+      switchMap((res) => {
+        if (!res.ok) {
+          return of('');
+        }
+        return from(res.text());
+      })
+    );
   }
 }
