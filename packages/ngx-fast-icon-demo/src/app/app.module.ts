@@ -11,7 +11,7 @@ import { IonicModule } from '@ionic/angular';
   declarations: [AppComponent],
   imports: [
     CommonModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'ngx-fast-icon-demo' }),
     HttpClientModule,
     IonicModule.forRoot(),
     RouterModule.forRoot(

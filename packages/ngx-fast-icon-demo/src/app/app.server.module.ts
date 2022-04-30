@@ -1,13 +1,12 @@
-import { Injectable, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import {
   ServerModule,
-  ServerTransferStateModule
+  ServerTransferStateModule,
 } from '@angular/platform-server';
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
 import { FastIconModule } from '@ngx-fast-icon';
 import { IconLoadStrategySsr } from './ngx-fast-icon-ssr/icon-load.ssr.strategy';
-
 @NgModule({
   declarations: [],
   imports: [
@@ -21,11 +20,10 @@ import { IconLoadStrategySsr } from './ngx-fast-icon-ssr/icon-load.ssr.strategy'
     ServerTransferStateModule,
     FastIconModule.forRoot({
       iconLoadStrategy: IconLoadStrategySsr,
-      url: (name: string) => `assets/svg-icons/${name}.svg`
-    })
+      url: (name: string) => `assets/svg-icons/${name}.svg`,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppServerModule {
-}
+export class AppServerModule {}
