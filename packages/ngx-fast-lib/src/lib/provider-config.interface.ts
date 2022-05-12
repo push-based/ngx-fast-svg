@@ -1,6 +1,6 @@
-import { SvgOptions } from './token/icon-options.model';
+import { SvgOptions } from './token/svg-options.model';
 import { Type } from '@angular/core';
-import { SvgLoadStrategy } from './token/icon-load.strategy.model';
+import { SvgLoadStrategy } from './token/svg-load.strategy.model';
 
 export interface FastSvgProviderOptions {
   url: SvgOptions['url'];

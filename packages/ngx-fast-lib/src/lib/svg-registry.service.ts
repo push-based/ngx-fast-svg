@@ -1,10 +1,10 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { SvgOptionsToken } from './token/icon-options.token';
+import { SvgOptionsToken } from './token/svg-options.token';
 import { suspenseSvg } from './token/default-token-values';
-import { SvgOptions } from './token/icon-options.model';
-import { SvgLoadStrategy } from './token/icon-load.strategy.model';
+import { SvgOptions } from './token/svg-options.model';
+import { SvgLoadStrategy } from './token/svg-load.strategy.model';
 
 // @TODO compose svgs in 1 sprite and fetch by id as before
 

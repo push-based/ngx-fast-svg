@@ -11,7 +11,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SvgRegistry } from './icon-registry.service';
+import { SvgRegistry } from './svg-registry.service';
 import { isPlatformServer } from '@angular/common';
 
 /**
