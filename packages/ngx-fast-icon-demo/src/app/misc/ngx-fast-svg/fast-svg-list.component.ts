@@ -4,7 +4,7 @@ import { SUPPORTED_ICONS } from '../../icon-data';
 @Component({
   selector: 'fast-svg-list',
   template: `
-    <h2>ngx-fast-icon</h2>
+    <h2>ngx-fast-svg</h2>
     <p>
       <button data-test="add" (click)="add()">add list</button>
     </p>

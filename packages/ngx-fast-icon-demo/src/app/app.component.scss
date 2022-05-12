@@ -32,7 +32,7 @@
     &.font-awesome {
       background-color: var(--font-awesome-border-color) !important;
     }
-    &.fast-icon {
+    &.fast-svg {
       background-color: var(--pb-border-color) !important;
     }
     &.material {
@@ -112,7 +112,7 @@
       }
     }
   }
-  .fast-icon {
+  .fast-svg {
     background-color: var(--pb-color);
 
     button {
@@ -173,7 +173,7 @@ button {
       border-right-color: var(--font-awesome-border-color);
     }
   }
-  &.fast-icon {
+  &.fast-svg {
     .header {
       border-right-color: var(--pb-border-color);
     }

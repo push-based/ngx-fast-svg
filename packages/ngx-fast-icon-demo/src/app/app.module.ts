@@ -73,7 +73,7 @@ import { IonicModule } from '@ionic/angular';
             ),
         },
         {
-          path: 'fast-icon',
+          path: 'fast-svg',
           loadChildren: () =>
             import('./comparison/fast-icon/fast-icon.module').then(
               (m) => m.FastIconRouteModule
