@@ -29,7 +29,7 @@ To get a quick overview we will list a comparison table:
 
 | Library          | SSR | lazy loading      | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
 | ---------------- | --- | ----------------- | --------- | ---------------------- | ---------------------------- | -------- |
-| fast-icon        | ✔   | browser natively  | ✔         | ✔                      | ✔                            | 1.52 KB  |
+| fast-svg         | ✔   | browser natively  | ✔         | ✔                      | ✔                            | 1.52 KB  |
 | font-awesome     | ❌  | browser natively  | ✔         | ✔                      | ✔                            | 64.75 KB |
 | ant              | ✔   | browser natively  | ✔         | ✔                      | ✔                            | 24.38 KB |
 | material         | ✔   | browser natively  | ✔         | ✔                      | ✔                            | 16.92 KB |
@@ -50,7 +50,7 @@ yarn add @push-based/ngx-fast-svg
 
 ```typescript
 // ...
-import { FAST_ICON_PROVIDERS } from './ngx-fast-icon-ssr/movie.icon.provider';
+import { FAST_SVG_PROVIDERS } from './ngx-fast-svg-ssr/movie.icon.provider';
 import { FastSvgModule } from '@ngx-fast-icon';
 
 @NgModule({

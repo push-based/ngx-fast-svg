@@ -21,15 +21,14 @@
 
 # Overview
 
-| Names                                                                           | Lazyloading      | Preloading | SSR | Prerendering |
-| ------------------------------------------------------------------------------- | ---------------- | ---------- | --- | ------------ |
-| [ngx-fast-svg](https://www.npmjs.com/package/@ionic/angular)                    | native           |            |     |              |
-| [ionic-ionic](https://www.npmjs.com/package/@ant-design/icons-angular)          | programmatically |            |     |              |
-| [font-awesome](https://www.npmjs.com/package/@fortawesome/angular-fontawesome)  |                  |            |     |              |
-| [ant](https://www.npmjs.com/package/@ant-design/icons-angular)                  |                  |            |     |              |
-| [material-module](https://www.npmjs.com/package/@angular/material)              |                  |            |     |              |
-| [angular](https://www.npmjs.com/package/angular-svg-icon)                       |                  |            |     |              |
-
+| Names                                                                          | Lazyloading      | Preloading | SSR | Prerendering |
+| ------------------------------------------------------------------------------ | ---------------- | ---------- | --- | ------------ |
+| [ngx-fast-svg](https://www.npmjs.com/package/@ionic/angular)                   | native           |            |     |              |
+| [ionic-ionic](https://www.npmjs.com/package/@ant-design/icons-angular)         | programmatically |            |     |              |
+| [font-awesome](https://www.npmjs.com/package/@fortawesome/angular-fontawesome) |                  |            |     |              |
+| [ant](https://www.npmjs.com/package/@ant-design/icons-angular)                 |                  |            |     |              |
+| [material-module](https://www.npmjs.com/package/@angular/material)             |                  |            |     |              |
+| [angular](https://www.npmjs.com/package/angular-svg-icon)                      |                  |            |     |              |
 
 https://bundlephobia.com/api/size?package=@ant-design/icons-angular@13.1.0
 
@@ -42,7 +41,7 @@ https://bundlephobia.com/api/size?package=@ant-design/icons-angular@13.1.0
 | ant-ant-module                   | 24.38 KB |
 | material-material-module         | 16.92 KB |
 | angular-angular-module           | 1.54 KB  |
-| fast-icon-fast-icon-module       | 1.52 KB  |
+| fast-svg-fast-svg-module         | 1.52 KB  |
 
 <!-- bundle-stats-end -->
 
