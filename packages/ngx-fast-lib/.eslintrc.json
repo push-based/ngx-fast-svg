@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "ngx-fast-icon",
+            "prefix": "ngx-fast-svg",
             "style": "kebab-case"
           }
         ]

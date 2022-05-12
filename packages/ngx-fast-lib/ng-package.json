@@ -1,8 +1,8 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/template",
+  "dest": "../../dist/libs/ngx-fast-svg",
   "lib": {
-    "flatModuleFile": "ngx-fast-icon",
+    "flatModuleFile": "ngx-fast-svg",
     "entryFile": "src/index.ts"
   }
 }
