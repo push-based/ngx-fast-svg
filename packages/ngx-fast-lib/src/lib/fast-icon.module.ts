@@ -1,48 +1,49 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FastIconComponent } from './fast-icon.component';
-import { IconRegistry } from './icon-registry.service';
+import { FastSvgComponent } from './fast-icon.component';
+import { SvgRegistry } from './icon-registry.service';
 import { CommonModule } from '@angular/common';
 import { FastSvgProviderOptions } from './provider-config.interface';
-import { IconLoadStrategyImpl } from './token/icon-load.strategy';
-import { IconLoadStrategy } from './token/icon-load.strategy.model';
-import { IconOptionsToken } from './token/icon-options.token';
-import { IconOptions } from './token/icon-options.model';
+import { SvgLoadStrategyImpl } from './token/icon-load.strategy';
+import { SvgLoadStrategy } from './token/icon-load.strategy.model';
+import { SvgOptionsToken } from './token/icon-options.token';
+import { SvgOptions } from './token/icon-options.model';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [FastIconComponent],
-  exports: [FastIconComponent]
+  declarations: [FastSvgComponent],
+  exports: [FastSvgComponent],
 })
-export class FastIconModule {
-
-  static forRoot(providers: FastSvgProviderOptions): ModuleWithProviders<FastIconModule> {
-    let iconOptions: IconOptions = {
-      url: providers.url
+export class FastSvgModule {
+  static forRoot(
+    providers: FastSvgProviderOptions
+  ): ModuleWithProviders<FastSvgModule> {
+    const svgOptions: SvgOptions = {
+      url: providers.url,
     };
-    providers?.suspenseIconString && (iconOptions.suspenseIconString = providers.suspenseIconString);
-    providers?.defaultSize && (iconOptions.defaultSize = providers.defaultSize);
+    providers?.suspenseSvgString &&
+      (svgOptions.suspenseSvgString = providers.suspenseSvgString);
+    providers?.defaultSize && (svgOptions.defaultSize = providers.defaultSize);
 
     return {
-      ngModule: FastIconModule,
+      ngModule: FastSvgModule,
       providers: [
         {
-          provide: IconLoadStrategy,
-          useClass: providers.iconLoadStrategy || IconLoadStrategyImpl
+          provide: SvgLoadStrategy,
+          useClass: providers.svgLoadStrategy || SvgLoadStrategyImpl,
         },
         {
-          provide: IconOptionsToken,
-          useValue: iconOptions
+          provide: SvgOptionsToken,
+          useValue: svgOptions,
         },
-        IconRegistry
-      ]
+        SvgRegistry,
+      ],
     };
   }
 
-  static forChild(): ModuleWithProviders<FastIconModule> {
+  static forChild(): ModuleWithProviders<FastSvgModule> {
     return {
-      ngModule: FastIconModule,
-      providers: []
+      ngModule: FastSvgModule,
+      providers: [],
     };
   }
-
 }

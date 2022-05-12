@@ -2,7 +2,7 @@ import { from, Observable, of, switchMap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { fromFetch } from 'rxjs/fetch';
 @Injectable()
-export class IconLoadStrategyImpl {
+export class SvgLoadStrategyImpl {
   load(url: string): Observable<string> {
     return fromFetch(url).pipe(
       switchMap((res) => {

@@ -5,7 +5,7 @@ import {
 } from '@angular/platform-server';
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
-import { FastIconModule } from '@ngx-fast-icon';
+import { FastSvgModule } from '@ngx-fast-icon';
 import { IconLoadStrategySsr } from './ngx-fast-icon-ssr/icon-load.ssr.strategy';
 @NgModule({
   declarations: [],
@@ -18,7 +18,7 @@ import { IconLoadStrategySsr } from './ngx-fast-icon-ssr/icon-load.ssr.strategy'
      */
     ServerModule,
     ServerTransferStateModule,
-    FastIconModule.forRoot({
+    FastSvgModule.forRoot({
       iconLoadStrategy: IconLoadStrategySsr,
       url: (name: string) => `assets/svg-icons/${name}.svg`,
     }),

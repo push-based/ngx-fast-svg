@@ -10,11 +10,12 @@
 
 <!-- tocstop -->
 
-# Why another SVG lib for Angular? 
+# Why another SVG lib for Angular?
 
 Current implementations of SVG handling in the Browser lacks of awareness of performance.
 
 There are several things not considered in most of the existing projects:
+
 - SSR
 - bundle size
 - DOM size
@@ -23,17 +24,17 @@ There are several things not considered in most of the existing projects:
 - Initial rendering performance
 - Runtime performance of updates
 
-We will walk through all the different scenarious in detail later. 
+We will walk through all the different scenarious in detail later.
 To get a quick overview we will list a comparison table:
 
-| Library          | SSR   | lazy loading      | Hydration | Reusability of SVG DOM | Optimized render performance | Size     | 
-| ---------------- | ----- | ----------------- | --------- | ---------------------- | ---------------------------- | -------- |
-| fast-icon        | ✔    | browser natively  | ✔         | ✔                     | ✔                            | 1.52 KB |
-| font-awesome     | ❌    | browser natively  | ✔         | ✔                     | ✔                            | 64.75 KB |
-| ant              | ✔    | browser natively  | ✔         | ✔                     | ✔                            | 24.38 KB |
-| material         | ✔    | browser natively  | ✔         | ✔                     | ✔                            | 16.92 KB |
-| angular-svg-icon | ✔    | ❌                | ✔         | ✔                     | ✔                            | 1.54 KB |
-| ionic            | ✔    | viewport observer | ✔         | ✔                     | ✔                            | 1.44 KB |
+| Library          | SSR | lazy loading      | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
+| ---------------- | --- | ----------------- | --------- | ---------------------- | ---------------------------- | -------- |
+| fast-icon        | ✔   | browser natively  | ✔         | ✔                      | ✔                            | 1.52 KB  |
+| font-awesome     | ❌  | browser natively  | ✔         | ✔                      | ✔                            | 64.75 KB |
+| ant              | ✔   | browser natively  | ✔         | ✔                      | ✔                            | 24.38 KB |
+| material         | ✔   | browser natively  | ✔         | ✔                      | ✔                            | 16.92 KB |
+| angular-svg-icon | ✔   | ❌                | ✔         | ✔                      | ✔                            | 1.54 KB  |
+| ionic            | ✔   | viewport observer | ✔         | ✔                      | ✔                            | 1.44 KB  |
 
 # Install
 
@@ -50,13 +51,13 @@ yarn add @push-based/ngx-fast-svg
 ```typescript
 // ...
 import { FAST_ICON_PROVIDERS } from './ngx-fast-icon-ssr/movie.icon.provider';
-import { FastIconModule } from '@ngx-fast-icon';
+import { FastSvgModule } from '@ngx-fast-icon';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    FastIconModule.forRoot({
+    FastSvgModule.forRoot({
 
     })
   ]

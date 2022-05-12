@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FastIconModule } from '@ngx-fast-icon';
+import { FastSvgModule } from '@ngx-fast-icon';
 import { FastIconRouteComponent } from './fast-icon.component';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { FastIconRouteComponent } from './fast-icon.component';
       },
     ]),
     CommonModule,
-    FastIconModule.forRoot({
+    FastSvgModule.forRoot({
       url: (name: string) => `assets/svg-icons/${name}.svg`,
     }),
   ],

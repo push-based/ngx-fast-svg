@@ -1,4 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { IconOptions } from './icon-options.model';
+import { SvgOptions } from './icon-options.model';
 
-export const IconOptionsToken = new InjectionToken<IconOptions>('__IconOptionsToken__');
+export const SvgOptionsToken = new InjectionToken<SvgOptions>(
+  '__SvgOptionsToken__'
+);
