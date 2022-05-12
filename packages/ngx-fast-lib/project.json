@@ -2,7 +2,7 @@
   "projectType": "library",
   "root": "packages/ngx-fast-lib",
   "sourceRoot": "packages/ngx-fast-lib/src",
-  "prefix": "ngx-fast-svg",
+  "prefix": "ngx-fast-icon",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
