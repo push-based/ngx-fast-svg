@@ -1,6 +1,6 @@
 {
   "extends": "@nrwl/workspace/presets/core.json",
-  "npmScope": "ngx-fast-icon",
+  "npmScope": "ngx-fast-svg",
   "affected": {
     "defaultBase": "main"
   },
