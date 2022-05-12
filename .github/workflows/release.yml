@@ -32,7 +32,7 @@ jobs:
       - name: install
         run: yarn
       - name: build
-        run: npm run nx -- affected:build
+        run: npm run nx build --project ngx-fast-lib --configuration production
       - name: test
         run: npm run nx -- affected:test
       - name: release
