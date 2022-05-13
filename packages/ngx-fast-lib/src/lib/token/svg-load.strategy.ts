@@ -1,16 +1,12 @@
-import { from, Observable, of, switchMap } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { fromFetch } from 'rxjs/fetch';
+import { getZoneUnPatchedApi } from '../internal/get-zone-unpatched-api';
+
 @Injectable()
 export class SvgLoadStrategyImpl {
+  fetch = getZoneUnPatchedApi('fetch', window as any);
+
   load(url: string): Observable<string> {
-    return fromFetch(url).pipe(
-      switchMap((res) => {
-        if (!res.ok) {
-          return of('');
-        }
-        return from(res.text());
-      })
-    );
+    return from(fetch(url).then((res) => (!res.ok ? '' : res.text())));
   }
 }
