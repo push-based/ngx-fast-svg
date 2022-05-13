@@ -13,6 +13,7 @@ import {
 import { Subscription } from 'rxjs';
 import { SvgRegistry } from './svg-registry.service';
 import { isPlatformServer } from '@angular/common';
+import { getZoneUnPatchedApi } from './internal/get-zone-unpatched-api';
 
 /**
  * getZoneUnPatchedApi
@@ -27,11 +28,6 @@ import { isPlatformServer } from '@angular/common';
  * @return {Function} - The zone un-patched API in question.
  *
  */
-function getZoneUnPatchedApi<T = Function>(name: string, elem: HTMLElement): T {
-  return (elem as any)['__zone_symbol__' + name] !== undefined
-    ? (elem as any)['__zone_symbol__' + name]
-    : (elem as any)[name];
-}
 
 const addEventListener = (
   elem: HTMLElement,
