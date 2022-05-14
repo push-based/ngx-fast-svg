@@ -127,7 +127,7 @@ This library leverages best performance practices:
 - Cache is stored in `<template>` tag which is not processed by the browser.
 - We use native browser `fetch` which is not patched by `zone.js` and is on average 2.5 times faster than fetching over `HTTPClient`.
 
-### :robot_face: SSR Support
+### 🤖 SSR Support
 
 This library also Supports lazy loading with SSR and http transfer cache.
 If SSR load svgs on server => ends up in DOM cache and ships to the client.
