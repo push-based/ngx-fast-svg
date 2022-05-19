@@ -2,7 +2,7 @@
   "extends": "@nrwl/workspace/presets/core.json",
   "npmScope": "ngx-fast-svg",
   "affected": {
-    "defaultBase": "main"
+    "defaultBase": "origin/main"
   },
   "cli": {
     "defaultCollection": "@nrwl/angular"
