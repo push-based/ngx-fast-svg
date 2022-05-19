@@ -138,10 +138,10 @@ If SSR load svgs on server => ends up in DOM cache and ships to the client.
 
 Here's library comparison with other popular SVG solutions.
 
-| Library          | SSR | lazy loading      | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
+| Library          | SSR | Lazy loading      | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
 | ---------------- | --- | ----------------- | --------- | ---------------------- | ---------------------------- | -------- |
 | ngx-fast-svg     | ✔️  | browser natively  | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
-| font-awesome     | ❌  | ❌  | ✔️        | ✔️                     | ✔️                           | 64.75 KB |
+| font-awesome     | ✔️  | ❌  | ✔️        | ✔️                     | ✔️                           | 64.75 KB |
 | ant              | ✔️  | ❌  | ✔️        | ✔️                     | ✔️                           | 24.38 KB |
 | material         | ✔️  | ❌  | ✔️        | ✔️                     | ✔️                           | 16.92 KB |
 | angular-svg-icon | ✔️  | ❌                | ✔️        | ✔️                     | ✔️                           | 1.54 KB  |
