@@ -35,6 +35,21 @@ To get a quick overview we will list a comparison table:
 | material         | ✔   | browser natively  | ✔         | ✔                      | ✔                            | 16.92 KB |
 | angular-svg-icon | ✔   | ❌                | ✔         | ✔                      | ✔                            | 1.54 KB  |
 | ionic            | ✔   | viewport observer | ✔         | ✔                      | ✔                            | 1.44 KB  |
+**SSR**
+Server Side Rendering is working. The depending on how easy it is to set it up we distinguish between `easy`, `moderate`, `hard`
+
+**Lazy loading**
+We revere to lazy loading as on demand loading of SVG files based on their visibility in the viewport.
+
+**Hydration**
+Is the process of taking over the SSR HTML and state of the app on the client side. 
+This can happen in a destructive way (deleting all present HTML and regenerate it from JS) on in a non-destructive way (reusing the existing DOM). 
+
+**Reusability of SVG DOM**
+Reusability means that we maintain the content of an SVG, meaning its inner DOM structure `g`, `path` or other tags  in one place and reuse them in many different places.
+
+**Optimized render performance**
+To display (render) SVGs the browser takes time. We can reduce that time by adding a couple of improvements.
 
 # Install
 
