@@ -139,8 +139,8 @@ Here's library comparison with other popular SVG solutions.
 | Library          | SSR | lazy loading      | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
 | ---------------- | --- | ----------------- | --------- | ---------------------- | ---------------------------- | -------- |
 | ngx-fast-svg     | ✔️  | browser natively  | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
-| font-awesome     | ❌  | browser natively  | ✔️        | ✔️                     | ✔️                           | 64.75 KB |
-| ant              | ✔️  | browser natively  | ✔️        | ✔️                     | ✔️                           | 24.38 KB |
-| material         | ✔️  | browser natively  | ✔️        | ✔️                     | ✔️                           | 16.92 KB |
+| font-awesome     | ❌  | ❌  | ✔️        | ✔️                     | ✔️                           | 64.75 KB |
+| ant              | ✔️  | ❌  | ✔️        | ✔️                     | ✔️                           | 24.38 KB |
+| material         | ✔️  | ❌  | ✔️        | ✔️                     | ✔️                           | 16.92 KB |
 | angular-svg-icon | ✔️  | ❌                | ✔️        | ✔️                     | ✔️                           | 1.54 KB  |
-| ionic            | ✔️  | viewport observer | ✔️        | ✔️                     | ✔️                           | 1.44 KB  |
+| ionic            | ✔️  | ❌ | ✔️        | ✔️                     | ✔️                           | 1.44 KB  |
