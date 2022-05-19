@@ -100,6 +100,8 @@ export class AppModule {}
 
 ### :sloth: Lazy loading for SVGs
 
+Lazy loading is referring to loading resources only if they are visible on screen. Like lazy loading imgs.
+It can be implemented natively over loading attribute or over viewportobserver.
 This library supports lazy loading for SVGs using purely browser native features.
 
 - We display an empty SVG at the beginning. Invisible and without dimensions.
