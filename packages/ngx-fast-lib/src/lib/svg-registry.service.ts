@@ -18,28 +18,6 @@ function createDomParser(document: Document): (s: string) => HTMLElement {
   };
 }
 
-function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
-  /**
-   * reduce paint area with with/height 0 and overflow hidden
-   * fixed position of -2000px to always have it offscreen and outside of any native trigger (viewport observer in content visibilits)
-   * contain:content to leverage css perf features for older browsers not supporting content-visibility
-   * content-visibility: auto to exclude it completely from recalc styles
-   */
-  el.setAttribute(
-    'style',
-    `
-    overflow: hidden;
-    width: 0px;
-    height: 0px;
-    position: fixed;
-    bottom: -2000px;
-    contain: content;
-    content-visibility: auto;
-  `
-  );
-  return el;
-}
-
 @Injectable()
 export class SvgRegistry {
   private readonly domParser = createDomParser(this.document);
@@ -47,8 +25,7 @@ export class SvgRegistry {
     // The DOM cache could be already created on SSR or due to multiple instances of the registry
     const domCache =
       this.document.getElementById('svg-cache') ||
-      this.domParser(`<div id="svg-cache"></div>`);
-    styleDomCacheForPerformance(domCache);
+      this.domParser(`<template id="svg-cache"></template>`);
     this.document.body.appendChild(domCache);
     return domCache;
   })();
