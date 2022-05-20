@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { from, Observable, of, switchMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { SvgLoadStrategy } from '@ngx-fast-svg';
-import { fromFetch } from 'rxjs/fetch';
 
 @Injectable()
 export class SvgLoadStrategySsr implements SvgLoadStrategy {
+  constructor(private http: HttpClient) {}
+
   load(url: string): Observable<string> {
-    return fromFetch('http://localhost:4200' + url).pipe(
-      switchMap((res) => {
-        if (!res.ok) {
-          return of('');
-        }
-        return from(res.text());
-      })
-    );
+    return this.http.get(url, {
+      responseType: 'text',
+    });
   }
 }

@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DescriptionComponent } from './routes/description/description.component';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,7 @@ import { IonicModule } from '@ionic/angular';
     CommonModule,
     BrowserModule.withServerTransition({ appId: 'ngx-fast-icon-demo' }),
     HttpClientModule,
+    TransferHttpCacheModule,
     IonicModule.forRoot(),
     RouterModule.forRoot(
       [
