@@ -138,6 +138,7 @@
       "options": {
         "browserTarget": "ngx-fast-icon-demo:build:production",
         "serverTarget": "ngx-fast-icon-demo:build-server:production",
+        "guessRoutes": false,
         "routesFile": "routes.txt"
       },
       "configurations": {
