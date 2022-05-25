@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { SvgLoadStrategy } from '@ngx-fast-svg';
-
+import { join } from 'path';
+import { readFileSync } from 'fs';
 @Injectable()
 export class SvgLoadStrategySsr implements SvgLoadStrategy {
-  constructor(private http: HttpClient) {}
-
   load(url: string): Observable<string> {
-    return this.http.get(url, {
-      responseType: 'text',
-    });
+    const iconPath = join(
+      process.cwd(),
+      'dist',
+      'ngx-fast-icon-demo',
+      'browser',
+      url
+    );
+    const iconSVG = readFileSync(iconPath, 'utf8');
+    return of(iconSVG);
   }
 }

@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { SvgOptionsToken } from './token/svg-options.token';
 import { suspenseSvg } from './token/default-token-values';
@@ -18,14 +18,44 @@ function createDomParser(document: Document): (s: string) => HTMLElement {
   };
 }
 
+function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
+  /**
+   * reduce paint area with with/height 0 and overflow hidden
+   * fixed position of -2000px to always have it offscreen and outside of any native trigger (viewport observer in content visibilits)
+   * contain:content to leverage css perf features for older browsers not supporting content-visibility
+   * content-visibility: auto to exclude it completely from recalc styles
+   */
+  el.setAttribute(
+    'style',
+    `
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
+    position: fixed;
+    bottom: -2000px;
+    contain: content;
+    content-visibility: auto;
+  `
+  );
+  return el;
+}
+
 @Injectable()
 export class SvgRegistry {
+  private isServer = isPlatformServer(this.platform);
   private readonly domParser = createDomParser(this.document);
   private readonly svgDomCache: HTMLElement = (() => {
     // The DOM cache could be already created on SSR or due to multiple instances of the registry
     const domCache =
       this.document.getElementById('svg-cache') ||
-      this.domParser(`<template id="svg-cache"></template>`);
+      this.domParser(
+        `${
+          this.isServer
+            ? '<div id="svg-cache"></div>'
+            : '<template id="svg-cache"></template>'
+        }`
+      );
+    if (this.isServer) styleDomCacheForPerformance(domCache);
     this.document.body.appendChild(domCache);
     return domCache;
   })();
@@ -45,7 +75,10 @@ export class SvgRegistry {
     private svgLoadStrategy: SvgLoadStrategy,
     @Optional()
     @Inject(SvgOptionsToken)
-    private svgOptions: SvgOptions
+    private svgOptions: SvgOptions,
+
+    @Inject(PLATFORM_ID)
+    private platform: Record<string, unknown>
   ) {
     // configure suspense svg
     const suspenseSvgId = this.svgId('suspense');
