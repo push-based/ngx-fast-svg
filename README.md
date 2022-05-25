@@ -55,6 +55,8 @@ export class AppModule {}
 
 ### Advanced usage
 
+#### Providing additional options
+
 During setup phase you can provide additional optional settings such as:
 
 ```typescript
@@ -96,7 +98,7 @@ import { HttpClientFetchStrategy } from './fetch-strategy';
 export class AppModule {}
 ```
 
-### SSR Usage
+#### SSR Usage
 
 You can provide your own SSR loading strategy that can look like this:
 
