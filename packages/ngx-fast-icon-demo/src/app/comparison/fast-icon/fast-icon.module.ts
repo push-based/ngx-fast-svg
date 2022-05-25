@@ -14,9 +14,7 @@ import { FastIconRouteComponent } from './fast-icon.component';
       },
     ]),
     CommonModule,
-    FastSvgModule.forRoot({
-      url: (name: string) => `assets/svg-icons/${name}.svg`,
-    }),
+    FastSvgModule,
   ],
 })
 export class FastIconRouteModule {}
