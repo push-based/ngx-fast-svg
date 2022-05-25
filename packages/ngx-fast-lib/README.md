@@ -29,7 +29,7 @@ To get a quick overview we will list a comparison table:
 
 | Library          | SSR        | Lazy loading     | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
 | ---------------- | ---------- | ---------------- | --------- | ---------------------- | ---------------------------- | -------- |
-| ngx-fast-svg     | ?          | browser natively | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
+| ngx-fast-svg     | `easy`     | browser natively | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
 | font-awesome     | `hard`     | ❌               | ✔️        | ✔️                     | ❌                           | 64.75 KB |
 | ant              | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 24.38 KB |
 | material         | `easy`     | ❌               | ✔️        | ✔️                     | ❌                           | 16.92 KB |

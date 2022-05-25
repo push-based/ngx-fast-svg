@@ -96,6 +96,43 @@ import { HttpClientFetchStrategy } from './fetch-strategy';
 export class AppModule {}
 ```
 
+### SSR Usage
+
+You can provide your own SSR loading strategy that can look like this:
+
+```typescript
+@Injectable()
+export class SvgLoadStrategySsr implements SvgLoadStrategy {
+  load(url: string): Observable<string> {
+    const iconPath = join(process.cwd(), 'dist', 'app-name', 'browser', url);
+    const iconSVG = readFileSync(iconPath, 'utf8');
+    return of(iconSVG);
+  }
+}
+```
+
+And then just provide it in you server module.
+
+**app.server.module.ts**
+
+```typescript
+@NgModule({
+  declarations: [],
+  imports: [
+    AppModule,
+    ServerModule,
+    ServerTransferStateModule,
+    FastSvgModule.forRoot({
+      svgLoadStrategy: SvgLoadStrategySsr,
+      url: (name: string) => `assets/svg-icons/${name}.svg`,
+    }),
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppServerModule {}
+```
+
 ## Features
 
 ### :sloth: Lazy loading for SVGs
@@ -140,7 +177,7 @@ Here's library comparison with other popular SVG solutions.
 
 | Library          | SSR        | Lazy loading     | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
 | ---------------- | ---------- | ---------------- | --------- | ---------------------- | ---------------------------- | -------- |
-| ngx-fast-svg     | ?          | browser natively | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
+| ngx-fast-svg     | `easy`     | browser natively | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
 | font-awesome     | `hard`     | ❌               | ✔️        | ✔️                     | ❌                           | 64.75 KB |
 | ant              | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 24.38 KB |
 | material         | `easy`     | ❌               | ✔️        | ✔️                     | ❌                           | 16.92 KB |
