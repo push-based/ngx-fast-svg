@@ -165,7 +165,7 @@ Cached SVG elements can be reused in multiple places places and support differen
 This library leverages best performance practices:
 
 - Component is styled with `content-visiblity: auto;` and `contain: content;`. It makes instances outside of viewport completely excluded from browser style recalculation process.
-- Cache is stored in `<template>` tag which is not processed by the browser.
+- Cache is stored in a tag which is not processed by the browser.
 - We use native browser `fetch` which is not patched by `zone.js` and is on average 2.5 times faster than fetching over `HTTPClient`.
 
 ### 🤖 SSR Support

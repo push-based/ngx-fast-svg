@@ -1,5 +1,5 @@
-import { DOCUMENT, isPlatformServer } from '@angular/common';
-import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { SvgOptionsToken } from './token/svg-options.token';
 import { suspenseSvg } from './token/default-token-values';
@@ -42,20 +42,13 @@ function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
 
 @Injectable()
 export class SvgRegistry {
-  private isServer = isPlatformServer(this.platform);
   private readonly domParser = createDomParser(this.document);
   private readonly svgDomCache: HTMLElement = (() => {
     // The DOM cache could be already created on SSR or due to multiple instances of the registry
     const domCache =
       this.document.getElementById('svg-cache') ||
-      this.domParser(
-        `${
-          this.isServer
-            ? '<div id="svg-cache"></div>'
-            : '<template id="svg-cache"></template>'
-        }`
-      );
-    if (this.isServer) styleDomCacheForPerformance(domCache);
+      this.domParser('<div id="svg-cache"></div>');
+    styleDomCacheForPerformance(domCache);
     this.document.body.appendChild(domCache);
     return domCache;
   })();
@@ -75,10 +68,7 @@ export class SvgRegistry {
     private svgLoadStrategy: SvgLoadStrategy,
     @Optional()
     @Inject(SvgOptionsToken)
-    private svgOptions: SvgOptions,
-
-    @Inject(PLATFORM_ID)
-    private platform: Record<string, unknown>
+    private svgOptions: SvgOptions
   ) {
     // configure suspense svg
     const suspenseSvgId = this.svgId('suspense');
