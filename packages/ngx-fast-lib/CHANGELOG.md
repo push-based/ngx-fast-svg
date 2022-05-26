@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.2](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.1.1...ngx-fast-lib-0.1.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* fix comments ([17c0973](https://github.com/push-based/ngx-fast-svg/commit/17c09732bae85a734842456a118eb034829e1f46))
+
+
+
 ## [0.1.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.1.0...ngx-fast-lib-0.1.1) (2022-05-26)
 
 
