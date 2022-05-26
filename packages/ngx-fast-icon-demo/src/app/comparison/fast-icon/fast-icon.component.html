@@ -15,10 +15,6 @@
   <button (click)="tester.remove()">Remove</button>
   <button (click)="tester.reload()">Reload page</button>
 </div>
-<!-- <ul class="group" *ngFor="let list of tester.lists"> -->
-<fast-svg *ngFor="let icon of icons" [name]="icon"></fast-svg>
-<!-- </ul> -->
-<fast-svg name="account"></fast-svg>
 <div class="row icons" *ngIf="tester.showContainer">
   <ul class="group" *ngFor="let list of tester.lists">
     <li *ngFor="let icon of list">
