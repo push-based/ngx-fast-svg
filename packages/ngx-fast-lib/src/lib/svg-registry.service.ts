@@ -23,7 +23,7 @@ function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
    * reduce paint area with with/height 0 and overflow hidden
    * fixed position of -2000px to always have it offscreen and outside of any native trigger (viewport observer in content visibilits)
    * contain:content to leverage css perf features for older browsers not supporting content-visibility
-   * content-visibility: auto to exclude it completely from recalc styles
+   * content-visibility: auto to exclude it completely from styles recalculation
    */
   el.setAttribute(
     'style',
