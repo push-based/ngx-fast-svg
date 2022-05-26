@@ -46,7 +46,7 @@
         }
       ],
       "options": {
-        "postTargets": ["ngx-fast-svg:npm", "ngx-fast-svg:github"],
+        "postTargets": ["ngx-fast-lib:npm", "ngx-fast-lib:github"],
         "commitMessageFormat": "release(${projectName}): ${version}",
         "noVerify": true,
         "push": true
