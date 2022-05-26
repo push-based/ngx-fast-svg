@@ -1,9 +1,22 @@
 {
-  "name": "ngx-fast-icon",
-  "version": "0.0.0",
+  "name": "ngx-fast-svg",
+  "version": "0.0.1",
   "license": "MIT",
-  "dependencies": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/push-based/ngx-fast-svg.git"
   },
-  "devDependencies": {
-  }
+  "keywords": [
+    "web performance",
+    "performance",
+    "svg",
+    "angular"
+  ],
+  "peerDependencies": {
+    "@angular/core": ">10.1.1"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {}
 }

@@ -5,17 +5,17 @@ on:
     branches:
       - main
     paths-ignore:
-      - "*.md"
+      - '*.md'
 
 jobs:
   release:
     # This line is critical for copy paste issues
-    if: github.repository == 'push-based/user-flow'
+    if: github.repository == 'push-based/ngx-fast-svg'
     timeout-minutes: 5
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -30,7 +30,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org
       - name: install
-        run: yarn
+        run: npm i
       - name: build
         run: npm run nx -- affected:build
       - name: test
@@ -39,5 +39,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm run nx -- run cli:version
-
+        run: npm run nx -- run ngx-fast-lib:version

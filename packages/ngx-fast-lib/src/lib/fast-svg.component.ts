@@ -11,8 +11,9 @@ import {
   Renderer2,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IconRegistry } from './icon-registry.service';
+import { SvgRegistry } from './svg-registry.service';
 import { isPlatformServer } from '@angular/common';
+import { getZoneUnPatchedApi } from './internal/get-zone-unpatched-api';
 
 /**
  * getZoneUnPatchedApi
@@ -27,11 +28,6 @@ import { isPlatformServer } from '@angular/common';
  * @return {Function} - The zone un-patched API in question.
  *
  */
-function getZoneUnPatchedApi<T = Function>(name: string, elem: HTMLElement): T {
-  return (elem as any)['__zone_symbol__' + name] !== undefined
-    ? (elem as any)['__zone_symbol__' + name]
-    : (elem as any)[name];
-}
 
 const addEventListener = (
   elem: HTMLElement,
@@ -60,22 +56,22 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
 }
 
 /**
- * ngx-fast-icon enables lazy loading features of the browser for SVG.
+ * ngx-fast-svg enables lazy loading features of the browser for SVG.
  * It also manages the caching of SVG's in the DOM for multiple usage and different stylings
- * This component also Supports lazy loading with SSR and http transfere cache
+ * This component also Supports lazy loading with SSR and http transfer cache
  * */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'fast-icon',
+  selector: 'fast-svg',
   template: `
-    <!-- Icon - Displayed lazy or at bootstrap time from cache due to SSR or already loaded resources
-    We use a DOM caching mechanism to display icon over the 'use' tag and an href attribute.
+    <!-- Svg - Displayed lazy or at bootstrap time from cache due to SSR or already loaded resources
+    We use a DOM caching mechanism to display svg over the 'use' tag and an href attribute.
     - We display an empty SVG at the beginning. Invisible and without dimensions
-    - On View init the size is applied even if no icon is loaded to avoid flickering in dimensions
-    - A suspense icon is displayed at the same time to reduce visual flickering
-    - when the real icon is loaded it is directly cached in the DOM and displayed over a new href value
+    - On View init the size is applied even if no svg is loaded to avoid flickering in dimensions
+    - A suspense svg is displayed at the same time to reduce visual flickering
+    - when the real svg is loaded it is directly cached in the DOM and displayed over a new href value
      -->
-    <svg class="fast-icon">
+    <svg class="fast-svg">
       <use></use>
     </svg>
   `,
@@ -85,7 +81,7 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
         display: contents;
       }
 
-      .fast-icon {
+      .fast-svg {
         margin: 3px;
         /* leverage css perf features for older browsers not supporting content-visibility */
         contain: content;
@@ -96,7 +92,7 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FastIconComponent implements AfterViewInit, OnDestroy {
+export class FastSvgComponent implements AfterViewInit, OnDestroy {
   private sub = new Subscription();
   private readonly getImg = createGetImgFn(this.renderer);
 
@@ -108,23 +104,23 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
   width = '';
   @Input()
   height = '';
-  // When the browser loaded the icon resource we trigger the caching mechanism
+  // When the browser loaded the svg resource we trigger the caching mechanism
   // re-fetch -> cache-hit -> get SVG -> cache in DOM
   loadedListener = () => {
-    this.registry.fetchIcon(this.name);
+    this.registry.fetchSvg(this.name);
   };
 
   constructor(
     @Inject(PLATFORM_ID)
     private platform: Record<string, unknown>,
     private renderer: Renderer2,
-    private registry: IconRegistry,
+    private registry: SvgRegistry,
     private element: ElementRef<HTMLElement>
   ) {}
 
   ngAfterViewInit() {
     if (!this.name) {
-      throw new Error('icon component needs a name to operate');
+      throw new Error('svg component needs a name to operate');
     }
     // Setup view refs and init them
     const elem = this.element.nativeElement;
@@ -140,18 +136,18 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
 
     let img: HTMLImageElement | null = null;
 
-    // if icon is not in cache we append
-    if (!this.registry.isIconCached(this.name)) {
+    // if svg is not in cache we append
+    if (!this.registry.isSvgCached(this.name)) {
       /**
        CSR - Browser native lazy loading hack
 
        We use an img element here to leverage the browsers native features:
-       - lazy loading (loading="lazy") to only load the icons that are actually visible
+       - lazy loading (loading="lazy") to only load the svg that are actually visible
        - priority hints to down prioritize the fetch to avoid delaying the LCP
 
        While the SVG is loading we display a fallback SVG.
        After the image is loaded we remove it from the DOM. (IMG load event)
-       When the new icon arrives we append it to the template.
+       When the new svg arrives we append it to the template.
 
        Note:
        - the image is styled with display none. this prevents any loading of the resource ever.
@@ -173,11 +169,11 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
       addEventListener(img, 'load', this.loadedListener);
     }
 
-    // Listen to icon changes
-    // This potentially could already receive the icon from the cache and drop the img from the DOM before it gets activated for lazy loading.
+    // Listen to svg changes
+    // This potentially could already receive the svg from the cache and drop the img from the DOM before it gets activated for lazy loading.
     // NOTICE:
-    // If the icon is already cached the following code will execute synchronously. This gives us the chance to add
-    this.sub = this.registry.iconHref$(this.name).subscribe((href) => {
+    // If the svg is already cached the following code will execute synchronously. This gives us the chance to add
+    this.sub = this.registry.svgHref$(this.name).subscribe((href) => {
       // The first child is the `use` tag. The value of href gets displayed as SVG
       svg.children[0].setAttribute('href', href);
 
@@ -185,7 +181,7 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
       if (!img) return;
 
       // If the img is present
-      // and the name in included in the href (icon is fully loaded, not only the suspense icon)
+      // and the name in included in the href (svg is fully loaded, not only the suspense svg)
       // Remove the element from the DOM as it is no longer needed
       if (href.includes(this.name)) {
         img.removeEventListener('load', this.loadedListener);
@@ -196,8 +192,8 @@ export class FastIconComponent implements AfterViewInit, OnDestroy {
 
     // SSR
     if (isPlatformServer(this.platform)) {
-      // if SSR load icons on server => ends up in DOM cache and ships to the client
-      this.registry.fetchIcon(this.name);
+      // if SSR load svgs on server => ends up in DOM cache and ships to the client
+      this.registry.fetchSvg(this.name);
     }
     // CSR
     else {

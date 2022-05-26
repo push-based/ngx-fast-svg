@@ -1,4 +1,4 @@
-<h1>Fast icon demo</h1>
+<h1>Fast svg demo</h1>
 <h4>Layout setting</h4>
 <div class="buttons-wrapper">
   <button
@@ -15,11 +15,10 @@
   <button (click)="tester.remove()">Remove</button>
   <button (click)="tester.reload()">Reload page</button>
 </div>
-
 <div class="row icons" *ngIf="tester.showContainer">
   <ul class="group" *ngFor="let list of tester.lists">
     <li *ngFor="let icon of list">
-      <fast-icon [name]="icon"></fast-icon>
+      <fast-svg [name]="icon"></fast-svg>
     </li>
   </ul>
 </div>

@@ -11,7 +11,7 @@ import { filter, map, startWith } from 'rxjs';
 export class AppComponent {
   links = [
     'description',
-    'fast-icon',
+    'fast-svg',
     'material',
     'ionic',
     'font-awesome',
@@ -38,8 +38,8 @@ export class AppComponent {
     if (url.includes('ant')) {
       return 'ant';
     }
-    if (url.includes('fast-icon')) {
-      return 'fast-icon';
+    if (url.includes('fast-svg')) {
+      return 'fast-svg';
     }
 
     if (url.includes('font-awesome')) {

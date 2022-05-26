@@ -2,11 +2,11 @@
   "projectType": "library",
   "root": "packages/ngx-fast-lib",
   "sourceRoot": "packages/ngx-fast-lib/src",
-  "prefix": "ngx-fast-icon",
+  "prefix": "ngx-fast-svg",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/packages/test"],
+      "outputs": ["dist/libs/ngx-fast-svg"],
       "options": {
         "project": "packages/ngx-fast-lib/ng-package.json"
       },
@@ -46,7 +46,7 @@
         }
       ],
       "options": {
-        "postTargets": ["cli:npm", "cli:github"],
+        "postTargets": ["ngx-fast-svg:npm", "ngx-fast-svg:github"],
         "commitMessageFormat": "release(${projectName}): ${version}",
         "noVerify": true,
         "push": true
@@ -70,7 +70,7 @@
       "options": {
         "commands": [
           {
-            "command": "cd ./dist/packages/cli"
+            "command": "cd ./dist/libs/ngx-fast-svg"
           },
           {
             "command": "npm link -f"

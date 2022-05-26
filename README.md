@@ -55,6 +55,8 @@ export class AppModule {}
 
 ### Advanced usage
 
+#### Providing additional options
+
 During setup phase you can provide additional optional settings such as:
 
 ```typescript
@@ -96,6 +98,43 @@ import { HttpClientFetchStrategy } from './fetch-strategy';
 export class AppModule {}
 ```
 
+#### SSR Usage
+
+You can provide your own SSR loading strategy that can look like this:
+
+```typescript
+@Injectable()
+export class SvgLoadStrategySsr implements SvgLoadStrategy {
+  load(url: string): Observable<string> {
+    const iconPath = join(process.cwd(), 'dist', 'app-name', 'browser', url);
+    const iconSVG = readFileSync(iconPath, 'utf8');
+    return of(iconSVG);
+  }
+}
+```
+
+And then just provide it in you server module.
+
+**app.server.module.ts**
+
+```typescript
+@NgModule({
+  declarations: [],
+  imports: [
+    AppModule,
+    ServerModule,
+    ServerTransferStateModule,
+    FastSvgModule.forRoot({
+      svgLoadStrategy: SvgLoadStrategySsr,
+      url: (name: string) => `assets/svg-icons/${name}.svg`,
+    }),
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppServerModule {}
+```
+
 ## Features
 
 ### :sloth: Lazy loading for SVGs
@@ -126,7 +165,7 @@ Cached SVG elements can be reused in multiple places places and support differen
 This library leverages best performance practices:
 
 - Component is styled with `content-visiblity: auto;` and `contain: content;`. It makes instances outside of viewport completely excluded from browser style recalculation process.
-- Cache is stored in `<template>` tag which is not processed by the browser.
+- Cache is stored in a tag which is not processed by the browser.
 - We use native browser `fetch` which is not patched by `zone.js` and is on average 2.5 times faster than fetching over `HTTPClient`.
 
 ### 🤖 SSR Support
@@ -138,11 +177,36 @@ If SSR load svgs on server => ends up in DOM cache and ships to the client.
 
 Here's library comparison with other popular SVG solutions.
 
-| Library          | SSR | Lazy loading      | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
-| ---------------- | --- | ----------------- | --------- | ---------------------- | ---------------------------- | -------- |
-| ngx-fast-svg     | ✔️  | browser natively  | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
-| font-awesome     | ✔️  | ❌  | ✔️        | ✔️                     | ✔️                           | 64.75 KB |
-| ant              | ✔️  | ❌  | ✔️        | ✔️                     | ✔️                           | 24.38 KB |
-| material         | ✔️  | ❌  | ✔️        | ✔️                     | ✔️                           | 16.92 KB |
-| angular-svg-icon | ✔️  | ❌                | ✔️        | ✔️                     | ✔️                           | 1.54 KB  |
-| ionic            | ✔️  | ❌ | ✔️        | ✔️                     | ✔️                           | 1.44 KB  |
+| Library          | SSR        | Lazy loading     | Optimized render performance | Size     |
+| ---------------- | ---------- | ---------------- | ---------------------------- | -------- |
+| ngx-fast-svg     | `easy`     | browser natively | ✔️                           | 1.52 KB  |
+| font-awesome     | `hard`     | ❌               | ❌                           | 64.75 KB |
+| ant              | `moderate` | ❌               | ❌                           | 24.38 KB |
+| material         | `easy`     | ❌               | ❌                           | 16.92 KB |
+| angular-svg-icon | `moderate` | ❌               | ❌                           | 1.54 KB  |
+| ionic            | `moderate` | ❌               | ✔️                           | 1.44 KB  |
+
+<!-- | Library          | SSR        | Lazy loading     | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
+| ---------------- | ---------- | ---------------- | --------- | ---------------------- | ---------------------------- | -------- |
+| ngx-fast-svg     | `easy`     | browser natively | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
+| font-awesome     | `hard`     | ❌               | ✔️        | ✔️                     | ❌                           | 64.75 KB |
+| ant              | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 24.38 KB |
+| material         | `easy`     | ❌               | ✔️        | ✔️                     | ❌                           | 16.92 KB |
+| angular-svg-icon | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 1.54 KB  |
+| ionic            | `moderate` | ❌               | ✔️        | ✔️                     | ✔️                           | 1.44 KB  | -->
+
+**SSR**
+Server Side Rendering is working. The depending on how easy it is to set it up we distinguish between `easy`, `moderate`, `hard`.
+
+**Lazy loading**
+We refer to lazy loading as on demand loading of SVG files based on their visibility in the viewport.
+
+<!-- **Hydration**
+Is the process of taking over the SSR HTML and state of the app on the client side.
+This can happen in a destructive way (deleting all present HTML and regenerate it from JS) on in a non-destructive way (reusing the existing DOM).
+
+**Reusability of SVG DOM**
+Reusability means that we maintain the content of an SVG, meaning its inner DOM structure `g`, `path` or other tags in one place and reuse them in many different places. -->
+
+**Optimized render performance**
+To display (render) SVGs the browser takes time. We can reduce that time by adding a couple of improvements.

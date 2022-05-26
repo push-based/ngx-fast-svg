@@ -1,5 +1,5 @@
-export type IconOptions = {
+export type SvgOptions = {
   url: (name: string) => string;
   defaultSize?: string;
-  suspenseIconString?: string;
+  suspenseSvgString?: string;
 };

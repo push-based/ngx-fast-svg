@@ -1,12 +1,10 @@
-import { IconOptions } from './token/icon-options.model';
-import {
-  Type
-} from '@angular/core';
-import { IconLoadStrategy } from './token/icon-load.strategy.model';
+import { SvgOptions } from './token/svg-options.model';
+import { Type } from '@angular/core';
+import { SvgLoadStrategy } from './token/svg-load.strategy.model';
 
 export interface FastSvgProviderOptions {
-  url: IconOptions['url'],
-  defaultSize?: IconOptions['defaultSize'],
-  suspenseIconString?: IconOptions['suspenseIconString'],
-  iconLoadStrategy?: Type<IconLoadStrategy>,
+  url: SvgOptions['url'];
+  defaultSize?: SvgOptions['defaultSize'];
+  suspenseSvgString?: SvgOptions['suspenseSvgString'];
+  svgLoadStrategy?: Type<SvgLoadStrategy>;
 }

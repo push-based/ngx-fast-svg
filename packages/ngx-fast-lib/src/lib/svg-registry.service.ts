@@ -1,12 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { IconOptionsToken } from './token/icon-options.token';
-import { suspenseIcon } from './token/default-token-values';
-import { IconOptions } from './token/icon-options.model';
-import { IconLoadStrategy } from './token/icon-load.strategy.model';
+import { SvgOptionsToken } from './token/svg-options.token';
+import { suspenseSvg } from './token/default-token-values';
+import { SvgOptions } from './token/svg-options.model';
+import { SvgLoadStrategy } from './token/svg-load.strategy.model';
 
-// @TODO compose icons in 1 sprite and fetch by id as before
+// @TODO compose svgs in 1 sprite and fetch by id as before
 
 const element: HTMLElement | undefined = undefined;
 
@@ -41,41 +41,41 @@ function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
 }
 
 @Injectable()
-export class IconRegistry {
+export class SvgRegistry {
   private readonly domParser = createDomParser(this.document);
   private readonly svgDomCache: HTMLElement = (() => {
     // The DOM cache could be already created on SSR or due to multiple instances of the registry
     const domCache =
       this.document.getElementById('svg-cache') ||
-      this.domParser(`<div id="svg-cache"></div>`);
+      this.domParser('<div id="svg-cache"></div>');
     styleDomCacheForPerformance(domCache);
     this.document.body.appendChild(domCache);
     return domCache;
   })();
 
-  private readonly _iconHrefCache = new Map<string, BehaviorSubject<string>>();
-  private readonly _cachedIcons = new Set();
+  private readonly _svgHrefCache = new Map<string, BehaviorSubject<string>>();
+  private readonly _cachedSvgs = new Set();
 
-  public defaultSize = this.iconOptions?.defaultSize || '24';
-  public url = this.iconOptions.url;
+  public defaultSize = this.svgOptions?.defaultSize || '24';
+  public url = this.svgOptions.url;
 
   constructor(
     @Optional()
     @Inject(DOCUMENT)
     private document: Document,
     @Optional()
-    @Inject(IconLoadStrategy)
-    private iconLoadStrategy: IconLoadStrategy,
+    @Inject(SvgLoadStrategy)
+    private svgLoadStrategy: SvgLoadStrategy,
     @Optional()
-    @Inject(IconOptionsToken)
-    private iconOptions: IconOptions
+    @Inject(SvgOptionsToken)
+    private svgOptions: SvgOptions
   ) {
-    // configure suspense icon
-    const suspenseIconId = this.iconId('suspense');
-    !this._cachedIcons.has(suspenseIconId) &&
+    // configure suspense svg
+    const suspenseSvgId = this.svgId('suspense');
+    !this._cachedSvgs.has(suspenseSvgId) &&
       this.cacheSvgInDOM(
-        suspenseIconId,
-        this.iconOptions.suspenseIconString || suspenseIcon
+        suspenseSvgId,
+        this.svgOptions.suspenseSvgString || suspenseSvg
       );
 
     this.hydrateFromDom();
@@ -84,66 +84,66 @@ export class IconRegistry {
   private hydrateFromDom(): void {
     // hydrate DOM cache
     Array.from(this.svgDomCache.children).forEach((i) => {
-      // add to fetchedIcons
-      this._cachedIcons.add(i.id);
+      // add to fetchedSvgs
+      this._cachedSvgs.add(i.id);
       // publish to components and render it
-      this.getIconSubject(i.id).next(i.id);
+      this.getSvgSubject(i.id).next(i.id);
     });
   }
 
-  fetchIcon = (iconName: string): void => {
-    const iconId = this.iconId(iconName);
+  fetchSvg = (svgName: string): void => {
+    const svgId = this.svgId(svgName);
     // if the svg is already fetched we return early
-    if (this._cachedIcons.has(iconId)) {
+    if (this._cachedSvgs.has(svgId)) {
       return;
     }
-    this._cachedIcons.add(iconId);
+    this._cachedSvgs.add(svgId);
 
     // trigger fetch
-    this.iconLoadStrategy
-      .load(this.iconOptions.url(iconName))
+    this.svgLoadStrategy
+      .load(this.svgOptions.url(svgName))
       .subscribe(
-        (body: string) => this.cacheSvgInDOM(iconId, body),
+        (body: string) => this.cacheSvgInDOM(svgId, body),
         console.error
       );
   };
 
-  isIconCached(name: string): boolean {
-    return this._cachedIcons.has(this.iconId(name));
+  isSvgCached(name: string): boolean {
+    return this._cachedSvgs.has(this.svgId(name));
   }
 
-  iconHref$(name: string): Observable<string> {
-    // start by displaying the suspense icon immediately
-    return this.getIconSubject(this.iconId(name)).pipe(map((id) => `#${id}`));
+  svgHref$(name: string): Observable<string> {
+    // start by displaying the suspense svg immediately
+    return this.getSvgSubject(this.svgId(name)).pipe(map((id) => `#${id}`));
   }
 
-  private cacheSvgInDOM(iconId: string, svgString: string): void {
+  private cacheSvgInDOM(svgId: string, svgString: string): void {
     // create HTML
     const svgElem = this.domParser(svgString);
 
     // the SVG element needs to be accessible over a href and end with a specific anchor to select the element by id
-    svgElem?.setAttribute && svgElem.setAttribute('id', iconId);
+    svgElem?.setAttribute && svgElem.setAttribute('id', svgId);
     this.svgDomCache.appendChild(svgElem);
     // notify subscribers about change
-    this.getIconSubject(iconId).next(iconId);
+    this.getSvgSubject(svgId).next(svgId);
   }
   /*
-  private removeSvgInDOM(iconId: string): void {
-    this.svgDomCache.querySelector(`#${iconId}`)?.remove();
+  private removeSvgInDOM(svgId: string): void {
+    this.svgDomCache.querySelector(`#${svgId}`)?.remove();
   }*/
 
-  private getIconSubject(iconId: string): BehaviorSubject<string> {
-    if (!this._iconHrefCache.has(iconId)) {
-      this._iconHrefCache.set(
-        iconId,
-        new BehaviorSubject<string>(this.iconId('suspense'))
+  private getSvgSubject(svgId: string): BehaviorSubject<string> {
+    if (!this._svgHrefCache.has(svgId)) {
+      this._svgHrefCache.set(
+        svgId,
+        new BehaviorSubject<string>(this.svgId('suspense'))
       );
     }
-    return this._iconHrefCache.get(iconId) as BehaviorSubject<string>;
+    return this._svgHrefCache.get(svgId) as BehaviorSubject<string>;
   }
 
-  // pattern has to be `<iconName>`
-  private iconId(name: string): string {
+  // pattern has to be `<svgName>`
+  private svgId(name: string): string {
     return `${name}`;
   }
 }
