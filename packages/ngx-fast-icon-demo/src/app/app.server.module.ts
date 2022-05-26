@@ -5,7 +5,7 @@ import {
 } from '@angular/platform-server';
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
-import { FastSvgModule } from '@ngx-fast-svg';
+import { FastSvgModule } from '@push-based/ngx-fast-svg';
 import { SvgLoadStrategySsr } from './ngx-fast-icon-ssr/icon-load.ssr.strategy';
 @NgModule({
   declarations: [],

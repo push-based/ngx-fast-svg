@@ -30,7 +30,7 @@ yarn add @push-based/ngx-fast-svg
 
 ```typescript
 // ...
-import { FastSvgModule } from '@ngx-fast-svg';
+import { FastSvgModule } from '@push-based/ngx-fast-svg';
 
 @NgModule({
   declarations: [AppComponent],
@@ -76,7 +76,7 @@ export abstract class SvgLoadStrategy {
 
 ```typescript
 // ...
-import { FastSvgModule } from '@ngx-fast-svg';
+import { FastSvgModule } from '@push-based/ngx-fast-svg';
 import { loaderSvg } from './assets';
 import { HttpClientFetchStrategy } from './fetch-strategy';
 

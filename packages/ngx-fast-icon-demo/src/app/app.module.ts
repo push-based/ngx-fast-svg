@@ -7,7 +7,7 @@ import { DescriptionComponent } from './routes/description/description.component
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-import { FastSvgModule } from '@ngx-fast-svg';
+import { FastSvgModule } from '@push-based/ngx-fast-svg';
 
 @NgModule({
   declarations: [AppComponent],

@@ -15,11 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ngx-fast-svg": [
+      "@push-based/ngx-fast-svg": [
         "packages/ngx-fast-lib/src/index.ts",
         "packages/ngx-fast-lib/src/lib/*"
-      ],
-      "@push-based/ngx-fast-svg": ["packages/test/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

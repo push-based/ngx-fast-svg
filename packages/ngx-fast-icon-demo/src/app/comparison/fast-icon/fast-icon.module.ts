@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FastSvgModule } from '@ngx-fast-svg';
+import { FastSvgModule } from '@push-based/ngx-fast-svg';
 import { FastIconRouteComponent } from './fast-icon.component';
 
 @NgModule({

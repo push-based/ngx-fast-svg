@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { SvgLoadStrategy } from '@ngx-fast-svg';
+import { SvgLoadStrategy } from '@push-based/ngx-fast-svg';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 @Injectable()
