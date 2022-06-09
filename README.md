@@ -193,7 +193,7 @@ Here's library comparison with other popular SVG solutions.
 | ant              | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 24.38 KB |
 | material         | `easy`     | ❌               | ✔️        | ✔️                     | ❌                           | 16.92 KB |
 | angular-svg-icon | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 1.54 KB  |
-| ionic            | `moderate` | ❌               | ✔️        | ✔️                     | ✔️                           | 1.443 KB  | -->
+| ionic            | `moderate` | viewport observer              | ✔️        | ✔️                     | ✔️                           | 1.443 KB  | -->
 
 **SSR**
 Server Side Rendering is working. The depending on how easy it is to set it up we distinguish between `easy`, `moderate`, `hard`.
