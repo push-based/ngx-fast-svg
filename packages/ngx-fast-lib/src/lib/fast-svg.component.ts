@@ -173,9 +173,10 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
     // This potentially could already receive the svg from the cache and drop the img from the DOM before it gets activated for lazy loading.
     // NOTICE:
     // If the svg is already cached the following code will execute synchronously. This gives us the chance to add
-    this.sub = this.registry.svgHref$(this.name).subscribe((href) => {
+    this.sub = this.registry.svgCache$(this.name).subscribe((cache) => {
       // The first child is the `use` tag. The value of href gets displayed as SVG
-      svg.children[0].setAttribute('href', href);
+      svg.children[0].setAttribute('href', cache.name);
+      svg.setAttribute('viewBox', cache.viewBox);
 
       // early exvit no image
       if (!img) return;
@@ -183,7 +184,7 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
       // If the img is present
       // and the name in included in the href (svg is fully loaded, not only the suspense svg)
       // Remove the element from the DOM as it is no longer needed
-      if (href.includes(this.name)) {
+      if (cache.name.includes(this.name)) {
         img.removeEventListener('load', this.loadedListener);
         // removeEventListener.bind(img, 'load', this.loadedListener);
         img.remove();

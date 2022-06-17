@@ -10,6 +10,11 @@ import { SvgLoadStrategy } from './token/svg-load.strategy.model';
 
 const element: HTMLElement | undefined = undefined;
 
+interface SvgCache {
+  name: string;
+  viewBox: string;
+}
+
 function createDomParser(document: Document): (s: string) => HTMLElement {
   const e = element || document.createElement('DIV');
   return (s: string) => {
@@ -53,10 +58,12 @@ export class SvgRegistry {
     return domCache;
   })();
 
-  private readonly _svgHrefCache = new Map<string, BehaviorSubject<string>>();
+  private readonly _svgHrefCache = new Map<string, BehaviorSubject<SvgCache>>();
   private readonly _cachedSvgs = new Set();
 
   public defaultSize = this.svgOptions?.defaultSize || '24';
+  private _defaultViewBox = `0 0 ${this.defaultSize} ${this.defaultSize}`;
+
   public url = this.svgOptions.url;
 
   constructor(
@@ -86,8 +93,12 @@ export class SvgRegistry {
     Array.from(this.svgDomCache.children).forEach((i) => {
       // add to fetchedSvgs
       this._cachedSvgs.add(i.id);
+      // i.
       // publish to components and render it
-      this.getSvgSubject(i.id).next(i.id);
+      this.getSvgSubject(i.id).next({
+        name: i.id,
+        viewBox: i.getAttribute('viewBox') || this._defaultViewBox,
+      });
     });
   }
 
@@ -112,34 +123,44 @@ export class SvgRegistry {
     return this._cachedSvgs.has(this.svgId(name));
   }
 
-  svgHref$(name: string): Observable<string> {
+  svgCache$(name: string): Observable<SvgCache> {
     // start by displaying the suspense svg immediately
-    return this.getSvgSubject(this.svgId(name)).pipe(map((id) => `#${id}`));
+    return this.getSvgSubject(this.svgId(name)).pipe(
+      map((svg) => ({ name: `#${svg.name}`, viewBox: svg.viewBox }))
+    );
   }
 
   private cacheSvgInDOM(svgId: string, svgString: string): void {
     // create HTML
     const svgElem = this.domParser(svgString);
+    // parse the svg string and get a viewBox
+    const viewBox = svgString.match(/viewBox="([^"]*)"/);
 
     // the SVG element needs to be accessible over a href and end with a specific anchor to select the element by id
     svgElem?.setAttribute && svgElem.setAttribute('id', svgId);
     this.svgDomCache.appendChild(svgElem);
     // notify subscribers about change
-    this.getSvgSubject(svgId).next(svgId);
+    this.getSvgSubject(svgId).next({
+      name: svgId,
+      viewBox: viewBox?.[1] || this._defaultViewBox,
+    });
   }
   /*
   private removeSvgInDOM(svgId: string): void {
     this.svgDomCache.querySelector(`#${svgId}`)?.remove();
   }*/
 
-  private getSvgSubject(svgId: string): BehaviorSubject<string> {
+  private getSvgSubject(svgId: string): BehaviorSubject<SvgCache> {
     if (!this._svgHrefCache.has(svgId)) {
       this._svgHrefCache.set(
         svgId,
-        new BehaviorSubject<string>(this.svgId('suspense'))
+        new BehaviorSubject<SvgCache>({
+          name: this.svgId('suspense'),
+          viewBox: this._defaultViewBox,
+        })
       );
     }
-    return this._svgHrefCache.get(svgId) as BehaviorSubject<string>;
+    return this._svgHrefCache.get(svgId) as BehaviorSubject<SvgCache>;
   }
 
   // pattern has to be `<svgName>`
