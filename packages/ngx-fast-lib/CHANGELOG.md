@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.1.4...ngx-fast-lib-0.2.0) (2022-06-17)
+
+
+### Features
+
+* inherit viewBox from original svg ([65cd781](https://github.com/push-based/ngx-fast-svg/commit/65cd78117b456c0e95c31d620ce1c1c1b09b8eca))
+
+
+
 ## [0.1.4](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.1.3...ngx-fast-lib-0.1.4) (2022-05-26)
 
 
