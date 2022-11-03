@@ -8,7 +8,6 @@ import { IconTester } from '../../misc/icons-tester/icon-tester.service';
 })
 export class FontAwesomeComponent {
   constructor(public tester: IconTester) {
-    console.log(faCircleUser);
     this.tester.defineSet([
       faCircleUser,
       faCircleUser,

@@ -11,7 +11,6 @@ import { AllIcons } from './icons';
 export class AntComponent {
   constructor(private _iconService: AntIconService, public tester: IconTester) {
     this.tester.defineSet(SUPPORTED_ICONS);
-    console.log(AccountBookFill);
     this._iconService.addIcon(...(AllIcons as any));
   }
 }
