@@ -12,7 +12,7 @@
     "serve:ssr": "nx serve-ssr ngx-fast-icon-demo",
     "serve:ssr:prod": "npm run serve:ssr -- --configuration=production",
     "build": "nx build ngx-fast-icon-demo",
-    "build-demo-to-docs": "nx build ngx-fast-icon-demo --output-path docs --base-href /ngx-fast-svg/",
+    "build-demo-to-docs": "nx build ngx-fast-icon-demo --output-path docs --base-href /ngx-fast-svg/ && npm run create-404",
     "build-demo": "nx build ngx-fast-icon-demo --configuration=development",
     "build:prod": "npm run build -- --configuration production",
     "build:prod:stats": "npm run build -- --configuration production --stats-json",
@@ -21,7 +21,8 @@
     "postinstall": "ngcc --properties es2015 browser module main",
     "user-flow:collect": "npx @push-based/user-flow -p ./packages/ngx-fast-icon-demo/perf/.user-flowrc.json collect -v",
     "update-bundle-state:readme": "npm run build:prod:stats && npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-bundle-stats --stats=./dist/packages/browser/ngx-fast-icon-demo/stats.json --target=./README.md",
-    "update-svg-size:readme": "npm run build:prod:stats && npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-svg-size --folder=./packages/ngx-fast-icon-demo/src/assets/svg-icons --target=./README.md"
+    "update-svg-size:readme": "npm run build:prod:stats && npx ts-node -P tools/tsconfig.tools.json  ./tools/bundle-stats/index.ts update-svg-size --folder=./packages/ngx-fast-icon-demo/src/assets/svg-icons --target=./README.md",
+    "create-404": "node -e \"require('fs').copyFile('docs/index.html', 'docs/404.html', function(err) { if (err) console.log(err); console.log('File successfully renamed!') })\""
   },
   "private": true,
   "dependencies": {
