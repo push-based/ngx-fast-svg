@@ -175,6 +175,8 @@ If SSR load svgs on server => ends up in DOM cache and ships to the client.
 
 ## Comparison
 
+> 🖥️ Interactive demo available [here](https://push-based.github.io/ngx-fast-svg).
+
 Here's library comparison with other popular SVG solutions.
 
 | Library          | SSR        | Lazy loading     | Optimized render performance | Size     |
