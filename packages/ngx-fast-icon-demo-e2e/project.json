@@ -1,5 +1,6 @@
 {
-  "root": "packages/ngx-fast-icon-demo-e2e",
+  "name": "ngx-fast-icon-demo-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ngx-fast-icon-demo-e2e/src",
   "projectType": "application",
   "targets": {
