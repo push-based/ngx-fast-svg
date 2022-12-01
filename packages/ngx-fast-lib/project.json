@@ -1,6 +1,6 @@
 {
+  "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "library",
-  "root": "packages/ngx-fast-lib",
   "sourceRoot": "packages/ngx-fast-lib/src",
   "prefix": "ngx-fast-svg",
   "targets": {
@@ -24,7 +24,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/ngx-fast-lib"],
       "options": {
-        "jestConfig": "packages/ngx-fast-lib/jest.config.js",
+        "jestConfig": "packages/ngx-fast-lib/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -66,7 +66,7 @@
       }
     },
     "link": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           {
