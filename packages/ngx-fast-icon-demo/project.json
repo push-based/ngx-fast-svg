@@ -1,4 +1,5 @@
 {
+  "name": "ngx-fast-icon-demo",
   "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "application",
   "sourceRoot": "packages/ngx-fast-icon-demo/src",
@@ -81,7 +82,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/ngx-fast-icon-demo"],
+      "outputs": ["{workspaceRoot}/coverage/packages/ngx-fast-icon-demo"],
       "options": {
         "jestConfig": "packages/ngx-fast-icon-demo/jest.config.ts",
         "passWithNoTests": true
@@ -117,7 +118,25 @@
           "extractLicenses": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "development": {
+        "outputHashing": "none",
+        "optimization": false,
+        "sourceMap": true,
+        "extractLicenses": true
+      },
+      "production": {
+        "outputHashing": "media",
+        "fileReplacements": [
+          {
+            "replace": "packages/ngx-fast-icon-demo/src/environments/environment.ts",
+            "with": "packages/ngx-fast-icon-demo/src/environments/environment.prod.ts"
+          }
+        ],
+        "optimization": true,
+        "sourceMap": false,
+        "extractLicenses": true
+      }
     },
     "serve-ssr": {
       "executor": "@nguniversal/builders:ssr-dev-server",
