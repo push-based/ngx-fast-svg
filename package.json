@@ -84,10 +84,10 @@
     "nx": "15.1.1",
     "prettier": "2.6.2",
     "ts-jest": "28.0.8",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "rxjs-for-await": "^1.0.0"
   },
   "workspaces": [
     "packages/**"
   ]
 }
-
