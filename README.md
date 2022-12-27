@@ -179,7 +179,7 @@ If SSR load svgs on server => ends up in DOM cache and ships to the client.
 
 Here's library comparison with other popular SVG solutions.
 
-| Library          | SSR        | Lazy loading     | Optimized render performance | Size     |
+| Library          | SSR [1]        | Lazy loading [2]     | Optimized render performance [3] | Size     |
 | ---------------- | ---------- | ---------------- | ---------------------------- | -------- |
 | ngx-fast-svg     | `easy`     | browser natively | ✔️                           | 1.52 KB  |
 | font-awesome     | `hard`     | ❌               | ❌                           | 64.75 KB |
@@ -197,18 +197,18 @@ Here's library comparison with other popular SVG solutions.
 | angular-svg-icon | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 1.54 KB  |
 | ionic            | `moderate` | viewport observer              | ✔️        | ✔️                     | ✔️                           | 1.443 KB  | -->
 
-**SSR**
+**[1] SSR**
 Server Side Rendering is working. The depending on how easy it is to set it up we distinguish between `easy`, `moderate`, `hard`.
 
-**Lazy loading**
+**[2] Lazy loading**
 We refer to lazy loading as on demand loading of SVG files based on their visibility in the viewport.
 
 <!-- **Hydration**
 Is the process of taking over the SSR HTML and state of the app on the client side.
 This can happen in a destructive way (deleting all present HTML and regenerate it from JS) on in a non-destructive way (reusing the existing DOM).
 
-**Reusability of SVG DOM**
+** Reusability of SVG DOM**
 Reusability means that we maintain the content of an SVG, meaning its inner DOM structure `g`, `path` or other tags in one place and reuse them in many different places. -->
 
-**Optimized render performance**
+**[3] Optimized render performance**
 To display (render) SVGs the browser takes time. We can reduce that time by adding a couple of improvements.
