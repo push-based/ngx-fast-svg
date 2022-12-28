@@ -6,7 +6,7 @@ import { suspenseSvg } from './token/default-token-values';
 import { SvgOptions } from './token/svg-options.model';
 import { SvgLoadStrategy } from './token/svg-load.strategy.model';
 
-// @TODO compose svgs in 1 sprite and fetch by id as before
+// @TODO compose svg in 1 sprite and fetch by id as before
 
 const element: HTMLElement | undefined = undefined;
 
@@ -25,10 +25,9 @@ function createDomParser(document: Document): (s: string) => HTMLElement {
 
 function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
   /**
-   * reduce paint area with with/height 0 and overflow hidden
-   * fixed position of -2000px to always have it offscreen and outside of any native trigger (viewport observer in content visibilities)
-   * contain:content to leverage css perf features for older browsers not supporting content-visibility
-   * content-visibility: auto to exclude it completely from styles recalculation
+   * reduce paint area with width/height 0 and overflow hidden
+   * fixed position of -2000px to always have it offscreen and outside any native trigger (viewport observer in content visibilities)
+   * contain:content to leverage css perf features for older browsers not supporting content-visibility   * : auto to exclude it completely from styles recalculation
    */
   el.setAttribute(
     'style',
