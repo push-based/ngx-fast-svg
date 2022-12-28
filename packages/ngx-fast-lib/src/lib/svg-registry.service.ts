@@ -8,15 +8,13 @@ import { SvgLoadStrategy } from './token/svg-load.strategy.model';
 
 // @TODO compose svgs in 1 sprite and fetch by id as before
 
-const element: HTMLElement | undefined = undefined;
-
 interface SvgCache {
   name: string;
   viewBox: string;
 }
 
 function createDomParser(document: Document): (s: string) => HTMLElement {
-  const e = element || document.createElement('DIV');
+  const e = document.createElement('DIV');
   return (s: string) => {
     e && (e.innerHTML = s);
     return e.firstChild as HTMLElement;
