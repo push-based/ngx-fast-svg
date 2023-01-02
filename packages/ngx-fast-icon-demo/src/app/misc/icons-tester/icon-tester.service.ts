@@ -34,21 +34,17 @@ export class IconTester {
 
     switch (setting) {
       case ViewportSetting.OnScreen:
-        document.body.style.setProperty('--group-margin', '0');
         document.body.style.setProperty('--row-margin-top', '32px');
         this.onScreen = true;
         break;
       case ViewportSetting.OffScreen:
-        document.body.style.setProperty('--group-margin', '0');
         document.body.style.setProperty('--row-margin-top', '100vh');
         this.onScreen = false;
         break;
       case ViewportSetting.Distributed:
         if (this.distributed) {
-          document.body.style.removeProperty('--row-margin-top');
           document.body.style.removeProperty('--group-margin');
         } else {
-          document.body.style.setProperty('--row-margin-top', '32px');
           document.body.style.setProperty('--group-margin', '14%');
         }
         this.distributed = !this.distributed;
