@@ -19,6 +19,8 @@ export class IconTester {
   setting = ViewportSetting.OnScreen;
 
   lists: any[][] = [];
+  private distributed = false;
+  private onScreen = true;
   showContainer?: boolean;
   constructor(
     private appRef: ApplicationRef,
@@ -26,7 +28,6 @@ export class IconTester {
     private activatedRoute: ActivatedRoute,
 
   ) {}
-  private distributed = false;
 
   setLayout(setting: ViewportSetting) {
     this.setting = setting;
@@ -35,10 +36,12 @@ export class IconTester {
       case ViewportSetting.OnScreen:
         document.body.style.setProperty('--group-margin', '0');
         document.body.style.setProperty('--row-margin-top', '32px');
+        this.onScreen = true;
         break;
       case ViewportSetting.OffScreen:
         document.body.style.setProperty('--group-margin', '0');
         document.body.style.setProperty('--row-margin-top', '100vh');
+        this.onScreen = false;
         break;
       case ViewportSetting.Distributed:
         if (this.distributed) {
