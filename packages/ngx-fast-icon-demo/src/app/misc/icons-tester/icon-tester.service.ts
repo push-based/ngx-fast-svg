@@ -1,4 +1,5 @@
 import { ApplicationRef, Injectable } from '@angular/core';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 enum ViewportSetting {
   OnScreen = 'On Screen',
@@ -19,7 +20,12 @@ export class IconTester {
 
   lists: any[][] = [];
   showContainer?: boolean;
-  constructor(private appRef: ApplicationRef) {}
+  constructor(
+    private appRef: ApplicationRef,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+
+  ) {}
   private distributed = false;
 
   setLayout(setting: ViewportSetting) {
@@ -43,6 +49,9 @@ export class IconTester {
           document.body.style.setProperty('--group-margin', '14%');
         }
         this.distributed = !this.distributed;
+        this.updateLocationParams({
+          distributed: this.distributed
+        });
         break;
     }
   }
@@ -59,16 +68,33 @@ export class IconTester {
     this.showContainer = true;
     this.lists.push(this.icons || []);
     this.appRef.tick();
+    this.updateLocationParams({
+      lists: this.lists.length
+    });
   }
 
   remove() {
     this.lists.pop();
     this.appRef.tick();
+    this.updateLocationParams({
+      lists: this.lists.length
+    });
   }
 
   private clear() {
     this.showContainer = false;
     this.lists = [];
     this.appRef.tick();
+    this.updateLocationParams({
+      lists: this.lists.length
+    });
+  }
+
+  private updateLocationParams(queryParams: Params) {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    });
   }
 }
