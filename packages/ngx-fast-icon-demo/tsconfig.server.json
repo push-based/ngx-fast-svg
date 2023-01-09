@@ -1,10 +1,10 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "outDir": "../out-tsc/server",
-    "target": "es2019",
-    "types": ["node"]
+    "target": "ES2022",
+    "types": ["node"],
+    "useDefineForClassFields": false
   },
   "files": ["src/main.server.ts", "src/server.ts"],
   "angularCompilerOptions": {

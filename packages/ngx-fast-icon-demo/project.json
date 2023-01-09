@@ -118,7 +118,25 @@
           "extractLicenses": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "development": {
+        "outputHashing": "none",
+        "optimization": false,
+        "sourceMap": true,
+        "extractLicenses": true
+      },
+      "production": {
+        "outputHashing": "media",
+        "fileReplacements": [
+          {
+            "replace": "packages/ngx-fast-icon-demo/src/environments/environment.ts",
+            "with": "packages/ngx-fast-icon-demo/src/environments/environment.prod.ts"
+          }
+        ],
+        "optimization": true,
+        "sourceMap": false,
+        "extractLicenses": true
+      }
     },
     "serve-ssr": {
       "executor": "@nguniversal/builders:ssr-dev-server",
