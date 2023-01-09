@@ -38,7 +38,7 @@ import { FastSvgModule } from '@push-based/ngx-fast-svg';
     FastSvgModule.forRoot({
       url: (name: string) => `path/to/svg-assets/${name}.svg`,
     })
-  ]
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -91,7 +91,7 @@ import { HttpClientFetchStrategy } from './fetch-strategy';
       suspenseSvgString: loaderSvg,
       svgLoadStrategy: HttpClientFetchStrategy
     })
-  ]
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -158,7 +158,7 @@ When the browser loaded the svg resource we trigger the caching mechanism.
 
 `re-fetch -> cache-hit -> get SVG -> cache in DOM`
 
-Cached SVG elements can be reused in multiple places places and support different stylings.
+Cached SVG elements can be reused in multiple places and support different styling.
 
 ### :rocket: Optimized for performance
 
@@ -179,14 +179,14 @@ If SSR load svgs on server => ends up in DOM cache and ships to the client.
 
 Here's library comparison with other popular SVG solutions.
 
-| Library          | SSR [1]        | Lazy loading [2]     | Optimized render performance [3] | Size     |
-| ---------------- | ---------- | ---------------- | ---------------------------- | -------- |
-| ngx-fast-svg     | `easy`     | browser natively | ✔️                           | 1.52 KB  |
-| font-awesome     | `hard`     | ❌               | ❌                           | 64.75 KB |
-| ant              | `moderate` | ❌               | ❌                           | 24.38 KB |
-| material         | `easy`     | ❌               | ❌                           | 16.92 KB |
-| angular-svg-icon | `moderate` | ❌               | ❌                           | 1.54 KB  |
-| ionic            | `moderate` |  viewport observer               | ✔️                           | 1.44 KB  |
+| Library          | SSR [1]    | Lazy loading [2]  | Optimized render performance [3] | Size     |
+|------------------|------------|-------------------|----------------------------------|----------|
+| ngx-fast-svg     | `easy`     | browser natively  | ✔️                               | 1.52 KB  |
+| font-awesome     | `hard`     | ❌                | ❌                               | 64.75 KB |
+| ant              | `moderate` | ❌                | ❌                               | 24.38 KB |
+| material         | `easy`     | ❌                | ❌                               | 16.92 KB |
+| angular-svg-icon | `moderate` | ❌                | ❌                               | 1.54 KB  |
+| ionic            | `moderate` | viewport observer | ✔️                               | 1.44 KB  |
 
 <!-- | Library          | SSR        | Lazy loading     | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
 | ---------------- | ---------- | ---------------- | --------- | ---------------------- | ---------------------------- | -------- |
