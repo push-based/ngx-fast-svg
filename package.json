@@ -54,7 +54,7 @@
     "@angular/cli": "~14.2.0",
     "@angular/compiler-cli": "14.2.12",
     "@angular/language-service": "14.2.12",
-    "@jscutlery/semver": "^2.22.0",
+    "@jscutlery/semver": "^2.29.3",
     "@nguniversal/builders": "^14.2.3",
     "@nrwl/angular": "15.1.1",
     "@nrwl/cli": "15.1.1",
