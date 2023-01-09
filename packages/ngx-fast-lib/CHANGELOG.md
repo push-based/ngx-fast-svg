@@ -10,6 +10,10 @@ This file was generated using [@jscutlery/semver](https://github.com/jscutlery/s
 
 
 
+## [0.2.3](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.2.2...ngx-fast-lib-0.2.3) (2023-01-09)
+
+
+
 ## [0.2.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.2.0...ngx-fast-lib-0.2.1) (2022-12-02)
 
 
