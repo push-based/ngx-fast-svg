@@ -20,6 +20,7 @@ export class IconTester {
   lists: any[][] = [];
   showContainer?: boolean;
   constructor(private appRef: ApplicationRef) {}
+  private distributed = false;
 
   setLayout(setting: ViewportSetting) {
     this.setting = setting;
@@ -34,8 +35,14 @@ export class IconTester {
         document.body.style.setProperty('--row-margin-top', '100vh');
         break;
       case ViewportSetting.Distributed:
-        document.body.style.setProperty('--row-margin-top', '32px');
-        document.body.style.setProperty('--group-margin', '14%');
+        if (this.distributed) {
+          document.body.style.removeProperty('--row-margin-top');
+          document.body.style.removeProperty('--group-margin');
+        } else {
+          document.body.style.setProperty('--row-margin-top', '32px');
+          document.body.style.setProperty('--group-margin', '14%');
+        }
+        this.distributed = !this.distributed;
         break;
     }
   }
