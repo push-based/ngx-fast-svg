@@ -61,9 +61,9 @@
       }
     },
     "npm": {
-      "executor": "ngx-deploy-npm:deploy",
+      "executor": "nx:run-commands",
       "options": {
-        "access": "public"
+        "command": "npm publish dist/libs/ngx-fast-svg"
       }
     },
     "link": {
