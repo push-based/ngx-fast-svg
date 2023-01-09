@@ -30,14 +30,14 @@ function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
   el.setAttribute(
     'style',
     `
-    overflow: hidden;
-    width: 0px;
-    height: 0px;
-    position: fixed;
-    bottom: -2000px;
-    contain: content;
-    content-visibility: auto;
-  `
+      overflow: hidden;
+      width: 0px;
+      height: 0px;
+      position: fixed;
+      bottom: -2000px;
+      contain: content;
+      content-visibility: auto;
+    `
   );
   return el;
 }
