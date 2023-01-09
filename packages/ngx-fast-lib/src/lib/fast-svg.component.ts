@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { isPlatformServer } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -8,12 +9,11 @@ import {
   Input,
   OnDestroy,
   PLATFORM_ID,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SvgRegistry } from './svg-registry.service';
-import { isPlatformServer } from '@angular/common';
 import { getZoneUnPatchedApi } from './internal/get-zone-unpatched-api';
+import { SvgRegistry } from './svg-registry.service';
 
 /**
  * getZoneUnPatchedApi
@@ -93,7 +93,7 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FastSvgComponent implements AfterViewInit, OnDestroy {
-  private sub = new Subscription();
+  private readonly sub = new Subscription();
   private readonly getImg = createGetImgFn(this.renderer);
 
   @Input()
@@ -173,23 +173,25 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
     // This potentially could already receive the svg from the cache and drop the img from the DOM before it gets activated for lazy loading.
     // NOTICE:
     // If the svg is already cached the following code will execute synchronously. This gives us the chance to add
-    this.sub = this.registry.svgCache$(this.name).subscribe((cache) => {
-      // The first child is the `use` tag. The value of href gets displayed as SVG
-      svg.children[0].setAttribute('href', cache.name);
-      svg.setAttribute('viewBox', cache.viewBox);
+    this.sub.add(
+      this.registry.svgCache$(this.name).subscribe((cache) => {
+        // The first child is the `use` tag. The value of href gets displayed as SVG
+        svg.children[0].setAttribute('href', cache.name);
+        svg.setAttribute('viewBox', cache.viewBox);
 
-      // early exvit no image
-      if (!img) return;
+        // early exvit no image
+        if (!img) return;
 
-      // If the img is present
-      // and the name in included in the href (svg is fully loaded, not only the suspense svg)
-      // Remove the element from the DOM as it is no longer needed
-      if (cache.name.includes(this.name)) {
-        img.removeEventListener('load', this.loadedListener);
-        // removeEventListener.bind(img, 'load', this.loadedListener);
-        img.remove();
-      }
-    });
+        // If the img is present
+        // and the name in included in the href (svg is fully loaded, not only the suspense svg)
+        // Remove the element from the DOM as it is no longer needed
+        if (cache.name.includes(this.name)) {
+          img.removeEventListener('load', this.loadedListener);
+          // removeEventListener.bind(img, 'load', this.loadedListener);
+          img.remove();
+        }
+      })
+    );
 
     // SSR
     if (isPlatformServer(this.platform)) {
