@@ -2,7 +2,7 @@
 <h4>Layout setting</h4>
 <div class="buttons-wrapper">
   <button
-    [ngClass]="{ active: button === tester.setting }"
+    [ngClass]="{ active: button === (tester.setting | async) }"
     *ngFor="let button of tester.buttons"
     (click)="tester.setLayout(button)"
   >
@@ -15,8 +15,9 @@
   <button (click)="tester.remove()">Remove</button>
   <button (click)="tester.reload()">Reload page</button>
 </div>
-<div class="row icons" *ngIf="tester.showContainer">
-  <ul class="group" *ngFor="let list of tester.lists">
+
+<div class="row icons">
+  <ul class="group" *ngFor="let list of (tester.lists | async)">
     <li *ngFor="let icon of list">
       <fast-svg [name]="icon"></fast-svg>
     </li>
