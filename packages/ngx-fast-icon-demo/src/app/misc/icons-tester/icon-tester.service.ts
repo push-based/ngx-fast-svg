@@ -22,7 +22,6 @@ export class IconTester {
 
   readonly lists = this.activatedRoute.queryParams.pipe(map(({list}) => Array(Number(list)).fill(this.icons)));
 
-  showContainer?: boolean;
   constructor(private appRef: ApplicationRef, private activatedRoute: ActivatedRoute, private router: Router) {
     this._handleNavigationWithInvalidQueryParams(activatedRoute);
     this._handleLayoutSetting();
@@ -65,12 +64,6 @@ export class IconTester {
       queryParamsHandling: 'merge',
     });
   }
-
-  // private clear() {
-  //   this.showContainer = false;
-  //   this.lists = [];
-  //   this.appRef.tick();
-  // }
 
   private _handleLayoutSetting(): void {
     this.activatedRoute.queryParams.subscribe(({ls}) => {
