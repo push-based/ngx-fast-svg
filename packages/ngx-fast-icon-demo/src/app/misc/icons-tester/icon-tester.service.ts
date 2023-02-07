@@ -1,6 +1,7 @@
 import { ApplicationRef, Injectable } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {filter, map} from 'rxjs';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 enum ViewportSetting {
   OnScreen = 'On Screen',
@@ -16,7 +17,7 @@ export class IconTester {
     ViewportSetting.OffScreen,
     ViewportSetting.Distributed,
   ];
-  icons?: any[];
+  icons?: string[] | IconDefinition[];
 
   readonly setting = this.activatedRoute.queryParams.pipe(map(({ls}) => this._reverseKebab(ls)));
 
@@ -39,7 +40,7 @@ export class IconTester {
     });
   }
 
-  defineSet(set: any[]) {
+  defineSet(set: string[] | IconDefinition[]) {
     this.icons = set;
   }
 
