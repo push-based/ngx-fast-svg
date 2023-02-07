@@ -16,7 +16,7 @@
   <button (click)="tester.reload()">Reload page</button>
 </div>
 
-<div class="row icons">
+<div class="row icons" [ngClass]="tester.layout | async">
   <ul class="group" *ngFor="let list of (tester.lists | async)">
     <li *ngFor="let icon of list">
       <ion-icon size="large" [src]="icon"></ion-icon>

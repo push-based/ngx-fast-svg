@@ -20,11 +20,13 @@ export class IconTester {
 
   readonly setting = this.activatedRoute.queryParams.pipe(map(({ls}) => this._reverseKebab(ls)));
 
+  readonly layout = this.activatedRoute.queryParams.pipe(map(({ls}) => ls));
+
   readonly lists = this.activatedRoute.queryParams.pipe(map(({list}) => Array(Number(list)).fill(this.icons)));
 
   constructor(private appRef: ApplicationRef, private activatedRoute: ActivatedRoute, private router: Router) {
     this._handleNavigationWithInvalidQueryParams(activatedRoute);
-    this._handleLayoutSetting();
+    // this._handleLayoutSetting();
   }
 
   setLayout(setting: ViewportSetting) {
@@ -63,25 +65,6 @@ export class IconTester {
       },
       queryParamsHandling: 'merge',
     });
-  }
-
-  private _handleLayoutSetting(): void {
-    this.activatedRoute.queryParams.subscribe(({ls}) => {
-      switch (this._reverseKebab(ls)) {
-        case ViewportSetting.OnScreen:
-          document.body.style.setProperty('--group-margin', '0');
-          document.body.style.setProperty('--row-margin-top', '32px');
-          break;
-        case ViewportSetting.OffScreen:
-          document.body.style.setProperty('--group-margin', '0');
-          document.body.style.setProperty('--row-margin-top', '100vh');
-          break;
-        case ViewportSetting.Distributed:
-          document.body.style.setProperty('--row-margin-top', '32px');
-          document.body.style.setProperty('--group-margin', '14%');
-          break;
-      }
-    })
   }
 
   private _handleNavigationWithInvalidQueryParams(activatedRoute: ActivatedRoute): void {
