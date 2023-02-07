@@ -47,21 +47,11 @@ export class IconTester {
     window.location.reload();
   }
 
-  add() {
+  updateList(number: number): void {
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {
-        list: Number(this.activatedRoute.snapshot.queryParams['list']) + 1
-      },
-      queryParamsHandling: 'merge',
-    });
-  }
-
-  remove() {
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: {
-        list: Number(this.activatedRoute.snapshot.queryParams['list']) - 1
+        list: Number(this.activatedRoute.snapshot.queryParams['list']) + number
       },
       queryParamsHandling: 'merge',
     });
