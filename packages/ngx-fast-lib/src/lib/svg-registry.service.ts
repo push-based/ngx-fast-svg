@@ -6,9 +6,7 @@ import { suspenseSvg } from './token/default-token-values';
 import { SvgOptions } from './token/svg-options.model';
 import { SvgLoadStrategy } from './token/svg-load.strategy.model';
 
-// @TODO compose svgs in 1 sprite and fetch by id as before
-
-const element: HTMLElement | undefined = undefined;
+// @TODO compose svg in 1 sprite and fetch by id as before
 
 interface SvgCache {
   name: string;
@@ -16,7 +14,7 @@ interface SvgCache {
 }
 
 function createDomParser(document: Document): (s: string) => HTMLElement {
-  const e = element || document.createElement('DIV');
+  const e = document.createElement('DIV');
   return (s: string) => {
     e && (e.innerHTML = s);
     return e.firstChild as HTMLElement;
@@ -25,22 +23,21 @@ function createDomParser(document: Document): (s: string) => HTMLElement {
 
 function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
   /**
-   * reduce paint area with with/height 0 and overflow hidden
-   * fixed position of -2000px to always have it offscreen and outside of any native trigger (viewport observer in content visibilities)
-   * contain:content to leverage css perf features for older browsers not supporting content-visibility
-   * content-visibility: auto to exclude it completely from styles recalculation
+   * reduce paint area with width/height 0 and overflow hidden
+   * fixed position of -2000px to always have it offscreen and outside any native trigger (viewport observer in content visibilities)
+   * contain:content to leverage css perf features for older browsers not supporting content-visibility   * : auto to exclude it completely from styles recalculation
    */
   el.setAttribute(
     'style',
     `
-    overflow: hidden;
-    width: 0px;
-    height: 0px;
-    position: fixed;
-    bottom: -2000px;
-    contain: content;
-    content-visibility: auto;
-  `
+      overflow: hidden;
+      width: 0px;
+      height: 0px;
+      position: fixed;
+      bottom: -2000px;
+      contain: content;
+      content-visibility: auto;
+    `
   );
   return el;
 }

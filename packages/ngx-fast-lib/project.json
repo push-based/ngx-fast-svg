@@ -1,12 +1,13 @@
 {
+  "name": "ngx-fast-lib",
+  "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "library",
-  "root": "packages/ngx-fast-lib",
   "sourceRoot": "packages/ngx-fast-lib/src",
   "prefix": "ngx-fast-svg",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/ngx-fast-svg"],
+      "outputs": ["{workspaceRoot}/dist/libs/ngx-fast-svg"],
       "options": {
         "project": "packages/ngx-fast-lib/ng-package.json"
       },
@@ -22,9 +23,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/ngx-fast-lib"],
+      "outputs": ["{workspaceRoot}/coverage/packages/ngx-fast-lib"],
       "options": {
-        "jestConfig": "packages/ngx-fast-lib/jest.config.js",
+        "jestConfig": "packages/ngx-fast-lib/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -60,13 +61,13 @@
       }
     },
     "npm": {
-      "executor": "ngx-deploy-npm:deploy",
+      "executor": "nx:run-commands",
       "options": {
-        "access": "public"
+        "command": "npm publish dist/libs/ngx-fast-svg"
       }
     },
     "link": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           {

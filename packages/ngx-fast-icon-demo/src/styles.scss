@@ -89,13 +89,32 @@ ol {
 .row {
   display: flex;
   flex-wrap: wrap;
+}
 
-  &.icons {
-    margin-top: var(--row-margin-top);
+.on-screen {
+  .group, li {
+    margin: 0;
+  }
+  .row &.icons {
+    margin-top: 32px;
   }
 }
 
-.group,
-li {
-  margin: var(--group-margin);
+.off-screen {
+  .group, li {
+    margin: 0;
+  }
+  .row &.icons {
+    margin-top: 100vh;
+  }
+}
+
+.distributed {
+  .group, li {
+    margin: 14%;
+  }
+  .row &.icons {
+    margin-top: 32px;
+  }
+
 }

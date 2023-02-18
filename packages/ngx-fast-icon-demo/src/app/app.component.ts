@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 import { filter, map, startWith } from 'rxjs';
 
@@ -18,13 +18,14 @@ export class AppComponent {
     'angular',
     'ant',
   ];
+  readonly queryParams = this.activatedRoute.queryParams;
 
   navClass$ = this.router.events.pipe(
     filter((e) => e instanceof NavigationEnd),
     startWith({ urlAfterRedirects: this.router.url }),
     map((e) => this.getClassFromUrl((e as NavigationEnd).urlAfterRedirects))
   );
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   getClassFromUrl(url: string): string {
     if (url.includes('angular')) {

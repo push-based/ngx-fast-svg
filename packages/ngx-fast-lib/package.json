@@ -1,6 +1,6 @@
 {
   "name": "@push-based/ngx-fast-svg",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "angular"
   ],
   "peerDependencies": {
-    "@angular/core": ">10.1.1"
+    "@angular/core": ">=14.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

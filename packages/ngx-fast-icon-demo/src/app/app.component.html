@@ -8,8 +8,10 @@
           [routerLinkActive]="'active'"
           [ngClass]="link"
           [routerLink]="link"
-          >{{ link }}</a
+          [queryParams]="queryParams | async"
         >
+          {{ link }}
+        </a>
       </div>
     </div>
     <div class="content">
