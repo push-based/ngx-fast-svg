@@ -157,7 +157,7 @@
       "options": {
         "browserTarget": "ngx-fast-icon-demo:build:production",
         "serverTarget": "ngx-fast-icon-demo:build-server:production",
-        "routesFile": "routes.txt"
+        "routesFile": "packages/ngx-fast-icon-demo/routes.txt"
       },
       "configurations": {
         "production": {
@@ -169,7 +169,7 @@
           "serverTarget": "ngx-fast-icon-demo:build-server:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "production"
     }
   },
   "tags": []
