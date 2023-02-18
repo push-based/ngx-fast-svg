@@ -49,6 +49,27 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "docs": {
+          "outputPath": "docs",
+          "baseHref": "/ngx-fast-svg/",
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "packages/ngx-fast-icon-demo/src/environments/environment.ts",
+              "with": "packages/ngx-fast-icon-demo/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
         }
       },
       "defaultConfiguration": "production"
@@ -155,13 +176,13 @@
     "prerender": {
       "executor": "@nguniversal/builders:prerender",
       "options": {
-        "browserTarget": "ngx-fast-icon-demo:build:production",
+        "browserTarget": "ngx-fast-icon-demo:build:docs",
         "serverTarget": "ngx-fast-icon-demo:build-server:production",
         "routesFile": "packages/ngx-fast-icon-demo/routes.txt"
       },
       "configurations": {
         "production": {
-          "browserTarget": "ngx-fast-icon-demo:build:production",
+          "browserTarget": "ngx-fast-icon-demo:build:docs",
           "serverTarget": "ngx-fast-icon-demo:build-server:production"
         },
         "development": {
