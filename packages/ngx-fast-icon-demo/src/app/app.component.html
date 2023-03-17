@@ -7,7 +7,7 @@
   </mat-toolbar>
   <div class="row">
     <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-      <mat-sidenav #snav mode="side" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-sidenav #snav mode="side" [opened]="!mobileQuery.matches" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <div class="sidebar">
           <div class="header">
             <a
