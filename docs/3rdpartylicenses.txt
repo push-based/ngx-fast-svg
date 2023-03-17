@@ -1,3 +1,6 @@
+@angular/animations
+MIT
+
 @angular/cdk
 MIT
 The MIT License
