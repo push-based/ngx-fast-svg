@@ -1,3 +1,7 @@
+.title {
+  margin: auto;
+}
+
 .header {
   position: relative;
   z-index: 1090;
@@ -49,12 +53,11 @@
 }
 
 .sidebar {
-  width: 320px;
+  width: 175px;
   height: 100%;
 }
 
 .content {
-  width: calc(100% - 320px);
   height: 100%;
   overflow: auto;
   padding: 0 16px;
@@ -123,6 +126,9 @@
         border: 2px solid var(--pb-border-color);
       }
     }
+  }
+  #nav-icon > .fast-svg {
+    background-color: transparent;
   }
   .material {
     background-color: var(--material-color);

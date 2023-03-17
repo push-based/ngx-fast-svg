@@ -1,21 +1,33 @@
 <div class="root" [ngClass]="(navClass$ | async) || ''">
+  <mat-toolbar>
+    <a (click)="snav.toggle()">
+      <fast-svg id="nav-icon" height="48" width="48" name="menu"></fast-svg>
+    </a>
+    <h1 class="title">ngx-fast-svg</h1>
+  </mat-toolbar>
   <div class="row">
-    <div class="sidebar">
-      <div class="header">
-        <a
-          class="link"
-          *ngFor="let link of links"
-          [routerLinkActive]="'active'"
-          [ngClass]="link"
-          [routerLink]="link"
-          [queryParams]="queryParams | async"
-        >
-          {{ link }}
-        </a>
-      </div>
-    </div>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
+    <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav mode="side" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <div class="sidebar">
+          <div class="header">
+            <a
+              class="link"
+              *ngFor="let link of links"
+              [routerLinkActive]="'active'"
+              [ngClass]="link"
+              [routerLink]="link"
+              [queryParams]="queryParams | async"
+            >
+              {{ link }}
+            </a>
+          </div>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="content">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   </div>
 </div>
