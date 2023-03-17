@@ -1,9 +1,19 @@
+.title {
+  margin: auto;
+}
+
 .header {
   position: relative;
   z-index: 1090;
   border-right: 3px solid;
   height: 100%;
   transition: border-color 0.2s ease-in-out;
+}
+
+.header-is-mobile.header-toolbar {
+  position: fixed;
+  z-index: 2;
+  background: inherit;
 }
 
 .link {
@@ -19,6 +29,9 @@
   &.active {
     &.description {
       background-color: var(--description-border-color) !important;
+      .header-toolbar {
+        background-color: black !important;
+      }
     }
     &.angular {
       background-color: var(--angular-border-color) !important;
@@ -49,12 +62,11 @@
 }
 
 .sidebar {
-  width: 320px;
+  width: 175px;
   height: 100%;
 }
 
 .content {
-  width: calc(100% - 320px);
   height: 100%;
   overflow: auto;
   padding: 0 16px;
@@ -123,6 +135,10 @@
         border: 2px solid var(--pb-border-color);
       }
     }
+  }
+  #nav-icon > .fast-svg {
+    background-color: transparent;
+    margin-top: 10px;
   }
   .material {
     background-color: var(--material-color);

@@ -8,12 +8,24 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { FastSvgModule } from '@push-based/ngx-fast-svg';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     CommonModule,
     BrowserModule.withServerTransition({ appId: 'ngx-fast-icon-demo' }),
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
     HttpClientModule,
     TransferHttpCacheModule,
     FastSvgModule.forRoot({
