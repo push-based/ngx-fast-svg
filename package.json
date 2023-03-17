@@ -12,7 +12,7 @@
     "serve:ssr": "nx serve-ssr ngx-fast-icon-demo",
     "serve:ssr:prod": "npm run serve:ssr -- --configuration=production",
     "build": "nx build ngx-fast-icon-demo",
-    "build-demo-to-docs": "nx build ngx-fast-icon-demo --output-path docs --base-href /ngx-fast-svg/ && npm run create-404",
+    "build-demo-to-docs": "nx run ngx-fast-icon-demo:prerender:gh-pages && npm run create-404",
     "build-demo": "nx build ngx-fast-icon-demo --configuration=development",
     "build:prod": "npm run build -- --configuration production",
     "build:prod:stats": "npm run build -- --configuration production --stats-json",

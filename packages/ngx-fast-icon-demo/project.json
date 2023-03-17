@@ -188,6 +188,10 @@
         "development": {
           "browserTarget": "ngx-fast-icon-demo:build:development",
           "serverTarget": "ngx-fast-icon-demo:build-server:development"
+        },
+        "gh-pages": {
+          "browserTarget": "ngx-fast-icon-demo:build:docs",
+          "serverTarget": "ngx-fast-icon-demo:build-server:production"
         }
       },
       "defaultConfiguration": "production"
