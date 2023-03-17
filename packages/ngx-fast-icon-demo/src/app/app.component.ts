@@ -21,7 +21,7 @@ export class AppComponent implements OnDestroy {
   ];
   readonly queryParams = this.activatedRoute.queryParams;
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+  private readonly _mobileQueryListener: () => void;
   navClass$ = this.router.events.pipe(
     filter((e) => e instanceof NavigationEnd),
     startWith({ urlAfterRedirects: this.router.url }),
@@ -36,11 +36,11 @@ export class AppComponent implements OnDestroy {
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery.addEventListener("change",this._mobileQueryListener);
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQuery.removeEventListener("change", this._mobileQueryListener);
   }
 
   getClassFromUrl(url: string): string {
