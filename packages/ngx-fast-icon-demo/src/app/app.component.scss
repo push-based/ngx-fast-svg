@@ -10,10 +10,18 @@
   transition: border-color 0.2s ease-in-out;
 }
 
+.header-toolbar {
+  border-bottom: 3px solid rgba(128, 128, 128, 0.3);
+}
+
 .header-is-mobile.header-toolbar {
   position: fixed;
   z-index: 2;
   background: inherit;
+}
+
+.mat-drawer-container {
+  width: 100%;
 }
 
 .link {
@@ -29,9 +37,6 @@
   &.active {
     &.description {
       background-color: var(--description-border-color) !important;
-      .header-toolbar {
-        background-color: black !important;
-      }
     }
     &.angular {
       background-color: var(--angular-border-color) !important;

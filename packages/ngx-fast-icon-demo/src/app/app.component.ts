@@ -21,7 +21,7 @@ export class AppComponent implements OnDestroy {
   ];
   readonly queryParams = this.activatedRoute.queryParams;
   mobileQuery: MediaQueryList;
-  private readonly _mobileQueryListener: () => void;
+  private _mobileQueryListener: () => void;
   navClass$ = this.router.events.pipe(
     filter((e) => e instanceof NavigationEnd),
     startWith({ urlAfterRedirects: this.router.url }),
