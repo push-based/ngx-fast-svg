@@ -69,6 +69,10 @@ button {
 .buttons-wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  button {
+    margin: 2px auto;
+  }
 }
 
 @keyframes a {
@@ -113,8 +117,4 @@ ol {
   .group, li {
     margin: 14%;
   }
-  .row &.icons {
-    margin-top: 32px;
-  }
-
 }

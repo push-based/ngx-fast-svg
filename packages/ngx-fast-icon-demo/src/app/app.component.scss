@@ -10,6 +10,12 @@
   transition: border-color 0.2s ease-in-out;
 }
 
+.header-is-mobile.header-toolbar {
+  position: fixed;
+  z-index: 2;
+  background: inherit;
+}
+
 .link {
   padding: 16px;
   display: block;
@@ -23,6 +29,9 @@
   &.active {
     &.description {
       background-color: var(--description-border-color) !important;
+      .header-toolbar {
+        background-color: black !important;
+      }
     }
     &.angular {
       background-color: var(--angular-border-color) !important;
@@ -129,6 +138,7 @@
   }
   #nav-icon > .fast-svg {
     background-color: transparent;
+    margin-top: 10px;
   }
   .material {
     background-color: var(--material-color);

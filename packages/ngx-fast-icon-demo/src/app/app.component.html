@@ -1,5 +1,5 @@
 <div class="root" [ngClass]="(navClass$ | async) || ''">
-  <mat-toolbar>
+  <mat-toolbar class="header-toolbar sanity-check" [class.header-is-mobile]="mobileQuery.matches">
     <a (click)="snav.toggle()">
       <fast-svg id="nav-icon" height="48" width="48" name="menu"></fast-svg>
     </a>
