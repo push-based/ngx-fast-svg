@@ -44,6 +44,7 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
       'display: none; contain: content; content-visibility: auto;'
     );
     element.setAttribute('loading', 'lazy');
+    element.setAttribute('alt', 'loading helper');
     element.setAttribute('width', '0');
     element.setAttribute('height', '0');
   }
