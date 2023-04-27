@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FastSvgModule } from '@push-based/ngx-fast-svg';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { FastIconRouteComponent } from './fast-icon.component';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { FastIconRouteComponent } from './fast-icon.component';
       },
     ]),
     CommonModule,
-    FastSvgModule,
+    FastSvgComponent,
   ],
 })
 export class FastIconRouteModule {}

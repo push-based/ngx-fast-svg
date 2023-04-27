@@ -5,11 +5,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Inject,
   Input,
   OnDestroy,
   PLATFORM_ID,
-  Renderer2
+  Renderer2,
+  inject,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { getZoneUnPatchedApi } from './internal/get-zone-unpatched-api';
@@ -91,38 +91,34 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
       }
     `,
   ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FastSvgComponent implements AfterViewInit, OnDestroy {
+  private readonly platform = inject(PLATFORM_ID);
+  private readonly renderer = inject(Renderer2);
+  private readonly registry = inject(SvgRegistry);
+  private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
+
   private readonly sub = new Subscription();
   private readonly getImg = createGetImgFn(this.renderer);
 
-  @Input()
-  name = '';
-  @Input()
-  size: string = this.registry.defaultSize;
-  @Input()
-  width = '';
-  @Input()
-  height = '';
+  @Input() name = '';
+  @Input() size: string = this.registry.defaultSize;
+  @Input() width = '';
+  @Input() height = '';
+
   // When the browser loaded the svg resource we trigger the caching mechanism
   // re-fetch -> cache-hit -> get SVG -> cache in DOM
   loadedListener = () => {
     this.registry.fetchSvg(this.name);
   };
 
-  constructor(
-    @Inject(PLATFORM_ID)
-    private platform: Record<string, unknown>,
-    private renderer: Renderer2,
-    private registry: SvgRegistry,
-    private element: ElementRef<HTMLElement>
-  ) {}
-
   ngAfterViewInit() {
     if (!this.name) {
       throw new Error('svg component needs a name to operate');
     }
+
     // Setup view refs and init them
     const elem = this.element.nativeElement;
 
