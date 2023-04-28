@@ -16,9 +16,6 @@ import { provideFastSVG } from '@push-based/ngx-fast-svg';
     BrowserModule.withServerTransition({ appId: 'ngx-fast-icon-demo' }),
     HttpClientModule,
     TransferHttpCacheModule,
-    // FastSvgModule.forRoot({
-    //   url: (name: string) => `assets/svg-icons/${name}.svg`,
-    // }),
     IonicModule.forRoot(),
     RouterModule.forRoot(
       [
