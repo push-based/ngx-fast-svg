@@ -26,7 +26,44 @@ yarn add @push-based/ngx-fast-svg
 
 ### Setup
 
+#### Setup the library in your standalone application:
+
+**main.ts**
+
+```typescript
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // ... other providers
+    provideFastSVG({
+      url: (name: string) => `path/to/svg-assets/${name}.svg`,
+    })
+  ]
+});
+```
+
+#### Setup the library in your Angular application using NgModules:
+
 **app.module.ts**
+
+```typescript
+// ...
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
+
+@NgModule({
+  declarations: [AppComponent],
+  providers: [
+    provideFastSVG({
+      url: (name: string) => `path/to/svg-assets/${name}.svg`,
+    })
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+or if you're using an older version of the library, you can still do: 
 
 ```typescript
 // ...
@@ -38,7 +75,7 @@ import { FastSvgModule } from '@push-based/ngx-fast-svg';
     FastSvgModule.forRoot({
       url: (name: string) => `path/to/svg-assets/${name}.svg`,
     })
-  ]
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -98,6 +135,28 @@ import { HttpClientFetchStrategy } from './fetch-strategy';
 export class AppModule {}
 ```
 
+or in a standalone application:
+
+**main.ts**
+
+```typescript
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
+import { loaderSvg } from './assets';
+import { HttpClientFetchStrategy } from './fetch-strategy';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // ... other providers
+    provideFastSVG({
+      url: (name: string) => `path/to/svg-assets/${name}.svg`,
+      defaultSize: '32',
+      suspenseSvgString: loaderSvg,
+      svgLoadStrategy: HttpClientFetchStrategy
+    })
+  ]
+});
+```
+
 #### SSR Usage
 
 You can provide your own SSR loading strategy that can look like this:
@@ -124,12 +183,13 @@ And then just provide it in you server module.
     AppModule,
     ServerModule,
     ServerTransferStateModule,
-    FastSvgModule.forRoot({
+  ],
+  providers: [
+    provideFastSVG({
       svgLoadStrategy: SvgLoadStrategySsr,
       url: (name: string) => `assets/svg-icons/${name}.svg`,
     }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppServerModule {}

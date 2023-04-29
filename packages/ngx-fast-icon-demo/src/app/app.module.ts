@@ -7,7 +7,7 @@ import { DescriptionComponent } from './routes/description/description.component
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-import { FastSvgModule } from '@push-based/ngx-fast-svg';
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,9 +16,6 @@ import { FastSvgModule } from '@push-based/ngx-fast-svg';
     BrowserModule.withServerTransition({ appId: 'ngx-fast-icon-demo' }),
     HttpClientModule,
     TransferHttpCacheModule,
-    FastSvgModule.forRoot({
-      url: (name: string) => `assets/svg-icons/${name}.svg`,
-    }),
     IonicModule.forRoot(),
     RouterModule.forRoot(
       [
@@ -93,7 +90,11 @@ import { FastSvgModule } from '@push-based/ngx-fast-svg';
       { initialNavigation: 'enabledBlocking' }
     ),
   ],
-  providers: [],
+  providers: [
+    provideFastSVG({
+      url: (name: string) => `assets/svg-icons/${name}.svg`,
+    }),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
