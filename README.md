@@ -13,6 +13,7 @@ This library covers next aspects that developers should consider for their proje
 - SVG reusability
 - Optimized bundle size
 - SSR
+- Edge ready (only edge save APIs are used)
 
 ## Getting started
 
