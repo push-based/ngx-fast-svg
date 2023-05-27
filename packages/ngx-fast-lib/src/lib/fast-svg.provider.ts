@@ -13,7 +13,7 @@ import { FastSvgProviderOptions } from './provider-config.interface';
  * Use this function to register the FastSvg providers in your application.
  *
  * @param options {FastSvgProviderOptions} - The options for the FastSvg providers.
- * @return {EnvironmentProviders} - The providers for the FastSvg module.
+ * @return { EnvironmentProviders } - The providers for the FastSvg module.
  *
  * @example
  *
