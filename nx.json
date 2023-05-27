@@ -7,15 +7,6 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "ZmQ2MjlmYjctZjEzYy00YTIwLTk4NjgtZWM5MmY2Y2VhNmFlfHJlYWQtd3JpdGU="
-      }
-    }
-  },
   "generators": {
     "@nrwl/angular:application": {
       "style": "scss",
@@ -34,7 +25,10 @@
   "defaultProject": "ngx-fast-lib",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "sharedGlobals": [],
     "production": [
       "default",
@@ -46,16 +40,37 @@
   },
   "targetDefaults": {
     "build": {
-      "inputs": ["production", "^production"]
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "e2e": {
-      "inputs": ["default", "^production"]
+      "inputs": [
+        "default",
+        "^production"
+      ]
     },
     "test": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ]
     },
     "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "accessToken": "Y2M2M2QyNzEtOTEyMC00NTg3LWI0ZTctY2I2ZWUzZGE5OTQxfHJlYWQtd3JpdGU="
+      }
     }
   }
 }
