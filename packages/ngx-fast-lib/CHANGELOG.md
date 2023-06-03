@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.4.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.3.1...ngx-fast-lib-0.4.0) (2023-06-03)
+
+
+### Features
+
+* update versions ([0f2b85f](https://github.com/push-based/ngx-fast-svg/commit/0f2b85fbad5ebe75e590a15a0edf000ee30d369c))
+* update versions ([3756342](https://github.com/push-based/ngx-fast-svg/commit/3756342e900f81e154039ccd03f1fa0551fa365c))
+
+
+
 ## [0.3.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.3.0...ngx-fast-lib-0.3.1) (2023-05-27)
 
 
