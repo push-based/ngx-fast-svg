@@ -231,8 +231,13 @@ This library leverages best performance practices:
 
 ### 🤖 SSR Support
 
-This library also Supports lazy loading with SSR and http transfer cache.
-If SSR load svgs on server => ends up in DOM cache and ships to the client.
+This library also supports SSR. url and loading function can be configured over DI.
+
+
+### 🤖 SSR Transfere State (rendered SVG as HTML)
+
+If SSR load svgs on server the rendered HTML ends up in DOM cache and ships to the client.
+On the client no additional requests are needed.
 
 ## Comparison
 
@@ -240,23 +245,14 @@ If SSR load svgs on server => ends up in DOM cache and ships to the client.
 
 Here's library comparison with other popular SVG solutions.
 
-| Library          | SSR [1]    | Lazy loading [2]  | Optimized render performance [3] | Size     |
-|------------------|------------|-------------------|----------------------------------|----------|
-| ngx-fast-svg     | `easy`     | browser natively  | ✔️                               | 1.52 KB  |
-| font-awesome     | `hard`     | ❌                | ❌                               | 64.75 KB |
-| ant              | `moderate` | ❌                | ❌                               | 24.38 KB |
-| material         | `easy`     | ❌                | ❌                               | 16.92 KB |
-| angular-svg-icon | `moderate` | ❌                | ❌                               | 1.54 KB  |
-| ionic            | `moderate` | viewport observer | ✔️                               | 1.44 KB  |
-
-<!-- | Library          | SSR        | Lazy loading     | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
-| ---------------- | ---------- | ---------------- | --------- | ---------------------- | ---------------------------- | -------- |
-| ngx-fast-svg     | `easy`     | browser natively | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
-| font-awesome     | `hard`     | ❌               | ✔️        | ✔️                     | ❌                           | 64.75 KB |
-| ant              | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 24.38 KB |
-| material         | `easy`     | ❌               | ✔️        | ✔️                     | ❌                           | 16.92 KB |
-| angular-svg-icon | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 1.54 KB  |
-| ionic            | `moderate` | viewport observer              | ✔️        | ✔️                     | ✔️                           | 1.443 KB  | -->
+| Library          | SSR [1]    | Lazy loading [2]  | Optimized render performance [3] | Transfere State | Size     |
+|------------------|------------|-------------------|----------------------------------|-----------------|----------|
+| ngx-fast-svg     | `easy`     | browser natively  | ✔️                                | ✔️               | 1.52 KB  |
+| ionic            | `moderate` | viewport observer | ✔️                               | ❌               | 1.44 KB  |
+| angular-svg-icon | `moderate` | ❌                | ❌                               | ❌               | 1.54 KB  |
+| material         | `easy`     | ❌                | ❌                               | ❌               | 16.92 KB |
+| ant              | `moderate` | ❌                | ❌                               | ❌               | 24.38 KB |
+| font-awesome     | `hard`     | ❌                | ❌                               | ❌               | 64.75 KB |
 
 **[1] SSR**
 Server Side Rendering is working. The depending on how easy it is to set it up we distinguish between `easy`, `moderate`, `hard`.
