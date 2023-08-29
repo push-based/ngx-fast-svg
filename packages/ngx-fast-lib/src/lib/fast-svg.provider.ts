@@ -42,5 +42,5 @@ export const provideFastSVG = (options: FastSvgProviderOptions) => {
     { provide: SvgOptionsToken, useValue: svgOptions },
   ];
 
-  return makeEnvironmentProviders(providers);
+  return providers;
 };
