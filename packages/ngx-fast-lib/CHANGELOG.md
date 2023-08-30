@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.4.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.4.0...ngx-fast-lib-0.4.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* convert provider function to not use makeEnvironmentProviders ([656eac3](https://github.com/push-based/ngx-fast-svg/commit/656eac3ffab669d479f47b21e2a7138a1bd7df15))
+
+
+
 # [0.4.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.3.1...ngx-fast-lib-0.4.0) (2023-07-18)
 
 
