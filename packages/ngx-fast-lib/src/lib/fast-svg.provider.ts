@@ -1,11 +1,5 @@
-import { Provider, makeEnvironmentProviders } from '@angular/core';
-import {
-  SvgLoadStrategy,
-  SvgLoadStrategyImpl,
-  SvgOptions,
-  SvgOptionsToken,
-  SvgRegistry,
-} from '..';
+import { Provider } from '@angular/core';
+import { SvgLoadStrategy, SvgOptions, SvgOptionsToken } from '..';
 import { FastSvgProviderOptions } from './provider-config.interface';
 
 /**
@@ -13,7 +7,7 @@ import { FastSvgProviderOptions } from './provider-config.interface';
  * Use this function to register the FastSvg providers in your application.
  *
  * @param options {FastSvgProviderOptions} - The options for the FastSvg providers.
- * @return { EnvironmentProviders } - The providers for the FastSvg module.
+ * @return { Provider[] } - The providers for the FastSvg module.
  *
  * @example
  *
@@ -26,21 +20,23 @@ import { FastSvgProviderOptions } from './provider-config.interface';
  * ]});
  * ```
  */
-export const provideFastSVG = (options: FastSvgProviderOptions) => {
-  const svgOptions: SvgOptions = {
-    url: options.url,
-    suspenseSvgString: options.suspenseSvgString || undefined,
-    defaultSize: options.defaultSize || undefined,
-  };
-
+export const provideFastSVG = (options: FastSvgProviderOptions): Provider[] => {
   const providers: Provider[] = [
-    SvgRegistry,
     {
-      provide: SvgLoadStrategy,
-      useClass: options.svgLoadStrategy || SvgLoadStrategyImpl,
+      provide: SvgOptionsToken,
+      useValue: {
+        url: options.url,
+        suspenseSvgString: options.suspenseSvgString || undefined,
+        defaultSize: options.defaultSize || undefined,
+      } as SvgOptions,
     },
-    { provide: SvgOptionsToken, useValue: svgOptions },
   ];
+
+  if (options.svgLoadStrategy) {
+    providers.push(
+      { provide: SvgLoadStrategy, useClass: options.svgLoadStrategy } as Provider
+    );
+  }
 
   return providers;
 };
