@@ -1,9 +1,8 @@
 import { from, Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
 import { getZoneUnPatchedApi } from '../internal/get-zone-unpatched-api';
+import { SvgLoadStrategy } from "./svg-load.strategy.model";
 
-@Injectable()
-export class SvgLoadStrategyImpl {
+export class SvgLoadStrategyImpl extends SvgLoadStrategy {
   fetch = getZoneUnPatchedApi('fetch', window as any);
 
   load(url: string): Observable<string> {

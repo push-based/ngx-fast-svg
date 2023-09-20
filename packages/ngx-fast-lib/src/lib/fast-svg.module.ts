@@ -3,6 +3,9 @@ import { FastSvgComponent } from './fast-svg.component';
 import { FastSvgProviderOptions } from './provider-config.interface';
 import { provideFastSVG } from './fast-svg.provider';
 
+/**
+ * @deprecated Use `provideFastSVG` provider function instead
+ */
 @NgModule({
   imports: [FastSvgComponent],
   exports: [FastSvgComponent],

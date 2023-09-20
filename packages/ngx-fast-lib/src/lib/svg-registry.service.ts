@@ -1,10 +1,10 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { SvgOptionsToken } from './token/svg-options.token';
 import { suspenseSvg } from './token/default-token-values';
-import { SvgOptions } from './token/svg-options.model';
 import { SvgLoadStrategy } from './token/svg-load.strategy.model';
+import { SvgLoadStrategyImpl } from "./token/svg-load.strategy";
 
 // @TODO compose svg in 1 sprite and fetch by id as before
 
@@ -42,9 +42,17 @@ function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
   return el;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SvgRegistry {
+  private document = inject(DOCUMENT);
+  private svgOptions = inject(SvgOptionsToken);
+
+  private svgLoadStrategy =
+    inject(SvgLoadStrategy, { optional: true }) // custom strategy if provided
+    || new SvgLoadStrategyImpl(); // default strategy
+
   private readonly domParser = createDomParser(this.document);
+
   private readonly svgDomCache: HTMLElement = (() => {
     // The DOM cache could be already created on SSR or due to multiple instances of the registry
     const domCache =
@@ -63,24 +71,15 @@ export class SvgRegistry {
 
   public url = this.svgOptions.url;
 
-  constructor(
-    @Optional()
-    @Inject(DOCUMENT)
-    private document: Document,
-    @Optional()
-    @Inject(SvgLoadStrategy)
-    private svgLoadStrategy: SvgLoadStrategy,
-    @Optional()
-    @Inject(SvgOptionsToken)
-    private svgOptions: SvgOptions
-  ) {
+  constructor() {
     // configure suspense svg
     const suspenseSvgId = this.svgId('suspense');
-    !this._cachedSvgs.has(suspenseSvgId) &&
+    if (!this._cachedSvgs.has(suspenseSvgId)) {
       this.cacheSvgInDOM(
         suspenseSvgId,
         this.svgOptions.suspenseSvgString || suspenseSvg
       );
+    }
 
     this.hydrateFromDom();
   }
@@ -110,10 +109,10 @@ export class SvgRegistry {
     // trigger fetch
     this.svgLoadStrategy
       .load(this.svgOptions.url(svgName))
-      .subscribe(
-        (body: string) => this.cacheSvgInDOM(svgId, body),
-        console.error
-      );
+      .subscribe({
+        next: (body: string) => this.cacheSvgInDOM(svgId, body),
+        error: console.error
+      });
   };
 
   isSvgCached(name: string): boolean {
