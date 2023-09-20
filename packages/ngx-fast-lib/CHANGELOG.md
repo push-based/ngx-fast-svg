@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.5.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.4.1...ngx-fast-lib-0.5.0) (2023-09-20)
+
+
+### Features
+
+* deprecate FastSvgModule in favor of provideFastSVG provider function ([fe7cf06](https://github.com/push-based/ngx-fast-svg/commit/fe7cf06fac771a3a723a912f86c90359eed33a92))
+* make SvgLoadStrategyImpl a simple class and extend from SvgLoadStrategy for better typechecking ([73a1b89](https://github.com/push-based/ngx-fast-svg/commit/73a1b891adda9b4435aa1e3f2c3054d0c6580985))
+* make SvgOptionsToken provided in root with default value ([db1474a](https://github.com/push-based/ngx-fast-svg/commit/db1474addc557b4fc78f598beeb9455b9d6d36b5))
+* make SvgRegistry provided in root, use inject function instead of @Inject and @Optional decorators, initialize SvgLoadStrategyImpl as the default strategy, update old subscribe pattern ([7421906](https://github.com/push-based/ngx-fast-svg/commit/7421906ffbe838de0f187b6922fe1676a0faa457))
+* simplify provideFastSVG by removing classes that are provided in root by default ([0f88208](https://github.com/push-based/ngx-fast-svg/commit/0f882084a0d8a674f825836b9766144eb6e288ba))
+
+
+
 ## [0.4.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.4.0...ngx-fast-lib-0.4.1) (2023-08-30)
 
 
