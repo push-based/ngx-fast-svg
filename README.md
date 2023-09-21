@@ -269,3 +269,8 @@ Reusability means that we maintain the content of an SVG, meaning its inner DOM 
 
 **[3] Optimized render performance**
 To display (render) SVGs the browser takes time. We can reduce that time by adding a couple of improvements.
+
+---
+
+made with ❤ by [push-based.io](https://www.push-based.io)
+
