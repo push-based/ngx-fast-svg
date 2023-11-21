@@ -3,9 +3,6 @@
   "affected": {
     "defaultBase": "origin/main"
   },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
   "generators": {
     "@nrwl/angular:application": {
       "style": "scss",
