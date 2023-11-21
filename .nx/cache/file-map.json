@@ -1,0 +1,867 @@
+{
+  "version": "6.0",
+  "nxVersion": "17.1.3",
+  "deps": {
+    "@angular/animations": "17.0.4",
+    "@angular/cdk": "17.0.1",
+    "@angular/common": "17.0.4",
+    "@angular/compiler": "17.0.4",
+    "@angular/core": "17.0.4",
+    "@angular/forms": "17.0.4",
+    "@angular/material": "17.0.1",
+    "@angular/platform-browser": "17.0.4",
+    "@angular/platform-browser-dynamic": "17.0.4",
+    "@angular/platform-server": "17.0.4",
+    "@angular/router": "17.0.4",
+    "@ant-design/icons-angular": "^15.0.0",
+    "@fortawesome/angular-fontawesome": "^0.13.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@ionic/angular": "^7.0.7",
+    "@nguniversal/express-engine": "16.2.0",
+    "angular-svg-icon": "^16.0.0",
+    "rxjs": "^7.8.1",
+    "tslib": "^2.0.0",
+    "zone.js": "0.14.2",
+    "@angular-devkit/build-angular": "17.0.2",
+    "@angular-eslint/eslint-plugin": "17.0.1",
+    "@angular-eslint/eslint-plugin-template": "17.0.1",
+    "@angular-eslint/template-parser": "17.0.1",
+    "@angular/cli": "^16.0.3",
+    "@angular/compiler-cli": "17.0.4",
+    "@angular/language-service": "17.0.4",
+    "@jscutlery/semver": "^3.0.0",
+    "@nguniversal/builders": "16.2.0",
+    "@nx/angular": "17.1.3",
+    "@nx/cypress": "17.1.3",
+    "@nx/devkit": "17.1.3",
+    "@nx/eslint-plugin-nx": "16.0.0-beta.4",
+    "@nx/jest": "17.1.3",
+    "@nx/linter": "17.1.3",
+    "@nx/workspace": "17.1.3",
+    "@push-based/user-flow": "^0.19.2",
+    "@types/compression": "^1.7.2",
+    "@types/jest": "29.4.4",
+    "@types/node": "^16.11.7",
+    "@typescript-eslint/eslint-plugin": "6.9.1",
+    "@typescript-eslint/parser": "6.9.1",
+    "compression": "^1.7.4",
+    "cypress": "12.16.0",
+    "domino": "^2.1.6",
+    "eslint": "8.46.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-cypress": "2.13.4",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "29.5.0",
+    "jest-preset-angular": "13.1.4",
+    "ng-packagr": "17.0.2",
+    "nx": "17.1.3",
+    "nx-cloud": "16.5.2",
+    "postcss-preset-env": "~7.5.0",
+    "prettier": "2.6.2",
+    "ts-jest": "29.1.0",
+    "typescript": "5.2.2"
+  },
+  "pathMappings": {
+    "@push-based/ngx-fast-svg": [
+      "packages/ngx-fast-lib/src/index.ts",
+      "packages/ngx-fast-lib/src/lib/*"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "ngx-fast-lib": [
+        {
+          "file": "packages/ngx-fast-lib/.eslintrc.json",
+          "hash": "1301297668126378190"
+        },
+        {
+          "file": "packages/ngx-fast-lib/CHANGELOG.md",
+          "hash": "15456834431195143069"
+        },
+        {
+          "file": "packages/ngx-fast-lib/README.md",
+          "hash": "8943459512651524372"
+        },
+        {
+          "file": "packages/ngx-fast-lib/jest.config.ts",
+          "hash": "15423189382327792106"
+        },
+        {
+          "file": "packages/ngx-fast-lib/ng-package.json",
+          "hash": "11216678430326303143"
+        },
+        {
+          "file": "packages/ngx-fast-lib/package.json",
+          "hash": "801948783227118183",
+          "deps": [
+            "npm:tslib",
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/project.json",
+          "hash": "15195718973551864782"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/index.ts",
+          "hash": "12798369257949917295"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/fast-svg.component.ts",
+          "hash": "13862682079866160614",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/fast-svg.module.ts",
+          "hash": "4708536609162667964",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/fast-svg.provider.ts",
+          "hash": "9913717984455656321",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/internal/get-zone-unpatched-api.ts",
+          "hash": "8174137724521281725"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/provider-config.interface.ts",
+          "hash": "17075085331002411220",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/svg-registry.service.ts",
+          "hash": "1777054800225121064",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/default-token-values.ts",
+          "hash": "16864747752222092654"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/svg-load.strategy.model.ts",
+          "hash": "12424269731798013405",
+          "deps": [
+            "npm:rxjs",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/svg-load.strategy.ts",
+          "hash": "2165205138576227098",
+          "deps": [
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/svg-options.model.ts",
+          "hash": "10682280738929874556"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/svg-options.token.ts",
+          "hash": "13308005639239865168",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/test-setup.ts",
+          "hash": "9531801021999427605",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/tsconfig.json",
+          "hash": "7636743208765225385"
+        },
+        {
+          "file": "packages/ngx-fast-lib/tsconfig.lib.json",
+          "hash": "11017299163591244197"
+        },
+        {
+          "file": "packages/ngx-fast-lib/tsconfig.lib.prod.json",
+          "hash": "16504392315228738926"
+        },
+        {
+          "file": "packages/ngx-fast-lib/tsconfig.spec.json",
+          "hash": "10982206558908075969"
+        }
+      ],
+      "ngx-fast-icon-demo": [
+        {
+          "file": "packages/ngx-fast-icon-demo/.eslintrc.json",
+          "hash": "9007769807926454085"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/jest.config.ts",
+          "hash": "14714401473283848783"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/measures/add-svg-elements-15-times.uf.json",
+          "hash": "6042788462106503472"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/perf/.user-flowrc.json",
+          "hash": "4321626925813995988"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/perf/user-flows/add-icons--distributed--x-times.uf.ts",
+          "hash": "17338285138903867761",
+          "deps": [
+            "npm:@push-based/user-flow"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/project.json",
+          "hash": "6529878745024057937"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/routes.txt",
+          "hash": "1764972306422779422"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/app.component.html",
+          "hash": "16945450695476146978"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/app.component.scss",
+          "hash": "8522686192819215657"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/app.component.ts",
+          "hash": "15841083256929780674",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/app.module.ts",
+          "hash": "22534323448081114",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/platform-browser",
+            "npm:@angular/router",
+            "npm:@angular/common",
+            "npm:@ionic/angular",
+            "npm:@nguniversal/common",
+            "ngx-fast-lib"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/app.server.module.ts",
+          "hash": "8598770004885817953",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/platform-server",
+            "ngx-fast-lib"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/angular/angular.component.html",
+          "hash": "9062211202114075403"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/angular/angular.component.scss",
+          "hash": "14049007025362025615"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/angular/angular.component.ts",
+          "hash": "16353354362182761644",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/angular/angular.module.ts",
+          "hash": "14017988228555797827",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:angular-svg-icon"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ant/ant.component.html",
+          "hash": "548653151499945705"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ant/ant.component.scss",
+          "hash": "529327425713660752"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ant/ant.component.ts",
+          "hash": "5017433434715566493",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ant-design/icons-angular"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ant/ant.module.ts",
+          "hash": "15627536666584148702",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@ant-design/icons-angular"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ant/icons.ts",
+          "hash": "6309222495031197072",
+          "deps": [
+            "npm:@ant-design/icons-angular"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/fast-icon/fast-icon.component.html",
+          "hash": "5331878931145358159"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/fast-icon/fast-icon.component.scss",
+          "hash": "14049007025362025615"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/fast-icon/fast-icon.component.ts",
+          "hash": "11442545170164436218",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/fast-icon/fast-icon.module.ts",
+          "hash": "17797923270696678767",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "ngx-fast-lib"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/font-awesome/font-awesome.component.html",
+          "hash": "10433911027247610904"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/font-awesome/font-awesome.component.scss",
+          "hash": "13433603219044374428"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/font-awesome/font-awesome.component.ts",
+          "hash": "12790817181321281113",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@fortawesome/free-solid-svg-icons"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/font-awesome/font-awesome.module.ts",
+          "hash": "9603837802854455462",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@fortawesome/angular-fontawesome"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ionic/ionic.component.html",
+          "hash": "10195522067765637360"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ionic/ionic.component.scss",
+          "hash": "14049007025362025615"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ionic/ionic.component.ts",
+          "hash": "16893958806476982362",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/ionic/ionic.module.ts",
+          "hash": "5544934792497227149",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@ionic/angular"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/material/material.component.html",
+          "hash": "5875977498337836513"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/material/material.component.scss",
+          "hash": "17041094785235985880"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/material/material.component.ts",
+          "hash": "15321876517748157635",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/material",
+            "npm:@angular/platform-browser"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/comparison/material/material.module.ts",
+          "hash": "1846743215256318400",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/material",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/icon-data.ts",
+          "hash": "15477493820446007436"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/misc/angular-material-icons-list/angular-material-icon-list.component.ts",
+          "hash": "11570254925605815038",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/misc/angular-material-icons-list/angular-material-icon-list.module.ts",
+          "hash": "15615425354308880323",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@angular/material",
+            "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/misc/angular-svg-icon/angular-svg-icon-list.component.ts",
+          "hash": "502378965092615036",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/misc/angular-svg-icon/angular-svg-icon-list.module.ts",
+          "hash": "1319071997285329425",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:angular-svg-icon",
+            "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/misc/icons-tester/icon-tester.service.ts",
+          "hash": "2024152123502336710",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:rxjs",
+            "npm:@fortawesome/free-solid-svg-icons"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/misc/ngx-fast-svg/fast-svg-list.component.ts",
+          "hash": "9625751563923370748",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/misc/ngx-fast-svg/fast-svg-list.module.ts",
+          "hash": "8528765873120253692",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "ngx-fast-lib",
+            "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/ngx-fast-icon-ssr/icon-load.ssr.strategy.ts",
+          "hash": "18343426932214852885",
+          "deps": [
+            "npm:@angular/core",
+            "npm:rxjs",
+            "ngx-fast-lib",
+            "npm:path",
+            "npm:fs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/routes/description/description.component.html",
+          "hash": "10896960689539346975"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/routes/description/description.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/app/routes/description/description.component.ts",
+          "hash": "13608849979781282803",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/account.svg",
+          "hash": "1696649242856373527"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/back.svg",
+          "hash": "4590907621613009144"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/consulting.svg",
+          "hash": "10639181019658259157"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/custom_workshops.svg",
+          "hash": "853122851863757276"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/custom_workshops_1.svg",
+          "hash": "2367142683748739503"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/custom_workshops_2.svg",
+          "hash": "17711094159879620024"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/custom_workshops_3.svg",
+          "hash": "18005909308597323441"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/delete.svg",
+          "hash": "14576568602705831861"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/engineering.svg",
+          "hash": "8736637921103805629"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/error.svg",
+          "hash": "7258090871869526122"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/genre.svg",
+          "hash": "5535653277869856919"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/imdb.svg",
+          "hash": "14302821330482049745"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/play.svg",
+          "hash": "3183107558676878626"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/popular.svg",
+          "hash": "8528570286317502088"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/sad.svg",
+          "hash": "18406917241802012130"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/search.svg",
+          "hash": "18072338377526130180"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/top_rated.svg",
+          "hash": "5275840450231414683"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/upcoming.svg",
+          "hash": "14318558532943337063"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/website.svg",
+          "hash": "10773209774912808388"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/who-we-are.svg",
+          "hash": "1912633592240509816"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/assets/svg-icons/workshops.svg",
+          "hash": "2334196654659353606"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/environments/environment.prod.ts",
+          "hash": "3926102656993804675"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/environments/environment.ts",
+          "hash": "14521450534601418167"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/index.html",
+          "hash": "6525681814024177342"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/main.server.ts",
+          "hash": "1620106742924895456",
+          "deps": [
+            "npm:@angular/platform-server",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/main.ts",
+          "hash": "6236864846707912171",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/platform-browser-dynamic"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/polyfills.ts",
+          "hash": "7176339394372785858",
+          "deps": [
+            "npm:zone.js"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/server.ts",
+          "hash": "9216299747719928991",
+          "deps": [
+            "npm:zone.js",
+            "npm:@nguniversal/express-engine",
+            "npm:express",
+            "npm:path",
+            "npm:compression",
+            "npm:@angular/common",
+            "npm:fs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/styles.scss",
+          "hash": "9444018050832750269"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/src/test-setup.ts",
+          "hash": "9531801021999427605",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/tsconfig.app.json",
+          "hash": "2467139360149164917"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/tsconfig.editor.json",
+          "hash": "5326258404141176585"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/tsconfig.json",
+          "hash": "14453235438482683371"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/tsconfig.server.json",
+          "hash": "491366858908933473"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo/tsconfig.spec.json",
+          "hash": "10982206558908075969"
+        }
+      ],
+      "ngx-fast-icon-demo-e2e": [
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/.eslintrc.json",
+          "hash": "5570788962263802893"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/cypress.json",
+          "hash": "15417582611231576896"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/project.json",
+          "hash": "4870279689900628494"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/fixtures/example.json",
+          "hash": "17341819486505642070"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/integration/app.spec.ts",
+          "hash": "9436409986594531442"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/support/app.po.ts",
+          "hash": "5364106453863571025"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/support/commands.ts",
+          "hash": "11031723810997510506"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/support/index.ts",
+          "hash": "15928825062325902088"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/tsconfig.json",
+          "hash": "11911316583761829540"
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".editorconfig",
+        "hash": "11532813898455409296"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "6076523549091800167"
+      },
+      {
+        "file": ".github/FUNDING.yml",
+        "hash": "17363809592221384033"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "12150962228298960147"
+      },
+      {
+        "file": ".github/workflows/release.yml",
+        "hash": "14457483966290494781"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "10715643903594659455"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "1324685984948235314"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "6820402234827505055"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "13391140343975966684"
+      },
+      {
+        "file": "README.md",
+        "hash": "6920874755215354904"
+      },
+      {
+        "file": "info.md",
+        "hash": "16707304508233071438"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "18052788861678443809"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "13887371866025493781"
+      },
+      {
+        "file": "migrations.json",
+        "hash": "5567055302156038609"
+      },
+      {
+        "file": "nx.json",
+        "hash": "16227668174956240188"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "7882542514870855113"
+      },
+      {
+        "file": "package.json",
+        "hash": "11800237017556219117"
+      },
+      {
+        "file": "packages/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "tools/bundle-stats/Readme.md",
+        "hash": "3881363939459758839"
+      },
+      {
+        "file": "tools/bundle-stats/commands/update-docs.ts",
+        "hash": "12419998686480123103"
+      },
+      {
+        "file": "tools/bundle-stats/commands/update-svg-sizes.ts",
+        "hash": "4458805253919192983"
+      },
+      {
+        "file": "tools/bundle-stats/core/model.ts",
+        "hash": "5008713867104954139"
+      },
+      {
+        "file": "tools/bundle-stats/core/utils.ts",
+        "hash": "6469305385652924881"
+      },
+      {
+        "file": "tools/bundle-stats/index.ts",
+        "hash": "12741227533810174055"
+      },
+      {
+        "file": "tools/bundle-stats/utils.ts",
+        "hash": "13422871445193986221"
+      },
+      {
+        "file": "tools/generators/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "tools/sanatize-svg.js",
+        "hash": "5606726999115612595"
+      },
+      {
+        "file": "tools/tsconfig.tools.json",
+        "hash": "11810713488198132402"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "12440281913362911005"
+      },
+      {
+        "file": "workspace.json",
+        "hash": "11823804643564414998"
+      }
+    ]
+  }
+}
