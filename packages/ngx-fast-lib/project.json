@@ -46,7 +46,7 @@
           "ngx-fast-lib:npm",
           "ngx-fast-lib:github"
         ],
-        "commitMessageFormat": "release(${projectName}): ${version}",
+        "commitMessageFormat": "release(${projectName}): {version}",
         "noVerify": true,
         "push": true
       }
@@ -54,8 +54,8 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "${tag}",
-        "notes": "${notes}"
+        "tag": "{tag}",
+        "notes": "{notes}"
       }
     },
     "npm": {
