@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { DescriptionComponent } from './routes/description/description.component';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { TransferHttpCacheModule } from '@angular/ssr';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     CommonModule,
-    BrowserModule.withServerTransition({ appId: 'ngx-fast-icon-demo' }),
     HttpClientModule,
-    TransferHttpCacheModule,
+    BrowserModule,
     IonicModule.forRoot(),
     RouterModule.forRoot(
       [
@@ -94,6 +92,7 @@ import { provideFastSVG } from '@push-based/ngx-fast-svg';
     provideFastSVG({
       url: (name: string) => `assets/svg-icons/${name}.svg`,
     }),
+    // provideClientHydration(),
   ],
   bootstrap: [AppComponent],
 })
