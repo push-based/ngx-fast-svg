@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DescriptionComponent } from './routes/description/description.component';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { TransferHttpCacheModule } from '@nguniversal/common';
+import { TransferHttpCacheModule } from '@angular/ssr';
 import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 @NgModule({

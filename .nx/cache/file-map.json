@@ -27,14 +27,14 @@
     "@angular-eslint/eslint-plugin": "17.0.1",
     "@angular-eslint/eslint-plugin-template": "17.0.1",
     "@angular-eslint/template-parser": "17.0.1",
-    "@angular/cli": "~16.1.0",
+    "@angular/cli": "~17.0.0",
     "@angular/compiler-cli": "17.0.4",
     "@angular/language-service": "17.0.4",
     "@jscutlery/semver": "^3.0.0",
-    "@nguniversal/builders": "16.2.0",
     "@nx/angular": "17.1.3",
     "@nx/cypress": "17.1.3",
     "@nx/devkit": "17.1.3",
+    "@nx/eslint": "17.1.3",
     "@nx/eslint-plugin-nx": "16.0.0-beta.4",
     "@nx/jest": "17.1.3",
     "@nx/workspace": "17.1.3",
@@ -58,8 +58,7 @@
     "postcss-preset-env": "~7.5.0",
     "prettier": "2.6.2",
     "ts-jest": "29.1.0",
-    "typescript": "5.2.2",
-    "@nx/eslint": "17.1.3"
+    "typescript": "5.2.2"
   },
   "pathMappings": {
     "@push-based/ngx-fast-svg": [
@@ -565,44 +564,6 @@
           "hash": "10982206558908075969"
         }
       ],
-      "ngx-fast-icon-demo-e2e": [
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/.eslintrc.json",
-          "hash": "5570788962263802893"
-        },
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/cypress.json",
-          "hash": "15417582611231576896"
-        },
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/project.json",
-          "hash": "4870279689900628494"
-        },
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/src/fixtures/example.json",
-          "hash": "17341819486505642070"
-        },
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/src/integration/app.spec.ts",
-          "hash": "9436409986594531442"
-        },
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/src/support/app.po.ts",
-          "hash": "5364106453863571025"
-        },
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/src/support/commands.ts",
-          "hash": "11031723810997510506"
-        },
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/src/support/index.ts",
-          "hash": "15928825062325902088"
-        },
-        {
-          "file": "packages/ngx-fast-icon-demo-e2e/tsconfig.json",
-          "hash": "11911316583761829540"
-        }
-      ],
       "ngx-fast-lib": [
         {
           "file": "packages/ngx-fast-lib/.eslintrc.json",
@@ -737,6 +698,44 @@
         {
           "file": "packages/ngx-fast-lib/tsconfig.spec.json",
           "hash": "10982206558908075969"
+        }
+      ],
+      "ngx-fast-icon-demo-e2e": [
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/.eslintrc.json",
+          "hash": "5570788962263802893"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/cypress.json",
+          "hash": "15417582611231576896"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/project.json",
+          "hash": "4870279689900628494"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/fixtures/example.json",
+          "hash": "17341819486505642070"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/integration/app.spec.ts",
+          "hash": "9436409986594531442"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/support/app.po.ts",
+          "hash": "5364106453863571025"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/support/commands.ts",
+          "hash": "11031723810997510506"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/src/support/index.ts",
+          "hash": "15928825062325902088"
+        },
+        {
+          "file": "packages/ngx-fast-icon-demo-e2e/tsconfig.json",
+          "hash": "11911316583761829540"
         }
       ]
     },
