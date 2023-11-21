@@ -27,7 +27,7 @@
     "@angular-eslint/eslint-plugin": "17.0.1",
     "@angular-eslint/eslint-plugin-template": "17.0.1",
     "@angular-eslint/template-parser": "17.0.1",
-    "@angular/cli": "^16.0.3",
+    "@angular/cli": "~16.1.0",
     "@angular/compiler-cli": "17.0.4",
     "@angular/language-service": "17.0.4",
     "@jscutlery/semver": "^3.0.0",
@@ -70,142 +70,6 @@
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {
-      "ngx-fast-lib": [
-        {
-          "file": "packages/ngx-fast-lib/.eslintrc.json",
-          "hash": "1301297668126378190"
-        },
-        {
-          "file": "packages/ngx-fast-lib/CHANGELOG.md",
-          "hash": "15456834431195143069"
-        },
-        {
-          "file": "packages/ngx-fast-lib/README.md",
-          "hash": "8943459512651524372"
-        },
-        {
-          "file": "packages/ngx-fast-lib/jest.config.ts",
-          "hash": "15423189382327792106"
-        },
-        {
-          "file": "packages/ngx-fast-lib/ng-package.json",
-          "hash": "11216678430326303143"
-        },
-        {
-          "file": "packages/ngx-fast-lib/package.json",
-          "hash": "801948783227118183",
-          "deps": [
-            "npm:tslib",
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/project.json",
-          "hash": "15195718973551864782"
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/index.ts",
-          "hash": "12798369257949917295"
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/fast-svg.component.ts",
-          "hash": "13862682079866160614",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/fast-svg.module.ts",
-          "hash": "4708536609162667964",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/fast-svg.provider.ts",
-          "hash": "9913717984455656321",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/internal/get-zone-unpatched-api.ts",
-          "hash": "8174137724521281725"
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/provider-config.interface.ts",
-          "hash": "17075085331002411220",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/svg-registry.service.ts",
-          "hash": "1777054800225121064",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/token/default-token-values.ts",
-          "hash": "16864747752222092654"
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/token/svg-load.strategy.model.ts",
-          "hash": "12424269731798013405",
-          "deps": [
-            "npm:rxjs",
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/token/svg-load.strategy.ts",
-          "hash": "2165205138576227098",
-          "deps": [
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/token/svg-options.model.ts",
-          "hash": "10682280738929874556"
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/lib/token/svg-options.token.ts",
-          "hash": "13308005639239865168",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/src/test-setup.ts",
-          "hash": "9531801021999427605",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "packages/ngx-fast-lib/tsconfig.json",
-          "hash": "7636743208765225385"
-        },
-        {
-          "file": "packages/ngx-fast-lib/tsconfig.lib.json",
-          "hash": "11017299163591244197"
-        },
-        {
-          "file": "packages/ngx-fast-lib/tsconfig.lib.prod.json",
-          "hash": "16504392315228738926"
-        },
-        {
-          "file": "packages/ngx-fast-lib/tsconfig.spec.json",
-          "hash": "10982206558908075969"
-        }
-      ],
       "ngx-fast-icon-demo": [
         {
           "file": "packages/ngx-fast-icon-demo/.eslintrc.json",
@@ -737,6 +601,142 @@
         {
           "file": "packages/ngx-fast-icon-demo-e2e/tsconfig.json",
           "hash": "11911316583761829540"
+        }
+      ],
+      "ngx-fast-lib": [
+        {
+          "file": "packages/ngx-fast-lib/.eslintrc.json",
+          "hash": "1301297668126378190"
+        },
+        {
+          "file": "packages/ngx-fast-lib/CHANGELOG.md",
+          "hash": "15456834431195143069"
+        },
+        {
+          "file": "packages/ngx-fast-lib/README.md",
+          "hash": "8943459512651524372"
+        },
+        {
+          "file": "packages/ngx-fast-lib/jest.config.ts",
+          "hash": "15423189382327792106"
+        },
+        {
+          "file": "packages/ngx-fast-lib/ng-package.json",
+          "hash": "11216678430326303143"
+        },
+        {
+          "file": "packages/ngx-fast-lib/package.json",
+          "hash": "801948783227118183",
+          "deps": [
+            "npm:tslib",
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/project.json",
+          "hash": "15195718973551864782"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/index.ts",
+          "hash": "12798369257949917295"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/fast-svg.component.ts",
+          "hash": "13862682079866160614",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/fast-svg.module.ts",
+          "hash": "4708536609162667964",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/fast-svg.provider.ts",
+          "hash": "9913717984455656321",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/internal/get-zone-unpatched-api.ts",
+          "hash": "8174137724521281725"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/provider-config.interface.ts",
+          "hash": "17075085331002411220",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/svg-registry.service.ts",
+          "hash": "1777054800225121064",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/default-token-values.ts",
+          "hash": "16864747752222092654"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/svg-load.strategy.model.ts",
+          "hash": "12424269731798013405",
+          "deps": [
+            "npm:rxjs",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/svg-load.strategy.ts",
+          "hash": "2165205138576227098",
+          "deps": [
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/svg-options.model.ts",
+          "hash": "10682280738929874556"
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/lib/token/svg-options.token.ts",
+          "hash": "13308005639239865168",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/src/test-setup.ts",
+          "hash": "9531801021999427605",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "packages/ngx-fast-lib/tsconfig.json",
+          "hash": "7636743208765225385"
+        },
+        {
+          "file": "packages/ngx-fast-lib/tsconfig.lib.json",
+          "hash": "11017299163591244197"
+        },
+        {
+          "file": "packages/ngx-fast-lib/tsconfig.lib.prod.json",
+          "hash": "16504392315228738926"
+        },
+        {
+          "file": "packages/ngx-fast-lib/tsconfig.spec.json",
+          "hash": "10982206558908075969"
         }
       ]
     },

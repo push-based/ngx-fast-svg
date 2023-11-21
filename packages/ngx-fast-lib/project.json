@@ -9,7 +9,8 @@
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/ngx-fast-svg"],
       "options": {
-        "project": "packages/ngx-fast-lib/ng-package.json"
+        "project": "packages/ngx-fast-lib/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {
