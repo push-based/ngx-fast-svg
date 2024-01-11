@@ -8,6 +8,14 @@ export const account: IconDefinition = {
   theme: 'fill',
 };
 
+export const us: IconDefinition = {
+  icon: `<svg id="us" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path
+  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2a7.2 7.2 0 01-6-3.22c.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08a7.2 7.2 0 01-6 3.22z"></path></svg>
+`,
+  name: 'us',
+  theme: 'fill',
+};
+
 export const back: IconDefinition = {
   icon: `<svg id="back" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path
   d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg>
@@ -2505,6 +2513,7 @@ export const workshops = {
 
 export const AllIcons = [
   account,
+  us,
   back,
   consulting,
   custom_workshops_1,

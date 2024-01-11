@@ -22,6 +22,7 @@ export class FontAwesomeComponent {
       faCircleUser,
       faCircleUser,
       faCircleUser,
+      faCircleUser,
     ]);
   }
 }

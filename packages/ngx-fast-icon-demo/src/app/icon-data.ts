@@ -1,5 +1,6 @@
 export const SUPPORTED_ICONS = [
   'account',
+  'us',
   'back',
   'genre',
   'imdb',
