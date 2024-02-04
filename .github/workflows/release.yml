@@ -1,24 +1,19 @@
 name: release
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '*.md'
+  workflow_dispatch:
 
 jobs:
   release:
     # This line is critical for copy paste issues
     if: github.repository == 'push-based/ngx-fast-svg'
-    timeout-minutes: 5
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Setup git user to "push-based.io - bot"

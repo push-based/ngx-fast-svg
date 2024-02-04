@@ -1,42 +1,22 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FastSvgComponent } from './fast-svg.component';
-import { SvgRegistry } from './svg-registry.service';
-import { CommonModule } from '@angular/common';
 import { FastSvgProviderOptions } from './provider-config.interface';
-import { SvgLoadStrategyImpl } from './token/svg-load.strategy';
-import { SvgLoadStrategy } from './token/svg-load.strategy.model';
-import { SvgOptionsToken } from './token/svg-options.token';
-import { SvgOptions } from './token/svg-options.model';
+import { provideFastSVG } from './fast-svg.provider';
 
+/**
+ * @deprecated Use `provideFastSVG` provider function instead
+ */
 @NgModule({
-  imports: [CommonModule],
-  declarations: [FastSvgComponent],
+  imports: [FastSvgComponent],
   exports: [FastSvgComponent],
 })
 export class FastSvgModule {
   static forRoot(
-    providers: FastSvgProviderOptions
+    options: FastSvgProviderOptions
   ): ModuleWithProviders<FastSvgModule> {
-    const svgOptions: SvgOptions = {
-      url: providers.url,
-    };
-    providers?.suspenseSvgString &&
-      (svgOptions.suspenseSvgString = providers.suspenseSvgString);
-    providers?.defaultSize && (svgOptions.defaultSize = providers.defaultSize);
-
     return {
       ngModule: FastSvgModule,
-      providers: [
-        {
-          provide: SvgLoadStrategy,
-          useClass: providers.svgLoadStrategy || SvgLoadStrategyImpl,
-        },
-        {
-          provide: SvgOptionsToken,
-          useValue: svgOptions,
-        },
-        SvgRegistry,
-      ],
+      providers: [provideFastSVG(options)],
     };
   }
 

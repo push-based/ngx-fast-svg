@@ -13,6 +13,7 @@ This library covers next aspects that developers should consider for their proje
 - SVG reusability
 - Optimized bundle size
 - SSR
+- Edge ready (only edge save APIs are used)
 
 ## Getting started
 
@@ -26,7 +27,44 @@ yarn add @push-based/ngx-fast-svg
 
 ### Setup
 
+#### Setup the library in your standalone application:
+
+**main.ts**
+
+```typescript
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // ... other providers
+    provideFastSVG({
+      url: (name: string) => `path/to/svg-assets/${name}.svg`,
+    })
+  ]
+});
+```
+
+#### Setup the library in your Angular application using NgModules:
+
 **app.module.ts**
+
+```typescript
+// ...
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
+
+@NgModule({
+  declarations: [AppComponent],
+  providers: [
+    provideFastSVG({
+      url: (name: string) => `path/to/svg-assets/${name}.svg`,
+    })
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+or if you're using an older version of the library, you can still do:
 
 ```typescript
 // ...
@@ -98,6 +136,28 @@ import { HttpClientFetchStrategy } from './fetch-strategy';
 export class AppModule {}
 ```
 
+or in a standalone application:
+
+**main.ts**
+
+```typescript
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
+import { loaderSvg } from './assets';
+import { HttpClientFetchStrategy } from './fetch-strategy';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // ... other providers
+    provideFastSVG({
+      url: (name: string) => `path/to/svg-assets/${name}.svg`,
+      defaultSize: '32',
+      suspenseSvgString: loaderSvg,
+      svgLoadStrategy: HttpClientFetchStrategy
+    })
+  ]
+});
+```
+
 #### SSR Usage
 
 You can provide your own SSR loading strategy that can look like this:
@@ -124,12 +184,13 @@ And then just provide it in you server module.
     AppModule,
     ServerModule,
     ServerTransferStateModule,
-    FastSvgModule.forRoot({
+  ],
+  providers: [
+    provideFastSVG({
       svgLoadStrategy: SvgLoadStrategySsr,
       url: (name: string) => `assets/svg-icons/${name}.svg`,
     }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppServerModule {}
@@ -170,8 +231,13 @@ This library leverages best performance practices:
 
 ### 🤖 SSR Support
 
-This library also Supports lazy loading with SSR and http transfer cache.
-If SSR load svgs on server => ends up in DOM cache and ships to the client.
+This library also supports SSR. url and loading function can be configured over DI.
+
+
+### 🤖 SSR Transfere State (rendered SVG as HTML)
+
+If SSR load svgs on server the rendered HTML ends up in DOM cache and ships to the client.
+On the client no additional requests are needed.
 
 ## Comparison
 
@@ -179,23 +245,14 @@ If SSR load svgs on server => ends up in DOM cache and ships to the client.
 
 Here's library comparison with other popular SVG solutions.
 
-| Library          | SSR [1]    | Lazy loading [2]  | Optimized render performance [3] | Size     |
-|------------------|------------|-------------------|----------------------------------|----------|
-| ngx-fast-svg     | `easy`     | browser natively  | ✔️                               | 1.52 KB  |
-| font-awesome     | `hard`     | ❌                | ❌                               | 64.75 KB |
-| ant              | `moderate` | ❌                | ❌                               | 24.38 KB |
-| material         | `easy`     | ❌                | ❌                               | 16.92 KB |
-| angular-svg-icon | `moderate` | ❌                | ❌                               | 1.54 KB  |
-| ionic            | `moderate` | viewport observer | ✔️                               | 1.44 KB  |
-
-<!-- | Library          | SSR        | Lazy loading     | Hydration | Reusability of SVG DOM | Optimized render performance | Size     |
-| ---------------- | ---------- | ---------------- | --------- | ---------------------- | ---------------------------- | -------- |
-| ngx-fast-svg     | `easy`     | browser natively | ✔️        | ✔️                     | ✔️                           | 1.52 KB  |
-| font-awesome     | `hard`     | ❌               | ✔️        | ✔️                     | ❌                           | 64.75 KB |
-| ant              | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 24.38 KB |
-| material         | `easy`     | ❌               | ✔️        | ✔️                     | ❌                           | 16.92 KB |
-| angular-svg-icon | `moderate` | ❌               | ✔️        | ✔️                     | ❌                           | 1.54 KB  |
-| ionic            | `moderate` | viewport observer              | ✔️        | ✔️                     | ✔️                           | 1.443 KB  | -->
+| Library          | SSR [1]    | Lazy loading [2]  | Optimized render performance [3] | Transfere State | Size     |
+|------------------|------------|-------------------|----------------------------------|-----------------|----------|
+| ngx-fast-svg     | `easy`     | browser natively  | ✔️                                | ✔️               | 1.52 KB  |
+| ionic            | `moderate` | viewport observer | ✔️                               | ❌               | 1.44 KB  |
+| angular-svg-icon | `moderate` | ❌                | ❌                               | ❌               | 1.54 KB  |
+| material         | `easy`     | ❌                | ❌                               | ❌               | 16.92 KB |
+| ant              | `moderate` | ❌                | ❌                               | ❌               | 24.38 KB |
+| font-awesome     | `hard`     | ❌                | ❌                               | ❌               | 64.75 KB |
 
 **[1] SSR**
 Server Side Rendering is working. The depending on how easy it is to set it up we distinguish between `easy`, `moderate`, `hard`.
@@ -212,3 +269,8 @@ Reusability means that we maintain the content of an SVG, meaning its inner DOM 
 
 **[3] Optimized render performance**
 To display (render) SVGs the browser takes time. We can reduce that time by adding a couple of improvements.
+
+---
+
+made with ❤ by [push-based.io](https://www.push-based.io)
+

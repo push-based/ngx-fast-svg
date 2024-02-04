@@ -1,20 +1,7 @@
 {
   "extends": "nx/presets/core.json",
-  "npmScope": "ngx-fast-svg",
   "affected": {
     "defaultBase": "origin/main"
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "ZmQ2MjlmYjctZjEzYy00YTIwLTk4NjgtZWM5MmY2Y2VhNmFlfHJlYWQtd3JpdGU="
-      }
-    }
   },
   "generators": {
     "@nrwl/angular:application": {
@@ -41,7 +28,8 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/.eslintrc.json"
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/src/test-setup.[jt]s"
     ]
   },
   "targetDefaults": {
@@ -57,5 +45,6 @@
     "lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
-  }
+  },
+  "nxCloudAccessToken": "Y2M2M2QyNzEtOTEyMC00NTg3LWI0ZTctY2I2ZWUzZGE5OTQxfHJlYWQtd3JpdGU="
 }

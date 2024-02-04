@@ -40,15 +40,13 @@
     },
     "version": {
       "executor": "@jscutlery/semver:version",
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": "self"
-        }
-      ],
       "options": {
-        "postTargets": ["ngx-fast-lib:npm", "ngx-fast-lib:github"],
-        "commitMessageFormat": "release(${projectName}): ${version}",
+        "postTargets": [
+          "ngx-fast-lib:build",
+          "ngx-fast-lib:npm",
+          "ngx-fast-lib:github"
+        ],
+        "commitMessageFormat": "release(${projectName}): {version}",
         "noVerify": true,
         "push": true
       }
@@ -56,8 +54,8 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "${tag}",
-        "notes": "${notes}"
+        "tag": "{tag}",
+        "notes": "{notes}"
       }
     },
     "npm": {

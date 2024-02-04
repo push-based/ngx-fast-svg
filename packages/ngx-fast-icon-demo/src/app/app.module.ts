@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { DescriptionComponent } from './routes/description/description.component';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { TransferHttpCacheModule } from '@nguniversal/common';
-import { FastSvgModule } from '@push-based/ngx-fast-svg';
+import { BrowserModule } from '@angular/platform-browser';
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -19,7 +18,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   declarations: [AppComponent],
   imports: [
     CommonModule,
-    BrowserModule.withServerTransition({ appId: 'ngx-fast-icon-demo' }),
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -27,10 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatIconModule,
     MatDividerModule,
     HttpClientModule,
-    TransferHttpCacheModule,
-    FastSvgModule.forRoot({
-      url: (name: string) => `assets/svg-icons/${name}.svg`,
-    }),
+    BrowserModule,
     IonicModule.forRoot(),
     RouterModule.forRoot(
       [
@@ -105,7 +100,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       { initialNavigation: 'enabledBlocking' }
     ),
   ],
-  providers: [],
+  providers: [
+    provideFastSVG({
+      url: (name: string) => `assets/svg-icons/${name}.svg`,
+    }),
+    // provideClientHydration(),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

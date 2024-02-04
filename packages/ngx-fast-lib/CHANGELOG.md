@@ -2,6 +2,87 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [18.0.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-17.0.0...ngx-fast-lib-18.0.0) (2023-11-21)
+
+
+### Bug Fixes
+
+* update @jscutlery/semver config ([cb90661](https://github.com/push-based/ngx-fast-svg/commit/cb90661933b38fa0b90fe1bf4bdfefd3f0d236b6))
+
+
+### Features
+
+* bump Angular to v17 ([5baecb0](https://github.com/push-based/ngx-fast-svg/commit/5baecb0b683e2ab2e90928ac42afb31c69af902b))
+
+
+### BREAKING CHANGES
+
+* Minimum required `@angular/core` version is now `^17.0.0`
+
+
+
+## [0.5.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.5.0...ngx-fast-lib-0.5.1) (2023-11-21)
+
+
+### Bug Fixes
+
+* update configs for v17 ([9254064](https://github.com/push-based/ngx-fast-svg/commit/9254064470daff5b93dbd829f126013b8ec370cd))
+* upgrade dependencies for angular v17 compatibility ([2668d5a](https://github.com/push-based/ngx-fast-svg/commit/2668d5aaf742a53e4f6ced9ae1ce0f6f2ca4b505))
+
+
+
+# [0.5.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.4.1...ngx-fast-lib-0.5.0) (2023-09-20)
+
+
+### Features
+
+* deprecate FastSvgModule in favor of provideFastSVG provider function ([fe7cf06](https://github.com/push-based/ngx-fast-svg/commit/fe7cf06fac771a3a723a912f86c90359eed33a92))
+* make SvgLoadStrategyImpl a simple class and extend from SvgLoadStrategy for better typechecking ([73a1b89](https://github.com/push-based/ngx-fast-svg/commit/73a1b891adda9b4435aa1e3f2c3054d0c6580985))
+* make SvgOptionsToken provided in root with default value ([db1474a](https://github.com/push-based/ngx-fast-svg/commit/db1474addc557b4fc78f598beeb9455b9d6d36b5))
+* make SvgRegistry provided in root, use inject function instead of @Inject and @Optional decorators, initialize SvgLoadStrategyImpl as the default strategy, update old subscribe pattern ([7421906](https://github.com/push-based/ngx-fast-svg/commit/7421906ffbe838de0f187b6922fe1676a0faa457))
+* simplify provideFastSVG by removing classes that are provided in root by default ([0f88208](https://github.com/push-based/ngx-fast-svg/commit/0f882084a0d8a674f825836b9766144eb6e288ba))
+
+
+
+## [0.4.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.4.0...ngx-fast-lib-0.4.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* convert provider function to not use makeEnvironmentProviders ([656eac3](https://github.com/push-based/ngx-fast-svg/commit/656eac3ffab669d479f47b21e2a7138a1bd7df15))
+
+
+
+# [0.4.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.3.1...ngx-fast-lib-0.4.0) (2023-07-18)
+
+
+### Features
+
+* update versions ([a6d4f3e](https://github.com/push-based/ngx-fast-svg/commit/a6d4f3e179f8e211fbaebd7e3efee18aa59b048e))
+
+
+
+## [0.3.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.3.0...ngx-fast-lib-0.3.1) (2023-05-27)
+
+
+
+# [0.3.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.2.5...ngx-fast-lib-0.3.0) (2023-04-29)
+
+
+### Features
+
+* modernise fast svg library by using inject, standalone and provide function ([319f45d](https://github.com/push-based/ngx-fast-svg/commit/319f45dd8a5dac255e4825b62b2b5a1f6b5e22d1))
+
+
+
+## [0.2.5](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.2.4...ngx-fast-lib-0.2.5) (2023-04-17)
+
+
+
+## [0.2.4](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.2.3...ngx-fast-lib-0.2.4) (2023-04-17)
+
+
+
 ## [0.2.3](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-0.2.2...ngx-fast-lib-0.2.3) (2023-01-09)
 
 

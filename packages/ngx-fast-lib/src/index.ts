@@ -9,3 +9,5 @@ export * from './lib/svg-registry.service';
 export * from './lib/fast-svg.component';
 // module
 export * from './lib/fast-svg.module';
+// provider
+export * from './lib/fast-svg.provider';
