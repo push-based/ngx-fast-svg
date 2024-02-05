@@ -1,8 +1,0 @@
-<app-controller [demoLib]='"Ant design icon"' [tester]='tester' />
-<div class="row icons" [ngClass]="tester.layout | async">
-  <ul class="group" *ngFor="let list of (tester.lists | async)">
-    <li *ngFor="let icon of list">
-      <i antIcon [type]="icon" theme="fill"></i>
-    </li>
-  </ul>
-</div>

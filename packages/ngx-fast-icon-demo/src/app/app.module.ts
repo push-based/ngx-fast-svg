@@ -68,8 +68,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         },
         {
           path: 'ant',
-          loadChildren: () =>
-            import('./comparison/ant/ant.module').then((m) => m.AntModule)
+          loadComponent: () =>
+            import('./comparison/ant/ant.component').then((c) => c.AntComponent)
         },
         {
           path: 'ionic',
@@ -92,10 +92,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
               (m) => m.FastIconRouteModule
             )
         }
-        /* {
-        path:'angular-material-icon',
-        loadChildren: () => import('./angular-material-icons-list/angular-material-icons-list.module').then(m => m.AngularMaterialIconListModule)
-      },*/
       ],
       { initialNavigation: 'enabledBlocking' }
     ),
