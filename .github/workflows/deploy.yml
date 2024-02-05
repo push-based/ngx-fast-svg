@@ -1,9 +1,8 @@
 name: Deploy Demo App
 
 on:
-  pull_request:
-    paths-ignore:
-      - '*.md'
+  push:
+    branches: ["main"]
 
   workflow_dispatch:
 
