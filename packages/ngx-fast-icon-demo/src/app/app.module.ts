@@ -87,9 +87,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         },
         {
           path: 'fast-svg',
-          loadChildren: () =>
-            import('./comparison/fast-icon/fast-icon.module').then(
-              (m) => m.FastIconRouteModule
+          loadComponent: () =>
+            import('./comparison/fast-icon/fast-icon.component').then(
+              (c) => c.FastIconRouteComponent
             )
         }
       ],

@@ -1,8 +1,0 @@
-<app-controller [demoLib]='"Fast svg"' [tester]='tester' />
-<div class="row icons" [ngClass]="tester.layout | async">
-  <ul class="group" *ngFor="let list of (tester.lists | async)">
-    <li *ngFor="let icon of list">
-      <fast-svg class="fast-svg-icon" [name]="icon"></fast-svg>
-    </li>
-  </ul>
-</div>
