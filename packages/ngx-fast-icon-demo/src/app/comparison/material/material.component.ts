@@ -9,9 +9,6 @@ import { IconTester } from '../../misc/icons-tester/icon-tester.service';
   styleUrls: ['./material.component.scss'],
 })
 export class MaterialComponent {
-  iconUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
-    'assets/svg-icons/account.svg'
-  );
   constructor(
     private domSanitizer: DomSanitizer,
     private matIconRegistry: MatIconRegistry,
