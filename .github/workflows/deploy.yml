@@ -39,8 +39,11 @@ jobs:
       - name: Clean Install
         run: npm ci
 
-      - name: Build
-        run: npm run build-demo
+      - name: Build Lib
+        run: npm run build:lib
+
+      - name: Build Demo
+        run: npm run build:demo
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
