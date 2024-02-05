@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
+import { ShellComponent } from './misc/shell.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +35,8 @@ import { provideAngularSvgIcon } from 'angular-svg-icon';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    FastSvgComponent
+    FastSvgComponent,
+    ShellComponent
   ],
   providers: [
     provideFastSVG({
