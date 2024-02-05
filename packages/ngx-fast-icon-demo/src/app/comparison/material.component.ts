@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SUPPORTED_ICONS } from '../../icon-data';
-import { IconTester } from '../../misc/icons-tester/icon-tester.service';
+import { SUPPORTED_ICONS } from '../icon-data';
+import { IconTester } from '../misc/icons-tester/icon-tester.service';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { ControllerComponent } from '../../misc/controller.component';
+import { ControllerComponent } from '../misc/controller.component';
 
 @Component({
   template: `

@@ -55,40 +55,40 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         {
           path: 'angular',
           loadComponent: () =>
-            import('./comparison/angular/angular.component').then(
+            import('./comparison/angular.component').then(
               (c) => c.AngularComponent
             )
         },
         {
           path: 'material',
           loadComponent: () =>
-            import('./comparison/material/material.component').then(
+            import('./comparison/material.component').then(
               (c) => c.MaterialComponent
             )
         },
         {
           path: 'ant',
           loadComponent: () =>
-            import('./comparison/ant/ant.component').then((c) => c.AntComponent)
+            import('./comparison/ant.component').then((c) => c.AntComponent)
         },
         {
           path: 'ionic',
           loadComponent: () =>
-            import('./comparison/ionic/ionic.component').then(
+            import('./comparison/ionic.component').then(
               (m) => m.IonicComponent
             )
         },
         {
           path: 'font-awesome',
           loadComponent: () =>
-            import('./comparison/font-awesome/font-awesome.component').then(
+            import('./comparison/font-awesome.component').then(
               (c) => c.FontAwesomeComponent
             )
         },
         {
           path: 'fast-svg',
           loadComponent: () =>
-            import('./comparison/fast-icon/fast-icon.component').then(
+            import('./comparison/fast-icon.component').then(
               (c) => c.FastIconRouteComponent
             )
         }

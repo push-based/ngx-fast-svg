@@ -1,19 +1,24 @@
 import { Component } from '@angular/core';
-import { SUPPORTED_ICONS } from '../../icon-data';
-import { IconTester } from '../../misc/icons-tester/icon-tester.service';
-import { ControllerComponent } from '../../misc/controller.component';
+import { SUPPORTED_ICONS } from '../icon-data';
+import { IconTester } from '../misc/icons-tester/icon-tester.service';
+import { ControllerComponent } from '../misc/controller.component';
 import { AsyncPipe, NgClass } from '@angular/common';
+import { SvgIconComponent } from 'angular-svg-icon';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
+
 @Component({
   standalone: true,
   template: `
-    <app-controller [demoLib]='"Fast svg"' [tester]='tester' />
+    <app-controller [demoLib]='"Angular svg icon"' [tester]='tester' />
     <div class='row icons' [ngClass]='tester.layout | async'>
       @for (list of (tester.lists | async); track $index) {
         <ul class='group'>
           @for (icon of list; track $index) {
             <li>
-              <fast-svg class='fast-svg-icon' [name]='icon' />
+              <svg-icon
+                [src]='icon'
+                [svgStyle]="{ 'width.px': 30, 'height.px': 30 }"
+              />
             </li>
           }
         </ul>
@@ -29,13 +34,16 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
   `],
   imports: [
     ControllerComponent,
-    NgClass,
     AsyncPipe,
+    NgClass,
+    SvgIconComponent,
     FastSvgComponent
   ]
 })
-export class FastIconRouteComponent {
+export class AngularComponent {
   constructor(public tester: IconTester) {
-    this.tester.defineSet(SUPPORTED_ICONS);
+    this.tester.defineSet(
+      SUPPORTED_ICONS.map((i) => `assets/svg-icons/${i}.svg`)
+    );
   }
 }

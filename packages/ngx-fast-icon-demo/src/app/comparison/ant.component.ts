@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IconModule, IconService as AntIconService } from '@ant-design/icons-angular';
 import { AccountBookFill } from '@ant-design/icons-angular/icons';
-import { SUPPORTED_ICONS } from '../../icon-data';
-import { IconTester } from '../../misc/icons-tester/icon-tester.service';
-import { ControllerComponent } from '../../misc/controller.component';
+import { SUPPORTED_ICONS } from '../icon-data';
+import { IconTester } from '../misc/icons-tester/icon-tester.service';
+import { ControllerComponent } from '../misc/controller.component';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { AllIcons } from './ant-icons';

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
-import { IconTester } from '../../misc/icons-tester/icon-tester.service';
-import { ControllerComponent } from '../../misc/controller.component';
+import { IconTester } from '../misc/icons-tester/icon-tester.service';
+import { ControllerComponent } from '../misc/controller.component';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
