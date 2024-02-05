@@ -9,6 +9,8 @@
   "scripts": {
     "ng": "ng",
     "nx": "nx",
+    "build:lib": "nx run ngx-fast-lib:build:production",
+    "test:lib": "nx run ngx-fast-lib:test",
     "start": "npm run serve",
     "start:ssr": "npm run serve:ssr",
     "serve": "nx serve ngx-fast-icon-demo",
