@@ -73,9 +73,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         },
         {
           path: 'ionic',
-          loadChildren: () =>
-            import('./comparison/ionic/ionic.module').then(
-              (m) => m.IonicComponentModule
+          loadComponent: () =>
+            import('./comparison/ionic/ionic.component').then(
+              (m) => m.IonicComponent
             )
         },
         {
