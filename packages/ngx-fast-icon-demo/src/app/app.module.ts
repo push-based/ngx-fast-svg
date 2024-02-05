@@ -54,9 +54,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         },
         {
           path: 'angular',
-          loadChildren: () =>
-            import('./comparison/angular/angular.module').then(
-              (m) => m.AngularModule
+          loadComponent: () =>
+            import('./comparison/angular/angular.component').then(
+              (c) => c.AngularComponent
             )
         },
         {
