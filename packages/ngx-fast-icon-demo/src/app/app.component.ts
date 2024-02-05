@@ -1,11 +1,14 @@
 import { Component, inject } from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { filter, map } from 'rxjs';
 import {MediaMatcher} from '@angular/cdk/layout';
+import { ShellComponent } from './misc/shell.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'ngx-fast-icon-root',
+  standalone: true,
   template: `
     <app-shell
       [rootClass]='(rootClass$ | async) || ""'
@@ -16,6 +19,11 @@ import {MediaMatcher} from '@angular/cdk/layout';
       <router-outlet />
     </app-shell>
   `,
+  imports: [
+    ShellComponent,
+    AsyncPipe,
+    RouterOutlet
+  ]
 })
 export class AppComponent {
   private readonly route = inject(ActivatedRoute);

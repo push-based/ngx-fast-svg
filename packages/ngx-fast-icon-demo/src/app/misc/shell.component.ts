@@ -1,24 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { IonicModule } from '@ionic/angular';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-shell',
   template: `
     <div class='root' [class]='rootClass'>
       <mat-toolbar class='header-toolbar' [class.header-is-mobile]='isMobile'>
-        <a (click)='snav.toggle()'>
+        <a (click)='sideNav.toggle()'>
           <fast-svg id='nav-icon' height='48' width='48' name='menu' />
         </a>
         <h1 class='title'>ngx-fast-svg</h1>
       </mat-toolbar>
       <div class='row'>
         <mat-sidenav-container [style.marginTop.px]='isMobile ? 56 : 0'>
-          <mat-sidenav #snav mode='side' [opened]='!isMobile' [fixedInViewport]='isMobile' fixedTopGap='56'>
+          <mat-sidenav mode='side' [opened]='!isMobile' [fixedInViewport]='isMobile' fixedTopGap='56'>
             <div class='sidebar'>
               <div class='header'>
                 @for (link of links; track $index) {
@@ -261,7 +262,8 @@ import { Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
     MatToolbarModule,
     RouterOutlet,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    MatDividerModule
   ]
 })
 export class ShellComponent {
@@ -269,4 +271,5 @@ export class ShellComponent {
   @Input({required: true}) isMobile!: boolean;
   @Input({required: true}) links!: string[];
   @Input({required: true}) queryParams!: Params;
+  @ViewChild(MatSidenav) sideNav!: MatSidenav;
 }

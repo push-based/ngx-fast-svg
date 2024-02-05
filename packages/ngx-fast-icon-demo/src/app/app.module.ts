@@ -21,7 +21,6 @@ import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { ShellComponent } from './misc/shell.component';
 
 @NgModule({
-  declarations: [AppComponent],
   imports: [
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -36,7 +35,8 @@ import { ShellComponent } from './misc/shell.component';
     RouterLink,
     RouterLinkActive,
     FastSvgComponent,
-    ShellComponent
+    ShellComponent,
+    AppComponent
   ],
   providers: [
     provideFastSVG({
