@@ -1,98 +1,86 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
+import {
+  provideRouter,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+  withRouterConfig
+} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { DescriptionComponent } from './routes/description/description.component';
-import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { provideFastSVG } from '@push-based/ngx-fast-svg';
+import { IonicModule,  } from '@ionic/angular';
+import { BrowserModule } from '@angular/platform-browser';
+import { FastSvgComponent, provideFastSVG } from '@push-based/ngx-fast-svg';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { provideAngularSvgIcon } from 'angular-svg-icon';
+import { ShellComponent } from './misc/shell.component';
 
 @NgModule({
-  declarations: [AppComponent],
   imports: [
-    CommonModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
     HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(),
-    RouterModule.forRoot(
-      [
-        {
-          path: '',
-          pathMatch: 'full',
-          redirectTo: 'description',
-        },
-        {
-          path: 'ngx-fast-icon',
-          loadChildren: () =>
-            import('./misc/ngx-fast-svg/fast-svg-list.module').then(
-              (m) => m.FastSvgListModule
-            ),
-        },
-        {
-          path: 'icon',
-          loadChildren: () =>
-            import('./misc/angular-svg-icon/angular-svg-icon-list.module').then(
-              (m) => m.AngularSvgIconListModule
-            ),
-        },
-        {
-          path: 'description',
-          component: DescriptionComponent,
-        },
-        {
-          path: 'angular',
-          loadChildren: () =>
-            import('./comparison/angular/angular.module').then(
-              (m) => m.AngularModule
-            ),
-        },
-        {
-          path: 'material',
-          loadChildren: () =>
-            import('./comparison/material/material.module').then(
-              (m) => m.MaterialComponentModule
-            ),
-        },
-        {
-          path: 'ant',
-          loadChildren: () =>
-            import('./comparison/ant/ant.module').then((m) => m.AntModule),
-        },
-        {
-          path: 'ionic',
-          loadChildren: () =>
-            import('./comparison/ionic/ionic.module').then(
-              (m) => m.IonicComponentModule
-            ),
-        },
-        {
-          path: 'font-awesome',
-          loadChildren: () =>
-            import('./comparison/font-awesome/font-awesome.module').then(
-              (m) => m.FontAwesomeRouteModule
-            ),
-        },
-        {
-          path: 'fast-svg',
-          loadChildren: () =>
-            import('./comparison/fast-icon/fast-icon.module').then(
-              (m) => m.FastIconRouteModule
-            ),
-        },
-        /* {
-        path:'angular-material-icon',
-        loadChildren: () => import('./angular-material-icons-list/angular-material-icons-list.module').then(m => m.AngularMaterialIconListModule)
-      },*/
-      ],
-      { initialNavigation: 'enabledBlocking' }
-    ),
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    FastSvgComponent,
+    ShellComponent,
+    AppComponent
   ],
   providers: [
     provideFastSVG({
       url: (name: string) => `assets/svg-icons/${name}.svg`,
     }),
-    // provideClientHydration(),
+    provideAngularSvgIcon(),
+    provideRouter(
+      [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'description'
+      },
+      {
+        path: 'description',
+        loadComponent: () => import('./misc/description.component').then((c) => c.DescriptionComponent)
+      },
+      {
+        path: 'angular',
+        loadComponent: () => import('./comparison/angular.component').then((c) => c.AngularComponent)
+      },
+      {
+        path: 'material',
+        loadComponent: () => import('./comparison/material.component').then((c) => c.MaterialComponent)
+      },
+      {
+        path: 'ant',
+        loadComponent: () => import('./comparison/ant.component').then((c) => c.AntComponent)
+      },
+      {
+        path: 'ionic',
+        loadComponent: () => import('./comparison/ionic.component').then((c) => c.IonicComponent)
+      },
+      {
+        path: 'font-awesome',
+        loadComponent: () => import('./comparison/font-awesome.component').then((c) => c.FontAwesomeComponent)
+      },
+      {
+        path: 'fast-svg',
+        loadComponent: () => import('./comparison/fast-icon.component').then((c) => c.FastIconRouteComponent)
+      }
+    ],
+      withRouterConfig({ urlUpdateStrategy: 'eager' })
+    )
   ],
   bootstrap: [AppComponent],
 })

@@ -1,15 +1,42 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
-import { filter, map, startWith } from 'rxjs';
+import { filter, map } from 'rxjs';
+import {MediaMatcher} from '@angular/cdk/layout';
+import { ShellComponent } from './misc/shell.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'ngx-fast-icon-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  template: `
+    <app-shell
+      [rootClass]='(rootClass$ | async) || ""'
+      [isMobile]='isMobile'
+      [links]='links'
+      [queryParams]='(queryParams$ | async) || {}'
+    >
+      <router-outlet />
+    </app-shell>
+  `,
+  imports: [
+    ShellComponent,
+    AsyncPipe,
+    RouterOutlet
+  ]
 })
 export class AppComponent {
-  links = [
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+
+  readonly queryParams$ = this.route.queryParams;
+  readonly isMobile = inject(MediaMatcher).matchMedia('(max-width: 600px)').matches;
+  readonly rootClass$ = this.router.events.pipe(
+    filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+    map((e) => e.urlAfterRedirects.split('?')[0].replace('/', ''))
+  )
+
+  readonly links = [
     'description',
     'fast-svg',
     'material',
@@ -18,43 +45,4 @@ export class AppComponent {
     'angular',
     'ant',
   ];
-  readonly queryParams = this.activatedRoute.queryParams;
-
-  navClass$ = this.router.events.pipe(
-    filter((e) => e instanceof NavigationEnd),
-    startWith({ urlAfterRedirects: this.router.url }),
-    map((e) => this.getClassFromUrl((e as NavigationEnd).urlAfterRedirects))
-  );
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
-
-  getClassFromUrl(url: string): string {
-    if (url.includes('angular')) {
-      return 'angular';
-    }
-
-    if (url.includes('material')) {
-      return 'material';
-    }
-
-    if (url.includes('ant')) {
-      return 'ant';
-    }
-    if (url.includes('fast-svg')) {
-      return 'fast-svg';
-    }
-
-    if (url.includes('font-awesome')) {
-      return 'font-awesome';
-    }
-
-    if (url.includes('ionic')) {
-      return 'ionic';
-    }
-
-    if (url.includes('description')) {
-      return 'description';
-    }
-
-    return '';
-  }
 }
