@@ -80,9 +80,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         },
         {
           path: 'font-awesome',
-          loadChildren: () =>
-            import('./comparison/font-awesome/font-awesome.module').then(
-              (m) => m.FontAwesomeRouteModule
+          loadComponent: () =>
+            import('./comparison/font-awesome/font-awesome.component').then(
+              (c) => c.FontAwesomeComponent
             )
         },
         {
