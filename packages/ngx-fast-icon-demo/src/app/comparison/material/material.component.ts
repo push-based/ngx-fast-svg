@@ -5,32 +5,17 @@ import { SUPPORTED_ICONS } from '../../icon-data';
 import { IconTester } from '../../misc/icons-tester/icon-tester.service';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { ControllerComponent } from '../../misc/controller.component';
 
 @Component({
   template: `
-    <h1>Material icon demo</h1>
-    <h4>Layout setting</h4>
-    <div class="buttons-wrapper">
-      @for (button of tester.buttons; track $index) {
-        <button
-          [ngClass]="{ active: button === (tester.setting | async)}"
-          (click)="tester.setLayout(button)"
-        >{{ button }}</button>
-      }
-    </div>
-    <h4>Content controls</h4>
-    <div class="buttons-wrapper">
-      <button (click)="tester.updateList(1)">Add</button>
-      <button (click)="tester.updateList(-1)">Remove</button>
-      <button (click)="tester.reload()">Reload page</button>
-    </div>
-
+    <app-controller [demoLib]='"Material icon"' [tester]='tester'/>
     <div class='row icons' [ngClass]='tester.layout | async'>
       @for (list of (tester.lists | async); track $index) {
         <ul class="group">
           @for (icon of list; track $index) {
             <li>
-              <mat-icon class='mat-icon-rtl-mirror' [svgIcon]='icon'></mat-icon>
+              <mat-icon class='mat-icon-rtl-mirror' [svgIcon]='icon' />
             </li>
           }
         </ul>
@@ -53,7 +38,8 @@ import { IonicModule } from '@ionic/angular';
     NgClass,
     AsyncPipe,
     MatIconModule,
-    IonicModule
+    IonicModule,
+    ControllerComponent
   ],
   standalone: true
 })

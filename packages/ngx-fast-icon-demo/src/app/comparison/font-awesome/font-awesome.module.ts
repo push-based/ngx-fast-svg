@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeComponent } from './font-awesome.component';
+import { ControllerComponent } from '../../misc/controller.component';
 
 @NgModule({
   declarations: [FontAwesomeComponent],
@@ -12,9 +13,10 @@ import { FontAwesomeComponent } from './font-awesome.component';
     RouterModule.forChild([
       {
         path: '',
-        component: FontAwesomeComponent,
-      },
+        component: FontAwesomeComponent
+      }
     ]),
-  ],
+    ControllerComponent
+  ]
 })
 export class FontAwesomeRouteModule {}

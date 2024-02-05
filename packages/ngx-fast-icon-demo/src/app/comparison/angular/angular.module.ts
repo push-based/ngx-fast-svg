@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AngularComponent } from './angular.component';
+import { ControllerComponent } from '../../misc/controller.component';
 
 @NgModule({
   declarations: [AngularComponent],
@@ -12,9 +13,10 @@ import { AngularComponent } from './angular.component';
     RouterModule.forChild([
       {
         path: '',
-        component: AngularComponent,
-      },
+        component: AngularComponent
+      }
     ]),
-  ],
+    ControllerComponent
+  ]
 })
 export class AngularModule {}

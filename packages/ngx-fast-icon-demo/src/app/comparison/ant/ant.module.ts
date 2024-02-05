@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AntComponent } from './ant.component';
 import { IconModule as AntIconsModule } from '@ant-design/icons-angular';
+import { ControllerComponent } from '../../misc/controller.component';
 
 @NgModule({
   declarations: [AntComponent],
@@ -12,9 +13,10 @@ import { IconModule as AntIconsModule } from '@ant-design/icons-angular';
     RouterModule.forChild([
       {
         path: '',
-        component: AntComponent,
-      },
+        component: AntComponent
+      }
     ]),
-  ],
+    ControllerComponent
+  ]
 })
 export class AntModule {}
