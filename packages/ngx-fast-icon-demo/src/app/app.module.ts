@@ -61,9 +61,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         },
         {
           path: 'material',
-          loadChildren: () =>
-            import('./comparison/material/material.module').then(
-              (m) => m.MaterialComponentModule
+          loadComponent: () =>
+            import('./comparison/material/material.component').then(
+              (c) => c.MaterialComponent
             )
         },
         {
