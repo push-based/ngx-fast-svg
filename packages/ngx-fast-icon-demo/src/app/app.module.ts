@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { DescriptionComponent } from './routes/description/description.component';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +27,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(),
+    AngularSvgIconModule.forRoot(),
     RouterModule.forRoot(
       [
         {
@@ -35,62 +36,32 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
           redirectTo: 'description'
         },
         {
-          path: 'ngx-fast-icon',
-          loadChildren: () =>
-            import('./misc/ngx-fast-svg/fast-svg-list.module').then(
-              (m) => m.FastSvgListModule
-            )
-        },
-        {
-          path: 'icon',
-          loadChildren: () =>
-            import('./misc/angular-svg-icon/angular-svg-icon-list.module').then(
-              (m) => m.AngularSvgIconListModule
-            )
-        },
-        {
           path: 'description',
-          component: DescriptionComponent
+          loadComponent: () => import('./misc/description.component').then((c) => c.DescriptionComponent)
         },
         {
           path: 'angular',
-          loadComponent: () =>
-            import('./comparison/angular.component').then(
-              (c) => c.AngularComponent
-            )
+          loadComponent: () => import('./comparison/angular.component').then((c) => c.AngularComponent)
         },
         {
           path: 'material',
-          loadComponent: () =>
-            import('./comparison/material.component').then(
-              (c) => c.MaterialComponent
-            )
+          loadComponent: () => import('./comparison/material.component').then((c) => c.MaterialComponent)
         },
         {
           path: 'ant',
-          loadComponent: () =>
-            import('./comparison/ant.component').then((c) => c.AntComponent)
+          loadComponent: () => import('./comparison/ant.component').then((c) => c.AntComponent)
         },
         {
           path: 'ionic',
-          loadComponent: () =>
-            import('./comparison/ionic.component').then(
-              (m) => m.IonicComponent
-            )
+          loadComponent: () => import('./comparison/ionic.component').then((c) => c.IonicComponent)
         },
         {
           path: 'font-awesome',
-          loadComponent: () =>
-            import('./comparison/font-awesome.component').then(
-              (c) => c.FontAwesomeComponent
-            )
+          loadComponent: () => import('./comparison/font-awesome.component').then((c) => c.FontAwesomeComponent)
         },
         {
           path: 'fast-svg',
-          loadComponent: () =>
-            import('./comparison/fast-icon.component').then(
-              (c) => c.FastIconRouteComponent
-            )
+          loadComponent: () => import('./comparison/fast-icon.component').then((c) => c.FastIconRouteComponent)
         }
       ],
       { initialNavigation: 'enabledBlocking' }
@@ -101,7 +72,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     provideFastSVG({
       url: (name: string) => `assets/svg-icons/${name}.svg`,
     }),
-    // provideClientHydration(),
   ],
   bootstrap: [AppComponent],
 })

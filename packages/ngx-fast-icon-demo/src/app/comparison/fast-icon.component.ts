@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SUPPORTED_ICONS } from '../icon-data';
-import { IconTester } from '../misc/icons-tester/icon-tester.service';
+import { IconTester } from '../misc/icon-tester.service';
 import { ControllerComponent } from '../misc/controller.component';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';

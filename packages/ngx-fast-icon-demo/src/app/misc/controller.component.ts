@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IconTester } from './icons-tester/icon-tester.service';
+import { IconTester } from './icon-tester.service';
 import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { DescriptionComponent } from '../../../ngx-fast-icon-demo/src/app/routes/description/description.component';
+import { DescriptionComponent } from '../../../ngx-fast-icon-demo/src/app/misc/description.component';
 
 export const appRoutes: Route[] = [
   {
