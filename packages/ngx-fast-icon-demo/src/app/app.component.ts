@@ -6,11 +6,45 @@ import {MediaMatcher} from '@angular/cdk/layout';
 
 @Component({
   selector: 'ngx-fast-icon-root',
-  templateUrl: './app.component.html',
+  template: `
+    <div class="root" [ngClass]="(navClass$ | async) || ''">
+      <mat-toolbar class="header-toolbar sanity-check" [class.header-is-mobile]="mobileQuery.matches">
+        <a (click)="snav.toggle()">
+          <fast-svg id="nav-icon" height="48" width="48" name="menu" />
+        </a>
+        <h1 class="title">ngx-fast-svg</h1>
+      </mat-toolbar>
+      <div class="row">
+        <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+          <mat-sidenav #snav mode="side" [opened]="!mobileQuery.matches" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+            <div class="sidebar">
+              <div class="header">
+                <a
+                  class="link"
+                  *ngFor="let link of links"
+                  [routerLinkActive]="'active'"
+                  [ngClass]="link"
+                  [routerLink]="link"
+                  [queryParams]="queryParams | async"
+                >
+                  {{ link }}
+                </a>
+              </div>
+            </div>
+          </mat-sidenav>
+          <mat-sidenav-content>
+            <div class="content">
+              <router-outlet></router-outlet>
+            </div>
+          </mat-sidenav-content>
+        </mat-sidenav-container>
+      </div>
+    </div>
+  `,
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
-  links = [
+  readonly links = [
     'description',
     'fast-svg',
     'material',
@@ -21,7 +55,7 @@ export class AppComponent implements OnDestroy {
   ];
   readonly queryParams = this.activatedRoute.queryParams;
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+  private readonly _mobileQueryListener: () => void;
   navClass$ = this.router.events.pipe(
     filter((e) => e instanceof NavigationEnd),
     startWith({ urlAfterRedirects: this.router.url }),
