@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: install
-        run: npm i
+        run: npm ci
       - name: build
-        run: npm run build:lib
+        run: npm run nx -- affected:build --base=origin/main --head=HEAD
       - name: test
-        run: npm run test:lib
+        run: npm run nx -- affected:test --base=origin/main --head=HEAD

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SUPPORTED_ICONS } from '../icon-data';
 import { IconTester } from '../misc/icon-tester.service';
 import { AsyncPipe, NgClass } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonIcon } from '@ionic/angular/standalone';
 import { ControllerComponent } from '../misc/controller.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { ControllerComponent } from '../misc/controller.component';
   imports: [
     NgClass,
     AsyncPipe,
-    IonicModule,
+    IonIcon,
     ControllerComponent
   ],
   template: `

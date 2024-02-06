@@ -17,9 +17,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideRouter(appRoutes, withRouterConfig({ urlUpdateStrategy: 'eager' })),
     provideAngularSvgIcon(),
-    provideIonicAngular(),
+    provideIonicAngular({}),
     provideFastSVG({
       url: (name: string) => `assets/svg-icons/${name}.svg`,
     }),
-],
+  ],
 };
