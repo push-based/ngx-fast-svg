@@ -28,7 +28,7 @@
         ],
         "scripts": [],
         "server": "packages/ngx-fast-icon-demo/src/main.server.ts",
-        "prerender": false,
+        "prerender": true,
         "ssr": {
           "entry": "packages/ngx-fast-icon-demo/server.ts"
         }
