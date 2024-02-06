@@ -39,9 +39,6 @@ jobs:
       - name: Clean Install
         run: npm ci
 
-      - name: Build Lib
-        run: npm run build:lib
-
       - name: Build Demo
         run: npm run build:demo
 
