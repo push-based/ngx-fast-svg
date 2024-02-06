@@ -40,7 +40,7 @@ jobs:
         run: npm ci
 
       - name: Build Demo
-        run: npm run build:demo
+        run: npx nx run ngx-fast-icon-demo:build:production --base-href /ngx-fast-svg/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
