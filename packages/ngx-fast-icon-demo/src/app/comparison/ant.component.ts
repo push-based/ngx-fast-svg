@@ -1,52 +1,37 @@
-import { Component } from '@angular/core';
-import { IconModule, IconService as AntIconService } from '@ant-design/icons-angular';
-import { AccountBookFill } from '@ant-design/icons-angular/icons';
-import { SUPPORTED_ICONS } from '../icon-data';
-import { IconTester } from '../misc/icon-tester.service';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+
+import { IconModule, IconService} from '@ant-design/icons-angular';
+
 import { ControllerComponent } from '../misc/controller.component';
-import { AsyncPipe, NgClass } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IconTester } from '../misc/icon-tester.service';
+import { SUPPORTED_ICONS } from '../misc/icon-data';
+
 import { AllIcons } from './ant-icons';
 
 @Component({
   standalone: true,
   template: `
     <app-controller [demoLib]='"Ant design icon"' [tester]='tester' />
-    <div class='row icons' [ngClass]='tester.layout | async'>
+    <div class='row icons' [class]='tester.layout | async'>
       @for (list of (tester.lists | async); track $index) {
         <ul class="group">
           @for (icon of list; track $index) {
             <li>
-              <i antIcon [type]='icon' theme='fill'></i>
+              <i style='font-size: 30px;' antIcon [type]='icon' theme='fill'></i>
             </li>
           }
         </ul>
       }
     </div>
   `,
-  styles: [`
-    .group {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    i {
-      font-size: 30px;
-    }
-  `],
-  imports: [
-    NgClass,
-    ControllerComponent,
-    IconModule,
-    AsyncPipe,
-    IonicModule
-  ]
+  imports: [AsyncPipe, ControllerComponent, IconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class AntComponent {
-  constructor(private _iconService: AntIconService, public tester: IconTester) {
+  constructor(private iconService: IconService, public tester: IconTester) {
     this.tester.defineSet(SUPPORTED_ICONS);
-    console.log(AccountBookFill);
-    this._iconService.addIcon(...(AllIcons as any));
+    this.iconService.addIcon(...(AllIcons));
   }
 }

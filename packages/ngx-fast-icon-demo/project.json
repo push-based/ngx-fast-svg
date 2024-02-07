@@ -23,9 +23,6 @@
           "packages/ngx-fast-icon-demo/src/favicon.ico",
           "packages/ngx-fast-icon-demo/src/assets"
         ],
-        "styles": [
-          "packages/ngx-fast-icon-demo/src/styles.scss"
-        ],
         "scripts": [],
         "server": "packages/ngx-fast-icon-demo/src/main.server.ts",
         "prerender": true,

@@ -15,9 +15,9 @@ export const back: IconDefinition = {
   name: 'back',
   theme: 'fill',
 };
+
 export const consulting: IconDefinition = {
-  icon: `<svg version="1.1" id="Layer_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-  viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
+  icon: `<svg version="1.1" id="Layer_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
 <style type="text/css">
 .st0{fill:#E5E5E5;}
 .st1{fill:none;stroke:#E5E5E5;stroke-width:0.25;stroke-miterlimit:10;}
@@ -241,7 +241,7 @@ c1.2,0.3,1.3,1,1.3,1s0.6-0.3,1.4,0.1c0.8,0.5,1,1.2,1,1.2S288.4,166,287.6,168.8z"
   theme: 'fill',
 };
 
-export const custom_workshops_1 = {
+export const custom_workshops_1: IconDefinition = {
   icon: `<svg version="1.1" id="Layer_6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
 <style type="text/css">
@@ -517,7 +517,7 @@ export const custom_workshops_1 = {
   theme: 'fill',
 };
 
-export const custom_workshops_2 = {
+export const custom_workshops_2: IconDefinition = {
   icon: `<svg version="1.1" id="Layer_6_copy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
   y="0px" viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
 <style type="text/css">
@@ -736,7 +736,7 @@ export const custom_workshops_2 = {
   theme: 'fill',
 };
 
-export const custom_workshops_3 = {
+export const custom_workshops_3: IconDefinition = {
   icon: `<svg version="1.1" id="Layer_6_copy_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
   y="0px" viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
 <style type="text/css">
@@ -953,7 +953,7 @@ export const custom_workshops_3 = {
   theme: 'fill',
 };
 
-export const custom_workshops = {
+export const custom_workshops: IconDefinition = {
   icon: `<svg version="1.1" id="Layer_9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
 <style type="text/css">
@@ -1270,7 +1270,7 @@ export const custom_workshops = {
   theme: 'fill',
 };
 
-export const deleteIcon = {
+export const deleteIcon: IconDefinition = {
   icon: `<svg id="delete" xmlns="http://www.w3.org/2000/svg">
   <path
     d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
@@ -1281,7 +1281,7 @@ export const deleteIcon = {
   theme: `fill`,
 };
 
-export const engineering = {
+export const engineering: IconDefinition = {
   icon: `<svg version="1.1" id="Layer_13" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
 <style type="text/css">
@@ -1733,14 +1733,14 @@ export const engineering = {
   theme: 'fill',
 };
 
-export const error = {
+export const error: IconDefinition = {
   icon: `<svg id="error" viewBox="0 0 512 512" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><circle cx="269" cy="264.8" r="243" fill="#8cc53f"/><path d="M512 265a244 244 0 0 1-12 74l-214-73 215-74a241 241 0 0 1 11 73z" style="adobe-blending-mode:screen" opacity=".2" fill="#ff0"/><path d="M512 265c0 12-1 24-3 35l-223-34 224-35 2 34z" style="adobe-blending-mode:screen" opacity=".2" fill="#ff0"/><path d="M172 358v130a239 239 0 0 1-16-8V358c0-4 3-7 6-7h3a7 7 0 0 1 2 1c3 0 5 3 5 6zm-23 2-42 86a239 239 0 0 1-12-12l40-81a6 6 0 0 1 3-3 6 6 0 0 1 5 0h1l2 1a7 7 0 0 1 3 9zm118 148-11-1h-6l-72-147a2 2 0 0 1-1 0v-2a5 5 0 0 1 0-1v-1l1-2a8 8 0 0 1 1-1v-1a5 5 0 0 1 1 0l1-1 2-1 3-1 1 1h2l3 3 74 151 1 4z" fill="#4d4d4d"/><path d="M167 352c-3 0-6 3-6 6v125l-5-3V358c0-4 3-7 6-7h3a7 7 0 0 1 2 1zm-24-2a7 7 0 0 0-3 3l-41 85-4-4 40-81a6 6 0 0 1 3-3 7 7 0 0 1 4 0 6 6 0 0 1 1 0zm40 10 73 147h-6l-72-147a2 2 0 0 1-1 0v-2a5 5 0 0 1 0-1v-1l1-2a8 8 0 0 1 1-1v-1a5 5 0 0 1 1 0l1-1 2-1 3-1 1 1h2l-3 1a7 7 0 0 0-3 9z"/><path d="M178 358v2a6 6 0 0 1-1-4l1 2z"/><path d="M327 243v46c0 3-2 6-4 6h-29c-2 0-4-3-4-6v-46c0-4 2-6 4-6h29c2 0 4 2 4 6z" fill="#333"/><path d="M342 236v60c0 4-2 8-4 8h-28c-3 0-4-4-4-8v-60c0-4 1-8 4-8h28c2 0 4 4 4 8z"/><path d="M345 236v60c0 4-2 8-4 8h-29c-2 0-4-4-4-8v-60c0-4 2-8 4-8h29c2 0 4 4 4 8z" fill="#333"/><path d="M345 278v18c0 4-2 8-4 8h-29c-2 0-4-4-4-8v-18h37z"/><path d="M327 282v7c0 3-2 6-4 6h-29c-2 0-4-3-4-6v-7h37z"/><g fill="#335c64"><path d="M26 189h270v162H26z"/><path style="adobe-blending-mode:multiply" opacity=".5" d="M26 189h270v162H26z"/></g><path d="M40 279a6 6 0 0 1-6 6H15a6 6 0 0 1-6-6v-36a6 6 0 0 1 6-6h19a6 6 0 0 1 6 6v36zm157 51c6 0 10 2 10 5v19c0 4-4 6-10 6h-66c-6 0-11-2-11-6v-19c0-3 5-5 11-5h66z" fill="#231f20"/><path fill="#335c64" d="M32 212h264v134H32z"/><path d="m243 76-2 17c0 2-2 3-4 2l-63-6-72-8c-3 0-5-1-4-2l1-18 5-2 93 10 42 4c2 0 4 2 4 3z" fill="#4d4d4d"/><ellipse cx="87.1" cy="127.3" rx="75.3" ry="75.2" fill="#f5ba3d"/><ellipse cx="87.1" cy="127.3" rx="75.3" ry="75.2" fill="#895881"/><ellipse cx="235.4" cy="132.9" rx="68.9" ry="68.8" fill="#f5ba3d"/><ellipse cx="235.4" cy="132.9" rx="68.9" ry="68.8" fill="#895881"/><g fill="#c6a9b5"><circle cx="88.6" cy="125.8" r="73.9"/><circle cx="88.6" cy="125.8" r="73.9" style="adobe-blending-mode:multiply"/></g><circle cx="88.6" cy="125.8" r="68.7" fill="#c6a9b5"/><circle cx="88.6" cy="125.8" r="21.8" fill="#895881"/><circle cx="87.2" cy="127.2" r="13.8" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="88.6" cy="125.8" r="13.8" fill="#4d4d4d"/><circle cx="45.7" cy="115.6" r="13.8" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="128.9" cy="115.6" r="13.8" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="111.9" cy="164.1" r="13.8" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="62.5" cy="164.1" r="13.8" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="87.2" cy="86.2" r="13.8" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="47.1" cy="112.8" r="13.8" fill="#4d4d4d"/><circle cx="130.3" cy="112.8" r="13.8" fill="#4d4d4d"/><circle cx="113.3" cy="161.3" r="13.8" fill="#4d4d4d"/><circle cx="63.9" cy="161.3" r="13.8" fill="#4d4d4d"/><circle cx="88.6" cy="83.4" r="13.8" fill="#4d4d4d"/><path d="m243 76-2 17c0 2-2 3-4 2l-63-6a68 68 0 0 1 23-20l42 4c2 0 4 2 4 3z" fill="#f5ba3d"/><path d="m243 76-2 17c0 2-2 3-4 2l-63-6a68 68 0 0 1 23-20l42 4c2 0 4 2 4 3z" style="adobe-blending-mode:multiply"/><g fill="#c6a9b5"><circle cx="236.8" cy="131.5" r="67.5"/><circle cx="236.8" cy="131.5" r="67.5" style="adobe-blending-mode:multiply"/></g><circle cx="236.8" cy="131.5" r="62.8" fill="#c6a9b5"/><circle cx="236.8" cy="131.5" r="19.9" fill="#895881"/><circle cx="235.6" cy="132.8" r="12.6" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="236.8" cy="131.5" r="12.6" fill="#4d4d4d"/><circle cx="197.7" cy="122.2" r="12.6" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="273.6" cy="122.2" r="12.6" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="258.2" cy="166.4" r="12.6" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="213.1" cy="166.4" r="12.6" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="235.6" cy="95.3" r="12.6" style="adobe-blending-mode:screen" fill="#c59b6d"/><circle cx="199" cy="119.6" r="12.6" fill="#4d4d4d"/><circle cx="274.9" cy="119.6" r="12.6" fill="#4d4d4d"/><circle cx="259.4" cy="163.8" r="12.6" fill="#4d4d4d"/><circle cx="214.3" cy="163.8" r="12.6" fill="#4d4d4d"/><circle cx="236.8" cy="92.8" r="12.6" fill="#4d4d4d"/><g fill="#ba334d"><circle cx="264" cy="237.6" r="12.2"/><circle cx="264" cy="237.6" r="12.2" style="adobe-blending-mode:multiply"/></g><circle cx="265.5" cy="236.1" r="10.7" fill="#ba334d"/><g fill="#ba334d"><circle cx="227" cy="237.6" r="12.2"/><circle cx="227" cy="237.6" r="12.2" style="adobe-blending-mode:multiply"/></g><circle cx="228.5" cy="236.1" r="10.7" fill="#ba334d"/><g fill="#ba334d"><circle cx="189.2" cy="237.6" r="12.2"/><circle cx="189.2" cy="237.6" r="12.2" style="adobe-blending-mode:multiply"/></g><circle cx="190.7" cy="236.1" r="10.7" fill="#ba334d"/><g style="adobe-blending-mode:screen"><g style="adobe-blending-mode:normal"><path d="M153 243H52c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 1 5 4s-2 4-5 4z" fill="#335c64"/><path d="M153 243H52c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 1 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/></g></g><g style="adobe-blending-mode:screen"><g style="adobe-blending-mode:normal"><path d="M153 263H52c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" fill="#335c64"/><path d="M153 263H52c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/></g></g><g style="adobe-blending-mode:screen"><g style="adobe-blending-mode:normal"><path d="M153 283H52c-2 0-4-1-4-3s2-4 4-4h101c3 0 5 1 5 4s-2 3-5 3z" fill="#335c64"/><path d="M153 283H52c-2 0-4-1-4-3s2-4 4-4h101c3 0 5 1 5 4s-2 3-5 3z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/></g></g><g style="adobe-blending-mode:screen"><g style="adobe-blending-mode:normal"><path d="M153 304H52c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" fill="#335c64"/><path d="M153 304H52c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/></g></g><g style="adobe-blending-mode:screen"><g style="adobe-blending-mode:normal"><path d="M153 324H52c-2 0-4-1-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" fill="#335c64"/><path d="M153 324H52c-2 0-4-1-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/></g></g><path d="M155 241H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" fill="#335c64"/><path d="M155 241H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/><path d="M155 262H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" fill="#335c64"/><path d="M155 262H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/><path d="M155 282H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" fill="#335c64"/><path d="M155 282H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/><path d="M155 303H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 1 5 4s-2 4-5 4z" fill="#335c64"/><path d="M155 303H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 1 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/><path d="M155 323H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" fill="#335c64"/><path d="M155 323H54c-2 0-4-2-4-4s2-4 4-4h101c3 0 5 2 5 4s-2 4-5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#37673f"/><path d="m160 237-2 4v-1c0-2-2-4-5-4H52l-2 1c0-2 2-4 4-4h101c3 0 5 2 5 4zm0 21-2 3v-1c0-2-2-3-5-3H50c0-2 2-3 4-3h101c3 0 5 2 5 4zM160 278c0 2-1 3-2 3 0-2-2-4-5-4H52l-2 1c0-2 2-4 4-4h101c3 0 5 2 5 4zM160 299l-2 3v-1c0-2-2-4-5-4H52l-2 1c0-2 2-3 4-3h101c3 0 5 1 5 4zM160 319l-2 3c0-2-2-4-5-4H50c0-1 2-3 4-3h101c3 0 5 2 5 4z" style="adobe-blending-mode:multiply" opacity=".5" fill="#335c64"/><path d="M369 230v72c0 5-2 9-4 9h-29c-2 0-4-4-4-9v-72c0-5 2-9 4-9h29c2 0 4 4 4 9z"/><path style="adobe-blending-mode:screen" fill="#333" d="M308 238h37v10h-37z"/><path d="M371 230v72c0 5-1 9-3 9h-29c-2 0-4-4-4-9v-72c0-5 2-9 4-9h29c2 0 3 4 3 9z" fill="#333"/><path d="M371 275v27c0 5-1 9-3 9h-29c-2 0-4-4-4-9v-27h36z"/><path style="adobe-blending-mode:screen" fill="#333" d="M335 233h36v10h-36z"/></svg>
 `,
   name: 'error',
   theme: 'fill',
 };
 
-export const genre = {
+export const genre: IconDefinition = {
   icon: `<svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24"
@@ -1758,7 +1758,7 @@ export const genre = {
   theme: 'fill',
 };
 
-export const imdb = {
+export const imdb: IconDefinition = {
   icon: `<svg id="imdb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
   <path d="M0 0h24v24H0z" fill="none" />
   <path
@@ -1770,7 +1770,7 @@ export const imdb = {
   theme: 'fill',
 };
 
-export const play = {
+export const play: IconDefinition = {
   icon: `<svg id="play" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="0.875em">
   <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
 </svg>
@@ -1779,7 +1779,7 @@ export const play = {
   theme: 'fill',
 };
 
-export const popular = {
+export const popular: IconDefinition = {
   icon: `<svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24"
@@ -1796,7 +1796,7 @@ export const popular = {
   theme: 'fill',
 };
 
-export const sad = {
+export const sad: IconDefinition = {
   icon: `<svg id="sad" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path d="M0 0h24v24H0V0z" fill="none" />
   <circle cx="15.5" cy="9.5" r="1.5" />
@@ -1810,7 +1810,7 @@ export const sad = {
   theme: 'fill',
 };
 
-export const search = {
+export const search: IconDefinition = {
   icon: `<svg id="search" fill="currentColor" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path
   d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
 `,
@@ -1818,7 +1818,7 @@ export const search = {
   theme: 'fill',
 };
 
-export const top_rated = {
+export const top_rated: IconDefinition = {
   icon: `<svg
   id="top_rated"
   xmlns="http://www.w3.org/2000/svg"
@@ -1836,7 +1836,7 @@ export const top_rated = {
   theme: 'fill',
 };
 
-export const upcoming = {
+export const upcoming: IconDefinition = {
   icon: `<svg
   id="upcoming"
   xmlns="http://www.w3.org/2000/svg"
@@ -1853,7 +1853,7 @@ export const upcoming = {
   theme: 'fill',
 };
 
-export const website = {
+export const website: IconDefinition = {
   icon: `<svg id="website" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
   <path d="M0 0h24v24H0V0z" fill="none" />
   <path
@@ -1865,7 +1865,7 @@ export const website = {
   theme: 'fill',
 };
 
-export const who_we_are = {
+export const who_we_are: IconDefinition = {
   icon: `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
 <style type="text/css">
@@ -2141,7 +2141,7 @@ export const who_we_are = {
   theme: 'fill',
 };
 
-export const workshops = {
+export const workshops: IconDefinition = {
   icon: `<svg version="1.1" id="Layer_11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 600 530" style="enable-background:new 0 0 600 530;" xml:space="preserve">
 <style type="text/css">
@@ -2503,7 +2503,7 @@ export const workshops = {
   theme: 'fill',
 };
 
-export const AllIcons = [
+export const AllIcons: IconDefinition[] = [
   account,
   back,
   consulting,

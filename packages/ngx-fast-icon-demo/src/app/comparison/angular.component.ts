@@ -1,44 +1,31 @@
-import { Component } from '@angular/core';
-import { SUPPORTED_ICONS } from '../icon-data';
-import { IconTester } from '../misc/icon-tester.service';
-import { ControllerComponent } from '../misc/controller.component';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+
 import { SvgIconComponent } from 'angular-svg-icon';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
+
+import { ControllerComponent } from '../misc/controller.component';
+import { IconTester } from '../misc/icon-tester.service';
+import { SUPPORTED_ICONS } from '../misc/icon-data';
 
 @Component({
   standalone: true,
   template: `
     <app-controller [demoLib]='"Angular svg icon"' [tester]='tester' />
-    <div class='row icons' [ngClass]='tester.layout | async'>
+    <div class='row icons' [class]='tester.layout | async'>
       @for (list of (tester.lists | async); track $index) {
         <ul class='group'>
           @for (icon of list; track $index) {
             <li>
-              <svg-icon
-                [src]='icon'
-                [svgStyle]="{ 'width.px': 30, 'height.px': 30 }"
-              />
+              <svg-icon [src]='icon' [svgStyle]="{ 'width.px': 30, 'height.px': 30 }" />
             </li>
           }
         </ul>
       }
     </div>
   `,
-  styles: [`
-    .group {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-    }
-  `],
-  imports: [
-    ControllerComponent,
-    AsyncPipe,
-    NgClass,
-    SvgIconComponent,
-    FastSvgComponent
-  ]
+  imports: [AsyncPipe, ControllerComponent, SvgIconComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class AngularComponent {
   constructor(public tester: IconTester) {

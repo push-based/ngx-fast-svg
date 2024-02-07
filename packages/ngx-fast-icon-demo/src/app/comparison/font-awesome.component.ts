@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
-import { IconTester } from '../misc/icon-tester.service';
-import { ControllerComponent } from '../misc/controller.component';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+
+import { ControllerComponent } from '../misc/controller.component';
+import { IconTester } from '../misc/icon-tester.service';
 
 @Component({
   standalone: true,
   template: `
     <app-controller [demoLib]='"Font awesome icon"' [tester]='tester' />
-    <div class='row icons' [ngClass]='tester.layout | async'>
+    <div class='row icons' [class]='tester.layout | async'>
       @for (list of (tester.lists | async); track $index) {
         <ul class='group'>
           @for (icon of list; track $index) {
@@ -21,28 +23,12 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
       }
     </div>
   `,
-  styles: [`
-    .group {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    li {
-      width: 30px;
-      height: 30px;
-    }
-  `],
-  imports: [
-    ControllerComponent,
-    AsyncPipe,
-    NgClass,
-    FaIconComponent
-  ]
+  imports: [AsyncPipe, ControllerComponent, FaIconComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class FontAwesomeComponent {
   constructor(public tester: IconTester) {
-    console.log(faCircleUser);
     this.tester.defineSet([
       faCircleUser,
       faCircleUser,

@@ -7,13 +7,7 @@ import { readFileSync } from 'fs';
 @Injectable()
 export class SvgLoadStrategySsr implements SvgLoadStrategy {
   load(url: string): Observable<string> {
-    const iconPath = join(
-      process.cwd(),
-      'packages',
-      'ngx-fast-icon-demo',
-      'src',
-      url
-    );
+    const iconPath = join(process.cwd(), 'packages', 'ngx-fast-icon-demo', 'src', url);
     const iconSVG = readFileSync(iconPath, 'utf8');
     return of(iconSVG);
   }
