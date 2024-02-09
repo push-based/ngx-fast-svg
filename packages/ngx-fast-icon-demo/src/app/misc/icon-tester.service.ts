@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
+import {ActivatedRoute, NavigationEnd, Params, Router} from '@angular/router';
+import {filter, map, Observable, switchMap } from 'rxjs';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 enum ViewportSetting {
@@ -26,7 +26,11 @@ export class IconTester {
   readonly lists = this.activatedRoute.queryParams.pipe(map(({list}) => Array(Number(list)).fill(this.icons)));
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this._handleNavigationWithInvalidQueryParams(activatedRoute);
+    const queryParams$ = router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      switchMap(() => activatedRoute.queryParams)
+    )
+    this._handleNavigationWithInvalidQueryParams(queryParams$, activatedRoute);
   }
 
   setLayout(setting: ViewportSetting) {
@@ -57,8 +61,8 @@ export class IconTester {
     });
   }
 
-  private _handleNavigationWithInvalidQueryParams(activatedRoute: ActivatedRoute): void {
-    activatedRoute.queryParams
+  private _handleNavigationWithInvalidQueryParams(queryParams$: Observable<Params>, activatedRoute: ActivatedRoute): void {
+    queryParams$
       .pipe(filter(({ls, list}) => !this.lsOptions.includes(ls) || !list))
       .subscribe(() => {
         this.router.navigate(
