@@ -1,11 +1,13 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, inject, Input, ViewChild } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { IonicModule } from '@ionic/angular';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
+import { BASE_ROUTE, DEMO_ROUTE } from './constants';
+import { IconTester } from './icon-tester.service';
 
 @Component({
   selector: 'app-shell',
@@ -22,14 +24,19 @@ import { MatDividerModule } from '@angular/material/divider';
           <mat-sidenav mode='side' [opened]='!isMobile' [fixedInViewport]='isMobile' fixedTopGap='56'>
             <div class='sidebar'>
               <div class='header'>
-                @for (link of links; track $index) {
+                <a
+                  class='link'
+                  [routerLinkActive]="'active'"
+                  [class]='BASE_ROUTE'
+                  [routerLink]='[BASE_ROUTE]'
+                >{{ BASE_ROUTE }}</a>
+                @for (demo of DEMO_ROUTES; track $index) {
                   <a
                     class='link'
                     [routerLinkActive]="'active'"
-                    [class]='link'
-                    [routerLink]='link'
-                    [queryParams]='queryParams'
-                  >{{ link }}</a>
+                    [class]='demo'
+                    [routerLink]='[demo,tester.activeLayoutSetting(),tester.iconListCount()]'
+                  >{{ demo }}</a>
                 }
               </div>
             </div>
@@ -267,9 +274,11 @@ import { MatDividerModule } from '@angular/material/divider';
   ]
 })
 export class ShellComponent {
-  @Input({required: true}) rootClass!: string;
+  @Input({required: true}) rootClass!: string | string[];
   @Input({required: true}) isMobile!: boolean;
-  @Input({required: true}) links!: string[];
-  @Input({required: true}) queryParams!: Params;
   @ViewChild(MatSidenav) sideNav!: MatSidenav;
+  readonly tester = inject(IconTester);
+
+  readonly DEMO_ROUTES = Object.values(DEMO_ROUTE);
+  readonly BASE_ROUTE = BASE_ROUTE;
 }

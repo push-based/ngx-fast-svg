@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IconTester } from './icon-tester.service';
 import { AsyncPipe, NgClass } from '@angular/common';
+import { LAYOUT_SETTING_NAME } from './constants';
 
 @Component({
   standalone: true,
@@ -13,11 +14,11 @@ import { AsyncPipe, NgClass } from '@angular/common';
     <h1>{{demoLib}} demo</h1>
     <h4>Layout setting</h4>
     <div class='buttons-wrapper'>
-      @for (button of tester.buttons; track $index) {
+      @for (setting of tester.LAYOUT_SETTINGS; track setting) {
         <button
-          [ngClass]='{ active: button === (tester.setting | async)}'
-          (click)='tester.setLayout(button)'
-        >{{ button }}
+          [ngClass]='{ active: setting === tester.activeLayoutSetting()}'
+          (click)='tester.setLayout(setting)'>
+          {{LAYOUT_NAME[setting]}}
         </button>
       }
     </div>
@@ -27,9 +28,11 @@ import { AsyncPipe, NgClass } from '@angular/common';
       <button (click)='tester.updateList(-1)'>Remove</button>
       <button (click)='tester.reload()'>Reload page</button>
     </div>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ControllerComponent {
   @Input({required: true}) demoLib!: string;
   @Input({required: true}) tester!: IconTester;
+  protected readonly LAYOUT_NAME = LAYOUT_SETTING_NAME;
 }
