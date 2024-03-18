@@ -6,6 +6,7 @@ import { IonIcon } from '@ionic/angular/standalone';
 import { ControllerComponent } from '../misc/controller.component';
 import { SUPPORTED_ICONS } from '../misc/icon-data';
 import { BaseDemoComponent } from '../misc/base-demo.component';
+import { DEMO_ROUTE } from '../misc/constants';
 
 @Component({
   standalone: true,
@@ -30,6 +31,7 @@ import { BaseDemoComponent } from '../misc/base-demo.component';
 export class IonicComponent extends BaseDemoComponent {
   constructor() {
     super();
+    this.tester.activeDemo.set(DEMO_ROUTE.IONIC);
     this.tester.defineSet(
       SUPPORTED_ICONS.map((i) => `assets/svg-icons/${i}.svg`)
     );

@@ -7,6 +7,7 @@ import { ControllerComponent } from '../misc/controller.component';
 import { IconTester } from '../misc/icon-tester.service';
 import { SUPPORTED_ICONS } from '../misc/icon-data';
 import { BaseDemoComponent } from '../misc/base-demo.component';
+import { DEMO_ROUTE } from '../misc/constants';
 
 @Component({
   standalone: true,
@@ -31,6 +32,7 @@ import { BaseDemoComponent } from '../misc/base-demo.component';
 export class AngularComponent extends BaseDemoComponent {
   constructor() {
     super();
+    this.tester.activeDemo.set(DEMO_ROUTE.ANGULAR);
     this.tester.defineSet(
       SUPPORTED_ICONS.map((i) => `assets/svg-icons/${i}.svg`)
     );

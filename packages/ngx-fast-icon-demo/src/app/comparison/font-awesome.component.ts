@@ -7,6 +7,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { ControllerComponent } from '../misc/controller.component';
 import { IconTester } from '../misc/icon-tester.service';
 import { BaseDemoComponent } from '../misc/base-demo.component';
+import { DEMO_ROUTE } from '../misc/constants';
 
 @Component({
   standalone: true,
@@ -31,6 +32,7 @@ import { BaseDemoComponent } from '../misc/base-demo.component';
 export class FontAwesomeComponent extends BaseDemoComponent {
   constructor() {
     super();
+    this.tester.activeDemo.set(DEMO_ROUTE.FONT_AWESOME);
     this.tester.defineSet([
       faCircleUser,
       faCircleUser,

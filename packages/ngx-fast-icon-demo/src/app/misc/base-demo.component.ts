@@ -14,7 +14,6 @@ export class BaseDemoComponent implements OnInit {
   protected tester = inject(IconTester);
 
   ngOnInit() {
-    this.tester.activeDemo.set('angular');
     this.tester.activeLayoutSetting.set(this.layout() as any);
     this.tester.iconListCount.set(this.count());
   }

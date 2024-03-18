@@ -8,6 +8,7 @@ import { ControllerComponent } from '../misc/controller.component';
 import { IconTester } from '../misc/icon-tester.service';
 import { SUPPORTED_ICONS } from '../misc/icon-data';
 import { BaseDemoComponent } from '../misc/base-demo.component';
+import { DEMO_ROUTE } from '../misc/constants';
 
 @Component({
   standalone: true,
@@ -35,6 +36,7 @@ export class MaterialComponent extends BaseDemoComponent {
     private matIconRegistry: MatIconRegistry,
   ) {
     super();
+    this.tester.activeDemo.set(DEMO_ROUTE.MATERIAL);
     this.tester.defineSet(SUPPORTED_ICONS);
     SUPPORTED_ICONS.forEach((i) => {
       this.matIconRegistry.addSvgIcon(

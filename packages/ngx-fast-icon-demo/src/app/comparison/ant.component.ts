@@ -9,6 +9,7 @@ import { SUPPORTED_ICONS } from '../misc/icon-data';
 
 import { AllIcons } from './ant-icons';
 import { BaseDemoComponent } from '../misc/base-demo.component';
+import { DEMO_ROUTE } from '../misc/constants';
 
 @Component({
   standalone: true,
@@ -33,6 +34,7 @@ import { BaseDemoComponent } from '../misc/base-demo.component';
 export class AntComponent extends BaseDemoComponent {
   constructor(private iconService: IconService) {
     super();
+    this.tester.activeDemo.set(DEMO_ROUTE.ANT);
     this.tester.defineSet(SUPPORTED_ICONS);
     this.iconService.addIcon(...(AllIcons));
   }

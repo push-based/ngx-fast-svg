@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { LAYOUT_SETTING, LayoutSetting } from './constants';
 
@@ -12,7 +12,7 @@ export class IconTester {
 
   icons?: string[] | IconDefinition[];
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private router: Router) {}
 
   setLayout(setting: LayoutSetting) {
     this.activeLayoutSetting.set(setting);
@@ -34,8 +34,7 @@ export class IconTester {
 
   private updateLocation(): void {
     this.router.navigate(
-      [this.activeDemo(), this.activeLayoutSetting(), this.iconListCount()],
-      { relativeTo: this.activatedRoute }
+      [this.activeDemo(), this.activeLayoutSetting(), this.iconListCount()]
     );
   }
 }
