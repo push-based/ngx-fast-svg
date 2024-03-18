@@ -7,17 +7,18 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { ControllerComponent } from '../misc/controller.component';
 import { IconTester } from '../misc/icon-tester.service';
 import { SUPPORTED_ICONS } from '../misc/icon-data';
+import { BaseDemoComponent } from '../misc/base-demo.component';
 
 @Component({
   standalone: true,
   template: `
     <app-controller [demoLib]='"Material icon"' [tester]='tester'/>
-    <div class='row icons' [class]='tester.layout | async'>
-      @for (list of (tester.lists | async); track $index) {
-        <ul class="group">
-          @for (icon of list; track $index) {
+    <div class='row icons' [class]='layout()'>
+      @for (list of countArr(); track $index) {
+        <ul class='group'>
+          @for (icon of tester.icons; track $index) {
             <li>
-              <mat-icon class='mat-icon-rtl-mirror' [svgIcon]='icon' />
+              <mat-icon class='mat-icon-rtl-mirror' [svgIcon]='$any(icon)' />
             </li>
           }
         </ul>
@@ -28,12 +29,12 @@ import { SUPPORTED_ICONS } from '../misc/icon-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class MaterialComponent {
+export class MaterialComponent extends BaseDemoComponent {
   constructor(
     private domSanitizer: DomSanitizer,
     private matIconRegistry: MatIconRegistry,
-    public tester: IconTester
   ) {
+    super();
     this.tester.defineSet(SUPPORTED_ICONS);
     SUPPORTED_ICONS.forEach((i) => {
       this.matIconRegistry.addSvgIcon(
