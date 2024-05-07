@@ -22,8 +22,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: install
         run: npm ci
-      - name: build demo
-        run: npx nx run ngx-fast-icon-demo:build:production --base-href /ngx-fast-svg/
       - name: build
         run: npm run nx -- affected:build --base=origin/main --head=HEAD
       - name: test
