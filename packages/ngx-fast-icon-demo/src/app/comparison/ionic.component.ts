@@ -17,12 +17,18 @@ import { DEMO_ROUTE } from '../misc/constants';
         <ul class='group'>
           @for (icon of tester.icons; track $index) {
             <li>
-              <ion-icon size="large" [src]="$any(icon)" />
+              <ion-icon [src]="$any(icon)" />
             </li>
           }
         </ul>
       }
     </div>
+  `,
+  styles: `
+    ion-icon {
+      font-size: 24px;
+      margin: 3px;
+    }
   `,
   imports: [ControllerComponent, AsyncPipe, IonIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
