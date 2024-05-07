@@ -58,6 +58,5 @@
     "lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
-  },
-  "nxCloudAccessToken": "Y2M2M2QyNzEtOTEyMC00NTg3LWI0ZTctY2I2ZWUzZGE5OTQxfHJlYWQtd3JpdGU="
+  }
 }
