@@ -1,8 +1,5 @@
 {
   "extends": "nx/presets/core.json",
-  "affected": {
-    "defaultBase": "origin/main"
-  },
   "generators": {
     "@nrwl/angular:application": {
       "style": "scss",
@@ -58,5 +55,6 @@
     "lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
-  }
+  },
+  "defaultBase": "origin/main"
 }
