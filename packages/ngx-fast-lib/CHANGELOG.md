@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [18.0.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-18.0.0...ngx-fast-lib-18.0.1) (2024-08-05)
+
+
+### Bug Fixes
+
+* upgrade dependencies for angular v18 compatibility ([ceb5cc0](https://github.com/push-based/ngx-fast-svg/commit/ceb5cc08a99e0d0714d14086d6d3ce3559829a48))
+
+
+
 # [18.0.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-17.0.0...ngx-fast-lib-18.0.0) (2023-11-21)
 
 
