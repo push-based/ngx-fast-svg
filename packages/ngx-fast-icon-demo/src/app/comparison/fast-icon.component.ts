@@ -4,7 +4,6 @@ import { AsyncPipe } from '@angular/common';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { ControllerComponent } from '../misc/controller.component';
-import { IconTester } from '../misc/icon-tester.service';
 import { SUPPORTED_ICONS } from '../misc/icon-data';
 import { BaseDemoComponent } from '../misc/base-demo.component';
 import { DEMO_ROUTE } from '../misc/constants';
@@ -13,12 +12,13 @@ import { DEMO_ROUTE } from '../misc/constants';
   standalone: true,
   template: `
     <app-controller [demoLib]='"Fast svg"' [tester]='tester' />
+    <button (click)='changeSort()'>Reload</button>
     <div class='row icons' [class]='layout()'>
       @for (list of countArr(); track $index) {
         <ul class='group'>
-          @for (icon of tester.icons; track $index) {
+          @for (icon of tester.icons; track icon) {
             <li>
-              <fast-svg [name]='$any(icon)' />
+              <fast-svg [name]='$any(icon)' [size]="size" />
             </li>
           }
         </ul>
@@ -34,5 +34,12 @@ export class FastIconRouteComponent extends BaseDemoComponent {
     super();
     this.tester.activeDemo.set(DEMO_ROUTE.FAST_SVG);
     this.tester.defineSet(SUPPORTED_ICONS);
+  }
+
+  size = '24';
+
+  changeSort() {
+    this.tester.defineSet(SUPPORTED_ICONS.sort(() => Math.random() - 0.5));
+    this.size = this.size === '24' ? '32' : '24';
   }
 }
