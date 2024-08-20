@@ -105,7 +105,6 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
 
   private readonly getImg = createGetImgFn(this.renderer);
 
-
   name = input<string>('');
   size = input<string>(this.registry.defaultSize);
   width = input<string>('');
@@ -186,25 +185,23 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
           // This potentially could already receive the svg from the cache and drop the img from the DOM before it gets activated for lazy loading.
           // NOTICE:
           // If the svg is already cached the following code will execute synchronously. This gives us the chance to add
-          const sub = this.registry
-            .svgCache$(name)
-            .subscribe((cache) => {
-              // The first child is the `use` tag. The value of href gets displayed as SVG
-              svg.children[0].setAttribute('href', cache.name);
-              svg.setAttribute('viewBox', cache.viewBox);
+          const sub = this.registry.svgCache$(name).subscribe((cache) => {
+            // The first child is the `use` tag. The value of href gets displayed as SVG
+            svg.children[0].setAttribute('href', cache.name);
+            svg.setAttribute('viewBox', cache.viewBox);
 
-              // early exit no image
-              if (!img) return;
+            // early exit no image
+            if (!img) return;
 
-              // If the img is present
-              // and the name in included in the href (svg is fully loaded, not only the suspense svg)
-              // Remove the element from the DOM as it is no longer needed
-              if (cache.name.includes(name)) {
-                img.removeEventListener('load', this.loadedListener);
-                // removeEventListener.bind(img, 'load', this.loadedListener);
-                img.remove();
-              }
-            });
+            // If the img is present
+            // and the name in included in the href (svg is fully loaded, not only the suspense svg)
+            // Remove the element from the DOM as it is no longer needed
+            if (cache.name.includes(name)) {
+              img.removeEventListener('load', this.loadedListener);
+              // removeEventListener.bind(img, 'load', this.loadedListener);
+              img.remove();
+            }
+          });
 
           // SSR
           if (isPlatformServer(this.platform)) {

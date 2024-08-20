@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
