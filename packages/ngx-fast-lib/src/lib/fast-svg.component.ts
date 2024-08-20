@@ -12,7 +12,6 @@ import {
   effect,
   inject,
   input,
-  signal,
   untracked,
 } from '@angular/core';
 import { getZoneUnPatchedApi } from './internal/get-zone-unpatched-api';
@@ -236,7 +235,6 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // TODO: do we need this anymore? effect already removes it on cleanup
     this.element.nativeElement
       .querySelector('img')
       ?.removeEventListener('load', this.loadedListener);
