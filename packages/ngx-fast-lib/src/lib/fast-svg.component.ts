@@ -5,13 +5,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Input,
+  Injector,
   OnDestroy,
   PLATFORM_ID,
   Renderer2,
+  effect,
   inject,
+  input,
+  untracked,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { getZoneUnPatchedApi } from './internal/get-zone-unpatched-api';
 import { SvgRegistry } from './svg-registry.service';
 
@@ -95,119 +97,141 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FastSvgComponent implements AfterViewInit, OnDestroy {
+  private readonly injector = inject(Injector);
   private readonly platform = inject(PLATFORM_ID);
   private readonly renderer = inject(Renderer2);
   private readonly registry = inject(SvgRegistry);
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  private readonly sub = new Subscription();
   private readonly getImg = createGetImgFn(this.renderer);
 
-  @Input() name = '';
-  @Input() size: string = this.registry.defaultSize;
-  @Input() width = '';
-  @Input() height = '';
+  name = input<string>('');
+  size = input<string>(this.registry.defaultSize);
+  width = input<string>('');
+  height = input<string>('');
 
   // When the browser loaded the svg resource we trigger the caching mechanism
   // re-fetch -> cache-hit -> get SVG -> cache in DOM
   loadedListener = () => {
-    this.registry.fetchSvg(this.name);
+    this.registry.fetchSvg(this.name());
   };
 
   ngAfterViewInit() {
-    if (!this.name) {
-      throw new Error('svg component needs a name to operate');
-    }
-
     // Setup view refs and init them
     const elem = this.element.nativeElement;
 
     const svg = elem.querySelector('svg') as SVGElement;
-    // apply size
-    if (this.size && svg) {
-      // We apply fixed dimensions
-      // Additionally to SEO rules, to avoid any scroll flicker caused by `content-visibility:auto` defined in component styles
-      svg.setAttribute('width', this.width || this.size);
-      svg.setAttribute('height', this.height || this.width || this.size);
-    }
 
-    let img: HTMLImageElement | null = null;
-
-    // if svg is not in cache we append
-    if (!this.registry.isSvgCached(this.name)) {
-      /**
-       CSR - Browser native lazy loading hack
-
-       We use an img element here to leverage the browsers native features:
-       - lazy loading (loading="lazy") to only load the svg that are actually visible
-       - priority hints to down prioritize the fetch to avoid delaying the LCP
-
-       While the SVG is loading we display a fallback SVG.
-       After the image is loaded we remove it from the DOM. (IMG load event)
-       When the new svg arrives we append it to the template.
-
-       Note:
-       - the image is styled with display none. this prevents any loading of the resource ever.
-       on component bootstrap we decide what we want to do. when we remove display none it performs the browser native behavior
-       - the image has 0 height and with and containment as well as contnet-visibility to recuce any performance impact
-
-
-       Edge cases:
-       - only resources that are not loaded in the current session of the browser will get lazy loaded (same URL to trigger loading is not possible)
-       - already loaded resources will get emitted from the cache immediately, even if loading is set to lazy :o
-       - the image needs to have display other than none
-
-       */
-      const i = this.getImg(this.registry.url(this.name));
-      this.renderer.appendChild(this.element.nativeElement, i);
-
-      // get img
-      img = elem.querySelector('img') as HTMLImageElement;
-      addEventListener(img, 'load', this.loadedListener);
-    }
-
-    // Listen to svg changes
-    // This potentially could already receive the svg from the cache and drop the img from the DOM before it gets activated for lazy loading.
-    // NOTICE:
-    // If the svg is already cached the following code will execute synchronously. This gives us the chance to add
-    this.sub.add(
-      this.registry.svgCache$(this.name).subscribe((cache) => {
-        // The first child is the `use` tag. The value of href gets displayed as SVG
-        svg.children[0].setAttribute('href', cache.name);
-        svg.setAttribute('viewBox', cache.viewBox);
-
-        // early exvit no image
-        if (!img) return;
-
-        // If the img is present
-        // and the name in included in the href (svg is fully loaded, not only the suspense svg)
-        // Remove the element from the DOM as it is no longer needed
-        if (cache.name.includes(this.name)) {
-          img.removeEventListener('load', this.loadedListener);
-          // removeEventListener.bind(img, 'load', this.loadedListener);
-          img.remove();
+    effect(
+      () => {
+        // apply size
+        if (this.size() && svg) {
+          // We apply fixed dimensions
+          // Additionally to SEO rules, to avoid any scroll flicker caused by `content-visibility:auto` defined in component styles
+          svg.setAttribute('width', this.width() || this.size());
+          svg.setAttribute(
+            'height',
+            this.height() || this.width() || this.size()
+          );
         }
-      })
+      },
+      { injector: this.injector }
     );
 
-    // SSR
-    if (isPlatformServer(this.platform)) {
-      // if SSR load svgs on server => ends up in DOM cache and ships to the client
-      this.registry.fetchSvg(this.name);
-    }
-    // CSR
-    else {
-      // Activate the lazy loading hack
-      // Loading is triggered in the template over loading="lazy" and onload
-      // Than the same image is fetched over fromFetch and rendered as SVG. (This will result in a cache hit for this svg)
-      //
-      // If the img is present activate it
-      img && img.style.setProperty('display', 'block');
-    }
+    effect(
+      (onCleanup) => {
+        const name = this.name();
+
+        untracked(() => {
+          if (!name) {
+            throw new Error('svg component needs a name to operate');
+          }
+
+          let img: HTMLImageElement | null = null;
+
+          // if svg is not in cache we append
+          if (!this.registry.isSvgCached(name)) {
+            /**
+              CSR - Browser native lazy loading hack
+        
+              We use an img element here to leverage the browsers native features:
+              - lazy loading (loading="lazy") to only load the svg that are actually visible
+              - priority hints to down prioritize the fetch to avoid delaying the LCP
+        
+              While the SVG is loading we display a fallback SVG.
+              After the image is loaded we remove it from the DOM. (IMG load event)
+              When the new svg arrives we append it to the template.
+        
+              Note:
+              - the image is styled with display none. this prevents any loading of the resource ever.
+              on component bootstrap we decide what we want to do. when we remove display none it performs the browser native behavior
+              - the image has 0 height and with and containment as well as contnet-visibility to reduce any performance impact
+        
+        
+              Edge cases:
+              - only resources that are not loaded in the current session of the browser will get lazy loaded (same URL to trigger loading is not possible)
+              - already loaded resources will get emitted from the cache immediately, even if loading is set to lazy :o
+              - the image needs to have display other than none
+            */
+            const i = this.getImg(this.registry.url(name));
+            this.renderer.appendChild(this.element.nativeElement, i);
+
+            // get img
+            img = elem.querySelector('img') as HTMLImageElement;
+            addEventListener(img, 'load', this.loadedListener);
+          }
+
+          // Listen to svg changes
+          // This potentially could already receive the svg from the cache and drop the img from the DOM before it gets activated for lazy loading.
+          // NOTICE:
+          // If the svg is already cached the following code will execute synchronously. This gives us the chance to add
+          const sub = this.registry.svgCache$(name).subscribe((cache) => {
+            // The first child is the `use` tag. The value of href gets displayed as SVG
+            svg.children[0].setAttribute('href', cache.name);
+            svg.setAttribute('viewBox', cache.viewBox);
+
+            // early exit no image
+            if (!img) return;
+
+            // If the img is present
+            // and the name in included in the href (svg is fully loaded, not only the suspense svg)
+            // Remove the element from the DOM as it is no longer needed
+            if (cache.name.includes(name)) {
+              img.removeEventListener('load', this.loadedListener);
+              // removeEventListener.bind(img, 'load', this.loadedListener);
+              img.remove();
+            }
+          });
+
+          // SSR
+          if (isPlatformServer(this.platform)) {
+            // if SSR load svgs on server => ends up in DOM cache and ships to the client
+            this.registry.fetchSvg(name);
+          }
+          // CSR
+          else {
+            // Activate the lazy loading hack
+            // Loading is triggered in the template over loading="lazy" and onload
+            // Than the same image is fetched over fromFetch and rendered as SVG. (This will result in a cache hit for this svg)
+            //
+            // If the img is present activate it
+            img && img.style.setProperty('display', 'block');
+          }
+
+          onCleanup(() => {
+            sub.unsubscribe();
+
+            if (img) {
+              img.removeEventListener('load', this.loadedListener);
+            }
+          });
+        });
+      },
+      { injector: this.injector }
+    );
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
     this.element.nativeElement
       .querySelector('img')
       ?.removeEventListener('load', this.loadedListener);
