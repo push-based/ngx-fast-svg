@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [18.0.2](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-18.0.1...ngx-fast-lib-18.0.2) (2024-08-23)
+
+
+### Bug Fixes
+
+* **lib:** support for >17.1.0 ([bda0565](https://github.com/push-based/ngx-fast-svg/commit/bda05659c44155ea6242f307a685d2ae8d36166f))
+* make dynamic name work ([#74](https://github.com/push-based/ngx-fast-svg/issues/74)) ([cb5f6b9](https://github.com/push-based/ngx-fast-svg/commit/cb5f6b9e9e30d6055a9a0bab873cb468a8f97a26))
+
+
+
 ## [18.0.1](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-18.0.0...ngx-fast-lib-18.0.1) (2024-08-05)
 
 
