@@ -3,5 +3,5 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export abstract class SvgLoadStrategy {
-  abstract load(url: string): Observable<string>;
+  abstract load(url: string | Observable<string>): Observable<string>;
 }
