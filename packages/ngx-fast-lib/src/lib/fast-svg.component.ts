@@ -4,18 +4,19 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  effect,
   ElementRef,
+  inject,
   Injector,
+  input,
   OnDestroy,
   PLATFORM_ID,
-  Renderer2,
-  effect,
-  inject,
-  input,
-  untracked,
+  Renderer2
 } from '@angular/core';
 import { getZoneUnPatchedApi } from './internal/get-zone-unpatched-api';
 import { SvgRegistry } from './svg-registry.service';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { of, switchMap } from 'rxjs';
 
 /**
  * getZoneUnPatchedApi
@@ -110,6 +111,11 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
   width = input<string>('');
   height = input<string>('');
 
+  #url = toSignal(toObservable(this.name).pipe(switchMap((name) => {
+    const url = this.registry.url(name);
+    return typeof url === 'string' ? of(url) : url;
+  })))
+
   // When the browser loaded the svg resource we trigger the caching mechanism
   // re-fetch -> cache-hit -> get SVG -> cache in DOM
   loadedListener = () => {
@@ -142,7 +148,6 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
       (onCleanup) => {
         const name = this.name();
 
-        untracked(() => {
           if (!name) {
             throw new Error('svg component needs a name to operate');
           }
@@ -153,32 +158,35 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
           if (!this.registry.isSvgCached(name)) {
             /**
               CSR - Browser native lazy loading hack
-        
+
               We use an img element here to leverage the browsers native features:
               - lazy loading (loading="lazy") to only load the svg that are actually visible
               - priority hints to down prioritize the fetch to avoid delaying the LCP
-        
+
               While the SVG is loading we display a fallback SVG.
               After the image is loaded we remove it from the DOM. (IMG load event)
               When the new svg arrives we append it to the template.
-        
+
               Note:
               - the image is styled with display none. this prevents any loading of the resource ever.
               on component bootstrap we decide what we want to do. when we remove display none it performs the browser native behavior
-              - the image has 0 height and with and containment as well as contnet-visibility to reduce any performance impact
-        
-        
+              - the image has 0 height and with and containment as well as content-visibility to reduce any performance impact
+
+
               Edge cases:
               - only resources that are not loaded in the current session of the browser will get lazy loaded (same URL to trigger loading is not possible)
               - already loaded resources will get emitted from the cache immediately, even if loading is set to lazy :o
               - the image needs to have display other than none
             */
-            const i = this.getImg(this.registry.url(name));
-            this.renderer.appendChild(this.element.nativeElement, i);
+            const url = this.#url();
+            if (url) {
+              const i = this.getImg(url);
+              this.renderer.appendChild(this.element.nativeElement, i);
 
-            // get img
-            img = elem.querySelector('img') as HTMLImageElement;
-            addEventListener(img, 'load', this.loadedListener);
+              // get img
+              img = elem.querySelector('img') as HTMLImageElement;
+              addEventListener(img, 'load', this.loadedListener);
+            }
           }
 
           // Listen to svg changes
@@ -225,7 +233,6 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
               img.removeEventListener('load', this.loadedListener);
             }
           });
-        });
       },
       { injector: this.injector }
     );

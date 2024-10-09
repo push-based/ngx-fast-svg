@@ -14,6 +14,13 @@ import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 
 import { appRoutes } from './app.routes';
+import { map, Observable, timer } from 'rxjs';
+
+class LoaderStrategy {
+  load(name: string): Observable<string> {
+    return timer(1000).pipe(map(() => `assets/svg-icons/${name}.svg`))
+  };
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,7 +39,7 @@ export const appConfig: ApplicationConfig = {
     provideAngularSvgIcon(),
     provideIonicAngular({}),
     provideFastSVG({
-      url: (name: string) => `assets/svg-icons/${name}.svg`,
+      url: (name: string) => timer(10000).pipe(map(() => `assets/svg-icons/${name}.svg`)),
     }),
   ],
 };
