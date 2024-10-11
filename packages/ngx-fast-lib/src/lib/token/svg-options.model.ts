@@ -1,7 +1,5 @@
-import { Observable } from 'rxjs';
-
 export type SvgOptions = {
-  url: (name: string) => string | Observable<string>;
+  url: (name: string) => string;
   defaultSize?: string;
   suspenseSvgString?: string;
 };

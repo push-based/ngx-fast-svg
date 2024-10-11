@@ -1,24 +1,21 @@
 import { join } from 'node:path';
 import { readFileSync } from 'node:fs';
 
-import { mergeApplicationConfig, ApplicationConfig, Injectable } from '@angular/core';
+import { ApplicationConfig, Injectable, mergeApplicationConfig } from '@angular/core';
 import { provideServerRendering } from '@angular/platform-server';
 
-import { map, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { provideFastSVG, SvgLoadStrategy } from '@push-based/ngx-fast-svg';
 
 import { appConfig } from './app.config';
 
 @Injectable()
-export class SvgLoadStrategySsr implements SvgLoadStrategy {
-  load(url$: Observable<string>): Observable<string> {
-    return url$.pipe(
-      map((url) => {
-        const iconPath = join(process.cwd(), 'packages', 'ngx-fast-icon-demo', 'src', url);
-        return readFileSync(iconPath, 'utf8')
-      })
-    )
+export class SvgLoadStrategySsr extends SvgLoadStrategy {
+  load(url: string): Observable<string> {
+    const iconPath = join(process.cwd(), 'packages', 'ngx-fast-icon-demo', 'src', url);
+    const iconSVG = readFileSync(iconPath, 'utf8')
+    return of(iconSVG);
   }
 }
 

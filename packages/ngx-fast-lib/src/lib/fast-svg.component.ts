@@ -112,8 +112,7 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
   height = input<string>('');
 
   #url = toSignal(toObservable(this.name).pipe(switchMap((name) => {
-    const url = this.registry.url(name);
-    return typeof url === 'string' ? of(url) : url;
+    return this.registry.url(name);
   })))
 
   // When the browser loaded the svg resource we trigger the caching mechanism

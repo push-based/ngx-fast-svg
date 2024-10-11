@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, Injectable } from '@angular/core';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -9,17 +9,19 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
-import { provideFastSVG } from '@push-based/ngx-fast-svg';
+import { provideFastSVG, SvgLoadStrategyImpl } from '@push-based/ngx-fast-svg';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 
 import { appRoutes } from './app.routes';
-import { map, Observable, timer } from 'rxjs';
+import { Observable, of, switchMap, timer } from 'rxjs';
 
-class LoaderStrategy {
-  load(name: string): Observable<string> {
-    return timer(1000).pipe(map(() => `assets/svg-icons/${name}.svg`))
-  };
+@Injectable({ providedIn: 'root' })
+export class ConfigService extends SvgLoadStrategyImpl {
+  lazy$ = timer(10_000)
+  override config(url: string): Observable<string> {
+    return this.lazy$.pipe(switchMap(() => of(url)))
+  }
 }
 
 export const appConfig: ApplicationConfig = {
@@ -39,7 +41,8 @@ export const appConfig: ApplicationConfig = {
     provideAngularSvgIcon(),
     provideIonicAngular({}),
     provideFastSVG({
-      url: (name: string) => timer(10000).pipe(map(() => `assets/svg-icons/${name}.svg`)),
+      url: (name: string) => `assets/svg-icons/${name}.svg`,
+      svgLoadStrategy: ConfigService
     }),
   ],
 };
