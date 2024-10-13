@@ -13,6 +13,7 @@ This library covers next aspects that developers should consider for their proje
 - SVG reusability
 - Optimized bundle size
 - SSR
+- Edge ready (only edge safe APIs are used)
 
 ## Getting started
 
@@ -102,12 +103,14 @@ During setup phase you can provide additional optional settings such as:
   svgLoadStrategy?: Type<SvgLoadStrategy>;
 ```
 
-`svgLoadStrategy` can be any injectable class that has `load` method that accepts url and returns observable string:
+`svgLoadStrategy` can be any injectable class that has `config` that excepts method that accepts url and returns observable string,
+and `load` which accepts the configured url as an observable and returns the svg as an observable string.
 
 ```typescript
 @Injectable()
 export abstract class SvgLoadStrategy {
-  abstract load(url: string): Observable<string>;
+  abstract config(url: string): Observable<string>;
+  abstract load(url: Observable<string>): Observable<string>;
 }
 ```
 
@@ -164,10 +167,11 @@ You can provide your own SSR loading strategy that can look like this:
 ```typescript
 @Injectable()
 export class SvgLoadStrategySsr implements SvgLoadStrategy {
-  load(url: string): Observable<string> {
-    const iconPath = join(process.cwd(), 'dist', 'app-name', 'browser', url);
-    const iconSVG = readFileSync(iconPath, 'utf8');
-    return of(iconSVG);
+  config(url: string) {
+    return of(join(cwd(), 'path', 'to', 'svg', 'assets', url));
+  }
+  load(iconPath$: Observable<string>) {
+    return iconPath$.pipe(switchMap((iconPath) => from(readFile(iconPath, { encoding: 'utf8' }))));
   }
 }
 ```
@@ -187,12 +191,42 @@ And then just provide it in you server module.
   providers: [
     provideFastSVG({
       svgLoadStrategy: SvgLoadStrategySsr,
-      url: (name: string) => `assets/svg-icons/${name}.svg`,
+      url: (name: string) => `${name}.svg`,
     }),
   ],
   bootstrap: [AppComponent],
 })
 export class AppServerModule {}
+```
+
+#### Providing a lazy configuration
+
+If you need to provide a lazy configuration you can use the config method in the `SvgLoadStrategy`: 
+
+```typescript
+@Injectable()
+class LazyConfigSvgLoadStrategy extends SvgLoadStrategyImpl {
+  dummyLazyConfig$ = timer(5_000).pipe(map(() => 'assets/svg-icons'))
+  override config(url: string): Observable<string> {
+    return this.dummyLazyConfig$.pipe(map((svgConfig) => `${svgConfig}/${url}`));
+  }
+}
+```
+
+And pass it to the provider function:
+
+```typescript
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // ... other providers
+    provideFastSVG({
+      url: (name: string) => `${name}.svg`,
+      svgLoadStrategy: LazyConfigSvgLoadStrategy,
+    })
+  ]
+});
 ```
 
 ## Features

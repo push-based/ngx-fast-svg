@@ -1,10 +1,10 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { filter, map, Observable, startWith } from 'rxjs';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ShellComponent} from './misc/shell.component';
-import {AsyncPipe, isPlatformServer} from '@angular/common';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ShellComponent } from './misc/shell.component';
+import { AsyncPipe, isPlatformServer } from '@angular/common';
 
 @Component({
   selector: 'ngx-fast-icon-root',

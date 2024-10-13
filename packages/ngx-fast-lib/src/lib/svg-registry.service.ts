@@ -4,7 +4,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { SvgOptionsToken } from './token/svg-options.token';
 import { suspenseSvg } from './token/default-token-values';
 import { SvgLoadStrategy } from './token/svg-load.strategy.model';
-import { SvgLoadStrategyImpl } from "./token/svg-load.strategy";
+import { SvgLoadStrategyImpl } from './token/svg-load.strategy';
 
 // @TODO compose svg in 1 sprite and fetch by id as before
 
@@ -69,7 +69,7 @@ export class SvgRegistry {
   public defaultSize = this.svgOptions?.defaultSize || '24';
   private _defaultViewBox = `0 0 ${this.defaultSize} ${this.defaultSize}`;
 
-  public url = this.svgOptions.url;
+  public url = (name: string) => this.svgLoadStrategy.config(this.svgOptions.url(name));
 
   constructor() {
     // configure suspense svg
@@ -108,7 +108,7 @@ export class SvgRegistry {
 
     // trigger fetch
     this.svgLoadStrategy
-      .load(this.svgOptions.url(svgName))
+      .load(this.url(svgName))
       .subscribe({
         next: (body: string) => this.cacheSvgInDOM(svgId, body),
         error: console.error
