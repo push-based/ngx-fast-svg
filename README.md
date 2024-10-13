@@ -13,7 +13,7 @@ This library covers next aspects that developers should consider for their proje
 - SVG reusability
 - Optimized bundle size
 - SSR
-- Edge ready (only edge save APIs are used)
+- Edge ready (only edge safe APIs are used)
 
 ## Getting started
 
@@ -103,7 +103,8 @@ During setup phase you can provide additional optional settings such as:
   svgLoadStrategy?: Type<SvgLoadStrategy>;
 ```
 
-`svgLoadStrategy` can be any injectable class that has `load` method that accepts url and returns observable string:
+`svgLoadStrategy` can be any injectable class that has `config` that excepts method that accepts url and returns observable string,
+and `load` which accepts the configured url as an observable and returns the svg as an observable string.
 
 ```typescript
 @Injectable()
@@ -196,6 +197,36 @@ And then just provide it in you server module.
 export class AppServerModule {}
 ```
 
+#### Providing a lazy configuration
+
+If you need to provide a lazy configuration you can use the config method in the `SvgLoadStrategy`:
+
+```typescript
+@Injectable()
+class LazyConfigSvgLoadStrategy extends SvgLoadStrategyImpl {
+  dummyLazyConfig$ = timer(5_000).pipe(map(() => 'assets/svg-icons'))
+  override config(url: string): Observable<string> {
+    return this.dummyLazyConfig$.pipe(map((svgConfig) => `${svgConfig}/${url}`));
+  }
+}
+```
+
+And pass it to the provider function:
+
+```typescript
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // ... other providers
+    provideFastSVG({
+      url: (name: string) => `${name}.svg`,
+      svgLoadStrategy: LazyConfigSvgLoadStrategy,
+    })
+  ]
+});
+```
+
 ## Features
 
 ### :sloth: Lazy loading for SVGs
@@ -273,4 +304,3 @@ To display (render) SVGs the browser takes time. We can reduce that time by addi
 ---
 
 made with ❤ by [push-based.io](https://www.push-based.io)
-

@@ -13,6 +13,7 @@ This library covers next aspects that developers should consider for their proje
 - SVG reusability
 - Optimized bundle size
 - SSR
+- Edge ready (only edge safe APIs are used)
 
 ## Getting started
 
@@ -166,7 +167,9 @@ You can provide your own SSR loading strategy that can look like this:
 ```typescript
 @Injectable()
 export class SvgLoadStrategySsr implements SvgLoadStrategy {
-  config = (url: string) => of(join(cwd(), 'path', 'to', 'svg', 'assets', url));
+  config(url: string) {
+    return of(join(cwd(), 'path', 'to', 'svg', 'assets', url));
+  }
   load(iconPath$: Observable<string>) {
     return iconPath$.pipe(switchMap((iconPath) => from(readFile(iconPath, { encoding: 'utf8' }))));
   }
@@ -203,9 +206,9 @@ If you need to provide a lazy configuration you can use the config method in the
 ```typescript
 @Injectable()
 class LazyConfigSvgLoadStrategy extends SvgLoadStrategyImpl {
-  lazyConfigService = inject(SvgConfigService);
-  override config(url: string) {
-    return this.lazyConfigService.urlConfig(url);
+  dummyLazyConfig$ = timer(5_000).pipe(map(() => 'assets/svg-icons'))
+  override config(url: string): Observable<string> {
+    return this.dummyLazyConfig$.pipe(map((svgConfig) => `${svgConfig}/${url}`));
   }
 }
 ```
@@ -219,7 +222,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     // ... other providers
     provideFastSVG({
-      url: (name: string): Observable<string> => inject(ConfigService).svgUrl(name),
+      url: (name: string) => `${name}.svg`,
       svgLoadStrategy: LazyConfigSvgLoadStrategy,
     })
   ]
