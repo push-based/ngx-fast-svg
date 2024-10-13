@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [18.1.0](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-18.0.2...ngx-fast-lib-18.1.0) (2024-10-13)
+
+
+### Features
+
+* **lib:** lazy url config ([c4e3ff5](https://github.com/push-based/ngx-fast-svg/commit/c4e3ff5873ffc711362551437a4a3708a501883e))
+* **lib:** lazy url config ([545a81d](https://github.com/push-based/ngx-fast-svg/commit/545a81d04a17d6fb53145c3f652bc2f4d32485ce))
+* **lib:** lazy url config ([16c6206](https://github.com/push-based/ngx-fast-svg/commit/16c62061780f7830360143cdb52afa674d2f1743))
+* **lib:** lazy url config ([c8de395](https://github.com/push-based/ngx-fast-svg/commit/c8de395f97df5533013e97c0be5bc678b1472098))
+* **lib:** lazy url config ([86fee70](https://github.com/push-based/ngx-fast-svg/commit/86fee705ddb917898bcb92185456f4bbbc6215c7))
+
+
+
 ## [18.0.2](https://github.com/push-based/ngx-fast-svg/compare/ngx-fast-lib-18.0.1...ngx-fast-lib-18.0.2) (2024-08-23)
 
 
