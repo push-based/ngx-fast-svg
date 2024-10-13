@@ -13,7 +13,9 @@ import { appConfig } from './app.config';
 
 @Injectable()
 export class SvgLoadStrategySsr implements SvgLoadStrategy {
-  config = (url: string) => of(join(cwd(), 'packages', 'ngx-fast-icon-demo', 'src', 'assets', 'svg-icons', url));
+  config(url: string) {
+    return of(join(cwd(), 'packages', 'ngx-fast-icon-demo', 'src', 'assets', 'svg-icons', url));
+  }
   load(iconPath$: Observable<string>) {
     return iconPath$.pipe(switchMap((iconPath) => from(readFile(iconPath, { encoding: 'utf8' }))))
   }

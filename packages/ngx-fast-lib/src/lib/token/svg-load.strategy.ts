@@ -13,5 +13,7 @@ export class SvgLoadStrategyImpl implements SvgLoadStrategy {
     }));
   }
 
-  config = (url: string) => of(url);
+  config(url: string) {
+    return of(url);
+  }
 }
