@@ -1,10 +1,8 @@
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export abstract class SvgLoadStrategy {
-  abstract load(url: string | Observable<string>): Observable<string>;
-  config(url: string): Observable<string> {
-    return of(url)
-  };
+  abstract config(url: string): Observable<string>;
+  abstract load(url: Observable<string>): Observable<string>;
 }

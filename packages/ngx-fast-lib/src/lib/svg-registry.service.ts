@@ -108,7 +108,7 @@ export class SvgRegistry {
 
     // trigger fetch
     this.svgLoadStrategy
-      .load(this.svgOptions.url(svgName))
+      .load(this.url(svgName))
       .subscribe({
         next: (body: string) => this.cacheSvgInDOM(svgId, body),
         error: console.error
