@@ -65,6 +65,7 @@
     "@nx/cypress": "20.2.2",
     "@nx/devkit": "20.2.2",
     "@nx/eslint": "20.2.2",
+    "@nx/eslint-plugin": "20.2.2",
     "@nx/jest": "20.2.2",
     "@nx/js": "20.2.2",
     "@nx/playwright": "20.2.2",
