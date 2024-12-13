@@ -4,13 +4,12 @@ import { AsyncPipe, NgClass } from '@angular/common';
 import { LAYOUT_SETTING_NAME } from './constants';
 
 @Component({
-  standalone: true,
-  selector: 'app-controller',
-  imports: [
-    AsyncPipe,
-    NgClass
-  ],
-  template: `
+    selector: 'app-controller',
+    imports: [
+        AsyncPipe,
+        NgClass
+    ],
+    template: `
     <h1>{{demoLib}} demo</h1>
     <h4>Layout setting</h4>
     <div class='buttons-wrapper'>
@@ -29,7 +28,7 @@ import { LAYOUT_SETTING_NAME } from './constants';
       <button (click)='tester.reload()'>Reload page</button>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ControllerComponent {
   @Input({required: true}) demoLib!: string;

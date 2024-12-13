@@ -56,5 +56,6 @@
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
   },
-  "defaultBase": "origin/main"
+  "defaultBase": "origin/main",
+  "useLegacyCache": true
 }
