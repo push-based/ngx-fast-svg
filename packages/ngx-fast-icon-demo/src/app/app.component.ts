@@ -7,18 +7,17 @@ import { ShellComponent } from './misc/shell.component';
 import { AsyncPipe, isPlatformServer } from '@angular/common';
 
 @Component({
-  selector: 'ngx-fast-icon-root',
-  standalone: true,
-  template: `
+    selector: 'ngx-fast-icon-root',
+    template: `
     <app-shell [rootClass]='(rootClass$ | async) || ""' [isMobile]='isMobile'>
       <router-outlet />
     </app-shell>
   `,
-  imports: [
-    ShellComponent,
-    AsyncPipe,
-    RouterOutlet
-  ]
+    imports: [
+        ShellComponent,
+        AsyncPipe,
+        RouterOutlet
+    ]
 })
 export class AppComponent {
   private readonly router = inject(Router);

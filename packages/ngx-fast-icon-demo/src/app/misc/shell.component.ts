@@ -10,8 +10,8 @@ import { BASE_ROUTE, DEMO_ROUTE } from './constants';
 import { IconTester } from './icon-tester.service';
 
 @Component({
-  selector: 'app-shell',
-  template: `
+    selector: 'app-shell',
+    template: `
     <div class='root' [class]='rootClass'>
       <mat-toolbar class='header-toolbar' [class.header-is-mobile]='isMobile'>
         <a (click)='sideNav.toggle()'>
@@ -50,7 +50,7 @@ import { IconTester } from './icon-tester.service';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     .title {
       margin: auto;
       font-size: x-large;
@@ -260,18 +260,17 @@ import { IconTester } from './icon-tester.service';
       }
     }
   `],
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    FastSvgComponent,
-    IonicModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    MatDividerModule
-  ]
+    imports: [
+        AsyncPipe,
+        FastSvgComponent,
+        IonicModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        RouterOutlet,
+        RouterLink,
+        RouterLinkActive,
+        MatDividerModule
+    ]
 })
 export class ShellComponent {
   @Input({required: true}) rootClass!: string | string[];

@@ -11,8 +11,7 @@ import { BaseDemoComponent } from '../misc/base-demo.component';
 import { DEMO_ROUTE } from '../misc/constants';
 
 @Component({
-  standalone: true,
-  template: `
+    template: `
     <app-controller [demoLib]='"Material icon"' [tester]='tester'/>
     <div class='row icons' [class]='layout()'>
       @for (list of countArr(); track $index) {
@@ -26,9 +25,9 @@ import { DEMO_ROUTE } from '../misc/constants';
       }
     </div>
   `,
-  imports: [AsyncPipe, ControllerComponent, MatIconModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+    imports: [AsyncPipe, ControllerComponent, MatIconModule],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class MaterialComponent extends BaseDemoComponent {
   constructor(
