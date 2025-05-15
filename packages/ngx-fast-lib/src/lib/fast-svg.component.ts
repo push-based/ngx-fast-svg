@@ -86,7 +86,6 @@ function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
       }
 
       .fast-svg {
-        margin: 3px;
         /* leverage css perf features for older browsers not supporting content-visibility */
         contain: content;
         /* leverage contain:content improvements, exclude node completely from recalc styles if offscreen */
