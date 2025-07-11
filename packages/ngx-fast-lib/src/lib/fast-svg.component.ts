@@ -42,10 +42,10 @@ let element: HTMLElement = undefined as any;
 function createGetImgFn(renderer: Renderer2): (src: string) => HTMLElement {
   if (element === undefined) {
     element = renderer.createElement('img');
-    element.setAttribute(
-      'style',
-      'display: none; contain: content; content-visibility: auto;'
-    );
+    // setAttribute('style', ...) is not allowed when strict CSP is in place.
+    element.style.display = 'none';
+    element.style.contain = 'content';
+    element.style.contentVisibility = 'auto';
     element.setAttribute('loading', 'lazy');
     element.setAttribute('alt', 'loading helper');
     element.setAttribute('width', '0');
