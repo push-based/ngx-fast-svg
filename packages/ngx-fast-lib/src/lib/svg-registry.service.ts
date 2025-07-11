@@ -22,23 +22,17 @@ function createDomParser(document: Document): (s: string) => HTMLElement {
 }
 
 function styleDomCacheForPerformance(el: HTMLElement): HTMLElement {
-  /**
-   * reduce paint area with width/height 0 and overflow hidden
-   * fixed position of -2000px to always have it offscreen and outside any native trigger (viewport observer in content visibilities)
-   * contain:content to leverage css perf features for older browsers not supporting content-visibility   * : auto to exclude it completely from styles recalculation
-   */
-  el.setAttribute(
-    'style',
-    `
-      overflow: hidden;
-      width: 0px;
-      height: 0px;
-      position: fixed;
-      bottom: -2000px;
-      contain: content;
-      content-visibility: auto;
-    `
-  );
+  // reduce paint area with width/height 0 and overflow hidden
+  // fixed position of -2000px to always have it offscreen and outside any native trigger (viewport observer in content visibilities)
+  // contain:content to leverage css perf features for older browsers not supporting content-visibility   * : auto to exclude it completely from styles recalculation
+  // setAttribute('style', ...) is not allowed when strict CSP is in place.
+  el.style.overflow = 'hidden';
+  el.style.width = '0px';
+  el.style.height = '0px';
+  el.style.position = 'fixed';
+  el.style.bottom = '-2000px';
+  el.style.contain = 'content';
+  el.style.contentVisibility = 'auto';
   return el;
 }
 
