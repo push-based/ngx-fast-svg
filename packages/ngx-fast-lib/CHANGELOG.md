@@ -1,3 +1,19 @@
+# 22.0.0 (2026-10-21)
+
+### 🚀 Features
+
+- **lib:** support Angular 22 & Nx 23 ([#86](https://github.com/push-based/ngx-fast-svg/pull/86), [#85](https://github.com/push-based/ngx-fast-svg/issues/85))
+
+### 🩹 Fixes
+
+- **lib:** use document token to resolve window object ([615b41a](https://github.com/push-based/ngx-fast-svg/commit/615b41a))
+
+### ❤️ Thank You
+
+- aefanov @aaa123eee
+- Anton @aaa123eee
+- Exequiel Ceasar Navarrete
+
 # Changelog
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
