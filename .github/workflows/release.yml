@@ -2,6 +2,11 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Explicit version or semver keyword (e.g. 22.0.0, major). Leave empty to derive it from conventional commits.'
+        required: false
+        type: string
 
 concurrency:
   group: release
@@ -47,6 +52,7 @@ jobs:
       - name: Test
         run: npx nx run ngx-fast-lib:test
       - name: Version, release and generate changelog
-        run: npx nx release --skip-publish
+        run: npx nx release $VERSION --skip-publish
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          VERSION: ${{ inputs.version }}
