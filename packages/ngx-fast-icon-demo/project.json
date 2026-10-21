@@ -4,19 +4,17 @@
   "projectType": "application",
   "sourceRoot": "packages/ngx-fast-icon-demo/src",
   "prefix": "app",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/packages/ngx-fast-icon-demo",
         "index": "packages/ngx-fast-icon-demo/src/index.html",
         "browser": "packages/ngx-fast-icon-demo/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "packages/ngx-fast-icon-demo/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -41,11 +39,12 @@
           "extractLicenses": false,
           "sourceMap": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "defaultConfiguration": "development",
+      "continuous": true,
       "configurations": {
         "production": {
           "buildTarget": "ngx-fast-icon-demo:build:production"
@@ -53,24 +52,13 @@
         "development": {
           "buildTarget": "ngx-fast-icon-demo:build:development"
         }
-      },
-      "defaultConfiguration": "development"
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
         "buildTarget": "ngx-fast-icon-demo:build"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "packages/ngx-fast-icon-demo/src/**/*.ts",
-          "packages/ngx-fast-icon-demo/src/**/*.html"
-        ]
-      }
     }
-  },
-  "tags": []
+  }
 }

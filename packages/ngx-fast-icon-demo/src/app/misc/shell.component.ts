@@ -14,9 +14,9 @@ import { IconTester } from './icon-tester.service';
     template: `
     <div class='root' [class]='rootClass'>
       <mat-toolbar class='header-toolbar' [class.header-is-mobile]='isMobile'>
-        <a (click)='sideNav.toggle()'>
+        <button type='button' class='nav-toggle' aria-label='Toggle navigation' (click)='sideNav.toggle()'>
           <fast-svg id='nav-icon' height='48' width='48' name='menu' />
-        </a>
+        </button>
         <h1 class='title'>ngx-fast-svg</h1>
       </mat-toolbar>
       <div class='row'>
@@ -66,6 +66,14 @@ import { IconTester } from './icon-tester.service';
 
     .header-toolbar {
       border-bottom: 3px solid rgba(128, 128, 128, 0.3);
+    }
+
+    .header-toolbar .nav-toggle {
+      padding: 0;
+      border: none;
+      background: none;
+      color: inherit;
+      cursor: pointer;
     }
 
     .header-is-mobile.header-toolbar {

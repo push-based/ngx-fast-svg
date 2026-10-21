@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 
-import { IconModule, IconService} from '@ant-design/icons-angular';
+import { IconDirective, IconService } from '@ant-design/icons-angular';
 
 import { ControllerComponent } from '../misc/controller.component';
 import { IconTester } from '../misc/icon-tester.service';
@@ -26,12 +26,14 @@ import { DEMO_ROUTE } from '../misc/constants';
       }
     </div>
   `,
-    imports: [AsyncPipe, ControllerComponent, IconModule],
+    imports: [AsyncPipe, ControllerComponent, IconDirective],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
 export class AntComponent extends BaseDemoComponent {
-  constructor(private iconService: IconService) {
+  private readonly iconService = inject(IconService);
+
+  constructor() {
     super();
     this.tester.activeDemo.set(DEMO_ROUTE.ANT);
     this.tester.defineSet(SUPPORTED_ICONS);

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { LAYOUT_SETTING, LayoutSetting } from './constants';
@@ -12,7 +12,7 @@ export class IconTester {
 
   icons?: string[] | IconDefinition[];
 
-  constructor(private router: Router) {}
+  private readonly router = inject(Router);
 
   setLayout(setting: LayoutSetting) {
     this.activeLayoutSetting.set(setting);

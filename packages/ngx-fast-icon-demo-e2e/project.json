@@ -3,6 +3,8 @@
   "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "sourceRoot": "packages/ngx-fast-icon-demo-e2e/src",
   "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["ngx-fast-icon-demo"],
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
@@ -15,15 +17,6 @@
           "devServerTarget": "ngx-fast-icon-demo:serve:production"
         }
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/ngx-fast-icon-demo-e2e/**/*.{js,ts}"]
-      }
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["ngx-fast-icon-demo"]
+  }
 }
