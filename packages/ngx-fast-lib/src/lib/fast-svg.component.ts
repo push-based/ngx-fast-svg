@@ -222,7 +222,7 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
             // Than the same image is fetched over fromFetch and rendered as SVG. (This will result in a cache hit for this svg)
             //
             // If the img is present activate it
-            img && img.style.setProperty('display', 'block');
+            img?.style.setProperty('display', 'block');
           }
 
           onCleanup(() => {

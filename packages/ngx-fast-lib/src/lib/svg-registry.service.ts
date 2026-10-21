@@ -16,7 +16,7 @@ interface SvgCache {
 function createDomParser(document: Document): (s: string) => HTMLElement {
   const e = document.createElement('DIV');
   return (s: string) => {
-    e && (e.innerHTML = s);
+    e.innerHTML = s;
     return e.firstChild as HTMLElement;
   };
 }
@@ -133,7 +133,7 @@ export class SvgRegistry {
     const viewBox = svgString.match(/viewBox="([^"]*)"/);
 
     // the SVG element needs to be accessible over a href and end with a specific anchor to select the element by id
-    svgElem?.setAttribute && svgElem.setAttribute('id', svgId);
+    svgElem?.setAttribute?.('id', svgId);
     this.svgDomCache.appendChild(svgElem);
     // notify subscribers about change
     this.getSvgSubject(svgId).next({
