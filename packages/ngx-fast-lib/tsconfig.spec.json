@@ -4,7 +4,6 @@
     "outDir": "../../dist/out-tsc",
     "module": "preserve",
     "types": ["jest", "node"],
-    "moduleResolution": "bundler",
     "isolatedModules": true
   },
   "files": ["src/test-setup.ts"],
