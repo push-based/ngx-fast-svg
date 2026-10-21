@@ -17,13 +17,6 @@
           "devServerTarget": "ngx-fast-icon-demo:serve:production"
         }
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/ngx-fast-icon-demo-e2e/**/*.{js,ts}"]
-      }
     }
   }
 }

@@ -59,15 +59,6 @@
       "options": {
         "buildTarget": "ngx-fast-icon-demo:build"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "packages/ngx-fast-icon-demo/src/**/*.ts",
-          "packages/ngx-fast-icon-demo/src/**/*.html"
-        ]
-      }
     }
   }
 }

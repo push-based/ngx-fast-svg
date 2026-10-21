@@ -30,15 +30,6 @@
         "tsConfig": "packages/ngx-fast-lib/tsconfig.spec.json"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "packages/ngx-fast-lib/src/**/*.ts",
-          "packages/ngx-fast-lib/src/**/*.html"
-        ]
-      }
-    },
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {

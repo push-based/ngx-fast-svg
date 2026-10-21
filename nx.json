@@ -95,5 +95,13 @@
       "inputs": ["default", "{workspaceRoot}/eslint.config.mjs"]
     }
   },
-  "defaultBase": "origin/main"
+  "defaultBase": "origin/main",
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ]
 }
