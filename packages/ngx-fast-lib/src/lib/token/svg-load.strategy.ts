@@ -1,7 +1,8 @@
-import { DOCUMENT, inject, Injectable } from '@angular/core';
 import { from, Observable, of, switchMap } from 'rxjs';
 import { getZoneUnPatchedApi } from '../internal/get-zone-unpatched-api';
 import { SvgLoadStrategy } from './svg-load.strategy.model';
+import { DOCUMENT } from '@angular/common';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable()
 export class SvgLoadStrategyImpl implements SvgLoadStrategy {
