@@ -201,9 +201,9 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
             if (!img) return;
 
             // If the img is present
-            // and the name in included in the href (svg is fully loaded, not only the suspense svg)
+            // and the href points to the svg itself (svg is fully loaded, not only the suspense svg)
             // Remove the element from the DOM as it is no longer needed
-            if (cache.name.includes(name)) {
+            if (cache.name === `#${name}`) {
               img.removeEventListener('load', this.loadedListener);
               // removeEventListener.bind(img, 'load', this.loadedListener);
               img.remove();
