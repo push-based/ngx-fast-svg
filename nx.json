@@ -93,6 +93,12 @@
     },
     "lint": {
       "inputs": ["default", "{workspaceRoot}/eslint.config.mjs"]
+    },
+    "nx-release-publish": {
+      "dependsOn": ["build"],
+      "options": {
+        "registry": "https://registry.npmjs.org/"
+      }
     }
   },
   "defaultBase": "origin/main",
@@ -103,5 +109,35 @@
         "targetName": "lint"
       }
     }
-  ]
+  ],
+  "release": {
+    "projects": ["ngx-fast-lib"],
+    "projectsRelationship": "fixed",
+    "conventionalCommits": {
+      "useCommitScope": false
+    },
+    "changelog": {
+      "automaticFromRef": true,
+      "workspaceChangelog": false,
+      "projectChangelogs": {
+        "createRelease": "github"
+      }
+    },
+    "git": {
+      "commit": true,
+      "push": true,
+      "pushRemote": "origin",
+      "tag": true,
+      "commitMessage": "release(ngx-fast-lib): {version}"
+    },
+    "version": {
+      "conventionalCommits": true,
+      "versionActionsOptions": {
+        "skipLockFileUpdate": true
+      }
+    },
+    "releaseTag": {
+      "pattern": "ngx-fast-lib-{version}"
+    }
+  }
 }

@@ -30,32 +30,6 @@
         "tsConfig": "packages/ngx-fast-lib/tsconfig.spec.json"
       }
     },
-    "version": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "postTargets": [
-          "ngx-fast-lib:build",
-          "ngx-fast-lib:npm",
-          "ngx-fast-lib:github"
-        ],
-        "commitMessageFormat": "release(${projectName}): {version}",
-        "noVerify": true,
-        "push": true
-      }
-    },
-    "github": {
-      "executor": "@jscutlery/semver:github",
-      "options": {
-        "tag": "{tag}",
-        "notes": "{notes}"
-      }
-    },
-    "npm": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npm publish dist/libs/ngx-fast-svg"
-      }
-    },
     "link": {
       "executor": "nx:run-commands",
       "options": {
@@ -67,6 +41,11 @@
             "command": "npm link -f"
           }
         ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/libs/ngx-fast-svg"
       }
     }
   }
