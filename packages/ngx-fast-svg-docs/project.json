@@ -1,0 +1,88 @@
+{
+  "name": "ngx-fast-svg-docs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "packages/ngx-fast-svg-docs/src",
+  "prefix": "docs",
+  "tags": [],
+  "implicitDependencies": ["ngx-fast-lib"],
+  "targets": {
+    "build-content": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node packages/ngx-fast-svg-docs/scripts/build-content.mts"
+      },
+      "inputs": [
+        "{projectRoot}/content/**/*",
+        "{projectRoot}/scripts/**/*",
+        "{workspaceRoot}/packages/ngx-fast-lib/CHANGELOG.md"
+      ],
+      "outputs": ["{projectRoot}/src/app/content/generated"],
+      "cache": true
+    },
+    "build": {
+      "executor": "@angular/build:application",
+      "dependsOn": ["build-content"],
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/packages/ngx-fast-svg-docs",
+        "outputMode": "static",
+        "index": "packages/ngx-fast-svg-docs/src/index.html",
+        "browser": "packages/ngx-fast-svg-docs/src/main.ts",
+        "server": "packages/ngx-fast-svg-docs/src/main.server.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "packages/ngx-fast-svg-docs/tsconfig.app.json",
+        "inlineStyleLanguage": "css",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "packages/ngx-fast-svg-docs/public",
+            "output": "."
+          }
+        ],
+        "styles": [
+          "packages/ngx-fast-svg-docs/src/styles/design-system/tokens.css",
+          "packages/ngx-fast-svg-docs/src/styles/design-system/components.css",
+          "packages/ngx-fast-svg-docs/src/styles/design-system/theme-dark.css",
+          "packages/ngx-fast-svg-docs/src/styles/styles.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "all",
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1mb",
+              "maximumError": "2mb"
+            }
+          ]
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@angular/build:dev-server",
+      "dependsOn": ["build-content"],
+      "continuous": true,
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4200
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "ngx-fast-svg-docs:build:production"
+        },
+        "development": {
+          "buildTarget": "ngx-fast-svg-docs:build:development"
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-name: Deploy Demo App
+name: Deploy Docs
 
 on:
   push:
@@ -21,9 +21,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 26.x ]
 
     steps:
       - name: Checkout
@@ -32,15 +29,23 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: .node-version
+          cache: npm
 
       - name: Clean Install
         run: npm ci
 
-      - name: Build Demo
-        run: npx nx run ngx-fast-icon-demo:build:production --base-href /ngx-fast-svg/
+      - name: Build Docs
+        run: npx nx run ngx-fast-svg-docs:build:production --base-href /ngx-fast-svg/
+
+      # Every route is prerendered. Unknown URLs (for example an icon count that
+      # isn't prerendered) get the client-side app through GitHub Pages' 404.html.
+      - name: Add SPA fallback
+        run: |
+          cp dist/packages/ngx-fast-svg-docs/browser/index.csr.html dist/packages/ngx-fast-svg-docs/browser/404.html
+          touch dist/packages/ngx-fast-svg-docs/browser/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -48,7 +53,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/packages/ngx-fast-icon-demo/browser'
+          path: './dist/packages/ngx-fast-svg-docs/browser'
 
       - name: Deploy to GitHub Pages
         id: deployment
