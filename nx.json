@@ -139,5 +139,6 @@
     "releaseTag": {
       "pattern": "ngx-fast-lib-{version}"
     }
-  }
+  },
+  "analytics": true
 }
