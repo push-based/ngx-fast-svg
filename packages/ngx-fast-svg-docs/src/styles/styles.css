@@ -37,6 +37,23 @@ docs-shell {
   min-height: 100vh;
 }
 
+.site-nav__icon-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-nav__icon {
+  width: var(--space-5);
+  height: var(--space-5);
+  fill: currentColor;
+}
+
+/* The npm mark is a filled square; draw it a touch smaller to match the GitHub mark's weight. */
+.site-nav__icon--npm {
+  width: calc(var(--space-4) + var(--space-0-5));
+  height: calc(var(--space-4) + var(--space-0-5));
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
