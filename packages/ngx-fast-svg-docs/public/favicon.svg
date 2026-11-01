@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 330" width="330" height="330" role="img" aria-label="ngx-fast-svg">
+  <defs>
+    <linearGradient id="nfs-g" gradientUnits="userSpaceOnUse" x1="60" y1="300" x2="290" y2="40">
+      <stop offset="0" stop-color="#FF0A3C"/>
+      <stop offset="0.55" stop-color="#E5208F"/>
+      <stop offset="1" stop-color="#9A3BFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- shield -->
+  <path d="M165 18 L304 60 L288 250 L165 308 L42 250 L26 60 Z" fill="url(#nfs-g)"/>
+
+  <!-- mark: a white outline (wide strokes, large petals)… -->
+  <g stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" fill="#FFFFFF">
+    <path d="M165 155 L165 67 M165 155 L227.2 92.8 M165 155 L253 155 M165 155 L227.2 217.2 M165 155 L165 243 M165 155 L102.8 217.2 M165 155 L77 155 M165 155 L102.8 92.8"/>
+    <circle cx="165" cy="67" r="16"/>
+    <circle cx="227.2" cy="92.8" r="16"/>
+    <circle cx="253" cy="155" r="16"/>
+    <circle cx="227.2" cy="217.2" r="16"/>
+    <circle cx="165" cy="243" r="16"/>
+    <circle cx="102.8" cy="217.2" r="16"/>
+    <circle cx="77" cy="155" r="16"/>
+    <circle cx="102.8" cy="92.8" r="16"/>
+  </g>
+
+  <!-- …filled with the same gradient (narrow strokes, small petals) -->
+  <g stroke="url(#nfs-g)" stroke-width="16" stroke-linecap="round" fill="url(#nfs-g)">
+    <path d="M165 155 L165 67 M165 155 L227.2 92.8 M165 155 L253 155 M165 155 L227.2 217.2 M165 155 L165 243 M165 155 L102.8 217.2 M165 155 L77 155 M165 155 L102.8 92.8"/>
+    <circle cx="165" cy="67" r="9"/>
+    <circle cx="227.2" cy="92.8" r="9"/>
+    <circle cx="253" cy="155" r="9"/>
+    <circle cx="227.2" cy="217.2" r="9"/>
+    <circle cx="165" cy="243" r="9"/>
+    <circle cx="102.8" cy="217.2" r="9"/>
+    <circle cx="77" cy="155" r="9"/>
+    <circle cx="102.8" cy="92.8" r="9"/>
+  </g>
+</svg>

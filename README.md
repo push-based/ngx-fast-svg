@@ -2,6 +2,8 @@
 
 Fast SVG's for Angular powered by browser native features with best performance practices and DX in mind.
 
+📖 [Documentation](https://push-based.github.io/ngx-fast-svg/docs) · 🖥️ [Live demo](https://push-based.github.io/ngx-fast-svg/demo)
+
 ## Why another SVG lib for Angular?
 
 Current implementations of SVG handling in the Browser lacks of awareness of performance.
@@ -272,7 +274,7 @@ On the client no additional requests are needed.
 
 ## Comparison
 
-> 🖥️ Interactive demo available [here](https://push-based.github.io/ngx-fast-svg).
+> 🖥️ Interactive comparison available [here](https://push-based.github.io/ngx-fast-svg/demo/compare).
 
 Here's library comparison with other popular SVG solutions.
 

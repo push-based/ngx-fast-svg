@@ -1,0 +1,63 @@
+
+body { font-family: var(--font-sans); color: var(--color-text); background: var(--color-surface); }
+
+.pb-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); padding: var(--space-4); }
+.pb-stack { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-4); }
+
+/* Button — mirrors push-based.io .pb-btn */
+.pb-btn {
+  appearance: none; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font-family: var(--font-sans);
+  background-color: var(--btn-bg, var(--color-primary-500));
+  color: var(--btn-color, #ffffff);
+  border: var(--btn-border, none);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--btn-shadow, var(--shadow-sm));
+  font-size: 0.875rem; font-weight: 600; line-height: 1.25rem;
+  padding: var(--space-2-5) var(--space-4);
+  transition: background-color .2s ease-out, color .2s ease-out, box-shadow .2s ease-out, border-color .2s ease-out, column-gap .2s ease-out;
+}
+.pb-btn:hover { background-color: var(--btn-bg-hover, var(--btn-bg)); color: var(--btn-color-hover, var(--btn-color, #ffffff)); }
+.pb-btn:focus-visible { outline: none; box-shadow: var(--btn-shadow-focus, var(--shadow-focus)); }
+.pb-btn:disabled { cursor: not-allowed; opacity: .5; }
+.pb-btn-lg { font-size: 1rem; font-weight: 500; line-height: 1.5rem; }
+
+.pb-btn-primary { --btn-bg: var(--color-primary-500); --btn-bg-hover: var(--color-primary-600); --btn-color: #ffffff; }
+.pb-btn-ghost {
+  --btn-bg: var(--color-primary-50); --btn-bg-hover: var(--color-primary-25);
+  --btn-color: var(--color-neutral-600); --btn-color-hover: var(--color-neutral-900);
+  --btn-border: 1px solid var(--color-neutral-300);
+  --btn-shadow-focus: 0 0 0 4px #98a2b324;
+}
+.pb-btn-tertiary {
+  --btn-bg: transparent; --btn-shadow: none;
+  --btn-color: var(--color-neutral-600); --btn-color-hover: var(--color-neutral-800);
+  padding: 0; font-weight: 500;
+}
+.pb-btn-tertiary .pb-arrow { color: var(--color-neutral-400); transition: color .2s ease-out; }
+.pb-btn-tertiary:hover { column-gap: var(--space-2); }
+.pb-btn-tertiary:hover .pb-arrow { color: var(--color-primary-600); }
+
+/* Input — mirrors push-based.io .pb-input */
+.pb-field { display: flex; flex-direction: column; gap: var(--space-1-5); max-width: 360px; }
+.pb-field-label { font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; color: var(--color-neutral-700); }
+.pb-input {
+  appearance: none; font: inherit; font-size: 1rem; line-height: 1.5rem;
+  background: #ffffff; color: #344054;
+  border: 1px solid rgba(108, 60, 255, 0.2); border-radius: var(--radius-lg);
+  box-shadow: 0 0 0 2px transparent; outline: none;
+  padding: var(--space-2) var(--space-3);
+  transition: box-shadow .15s, border-color .15s, background .15s;
+}
+.pb-input::placeholder { color: var(--color-neutral-500); }
+.pb-input:focus { background: #faf8ff; border-color: var(--color-primary-400); box-shadow: 0 0 0 2px rgba(108, 60, 255, 0.1); }
+
+/* Card — mirrors push-based.io .card--default */
+.pb-card {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  background: var(--color-neutral-50); border: 1px solid var(--color-neutral-100);
+  border-radius: var(--radius-lg); padding: var(--space-8); max-width: 300px;
+}
+.pb-card-title { margin: 0; padding-top: var(--space-1); font-size: 1rem; line-height: 1.5rem; font-weight: 500; color: var(--color-neutral-900); }
+.pb-card-body { margin: 0; font-size: 0.875rem; line-height: 1.25rem; letter-spacing: -0.28px; color: var(--color-neutral-700); }

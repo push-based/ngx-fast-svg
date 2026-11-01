@@ -1,0 +1,65 @@
+/*
+ * Dark theme for the PushBased tokens. push-based.io has no dark theme, so
+ * this file is an extension: it keeps every token name from tokens.css and
+ * remaps the values. The neutral ramp is mirrored (50 <-> 900), tints become
+ * dark tints, and the 600 accents move to their 400 siblings for contrast.
+ * Applied when <html data-theme="dark">; src/index.html sets that attribute
+ * before first paint from the saved preference or the system setting.
+ */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-neutral-25: #0D121C;
+  --color-neutral-50: #121926;
+  --color-neutral-100: #202939;
+  --color-neutral-200: #364152;
+  --color-neutral-300: #4B5565;
+  --color-neutral-400: #697586;
+  --color-neutral-500: #9AA4B2;
+  --color-neutral-600: #CDD5DF;
+  --color-neutral-700: #E3E8EF;
+  --color-neutral-800: #EEF2F6;
+  --color-neutral-900: #F8FAFC;
+  --color-neutral-950: #FCFCFD;
+
+  --color-primary-25: #15102A;
+  --color-primary-50: #1D1540;
+  --color-primary-100: #2A1D5A;
+  --color-primary-200: #3A2A7C;
+  --color-primary-300: #5B3FB5;
+  --color-primary-600: #A48AFB;
+  --color-primary-700: #C3B5FD;
+  --color-primary-800: #DDD6FE;
+  --color-primary-900: #ECE9FE;
+
+  --color-secondary-600: #FF577F;
+  --color-success-600: #4ade80;
+  --color-warning-600: #fbbf24;
+  --color-error-600: #f87171;
+  --color-info-600: #60a5fa;
+
+  --color-surface: #0D121C;
+  --color-surface-subtle: #121926;
+  --color-surface-inverse: #F8FAFC;
+  --color-text-heading: #F8FAFC;
+  --color-text: #CDD5DF;
+  --color-text-muted: #9AA4B2;
+  --color-border: #202939;
+  --color-brand-navy: #C3B5FD;
+  --color-focus: #9e77ed66;
+
+  --shadow-sm: 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0px 20px 24px -4px rgba(0, 0, 0, 0.5), 0px 8px 8px -4px rgba(0, 0, 0, 0.3);
+  --shadow-focus: 0 0 0 4px #9e77ed66;
+}
+
+/* components.css hard-codes a white input; follow the theme instead. */
+:root[data-theme='dark'] .pb-input {
+  background: var(--color-neutral-50);
+  color: var(--color-text);
+  border-color: var(--color-neutral-200);
+}
+
+:root[data-theme='dark'] .pb-input:focus {
+  background: var(--color-primary-25);
+}

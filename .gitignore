@@ -45,3 +45,5 @@ Thumbs.db
 .github/instructions/nx.instructions.md
 
 .claude/worktrees
+# ngx-fast-svg-docs generated content
+packages/ngx-fast-svg-docs/src/app/content/generated/
