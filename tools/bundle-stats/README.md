@@ -47,6 +47,26 @@ nearly every Angular app already ships, and which pull in rxjs and
 more expensive than it is in a real app. Anything added to that list is free
 for all six libraries and shrinks every published number, so keep it boring.
 
+## What the numbers include, and what they don't
+
+Each fixture is the minimal **working** setup for that library's icon, and
+nothing more. That line matters: measuring Ionic with `provideIonicAngular()`
+put 135 KB of Ionic config, platform and overlay code into the icon row, which
+is the same mistake the old chunk-attribution method made, pointing the other
+way. If you add a library, give it only what its icon component needs to run.
+
+Two known limits of the method:
+
+- **Fixture code counts.** A fixture's own template and component differ from
+  the baseline's, so roughly 500 bytes of each library's figure is fixture
+  code, not library code. It is a fixed overhead rather than a per-library
+  distortion, but it weighs proportionally heaviest on the smallest libraries.
+- **Published vs source.** Every competitor is measured from its published
+  npm artifact while `@push-based/ngx-fast-svg` is built from source via the
+  `tsconfig.base.json` path mapping. Measured difference: 13 bytes. Not worth
+  the complexity of building the library first, but worth re-checking if the
+  packaging ever changes.
+
 Two numbers come out of each build:
 
 - **initial** — the scripts `index.html` loads before the app starts, raw and

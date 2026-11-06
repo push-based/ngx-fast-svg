@@ -62,9 +62,9 @@
       "package": "@ionic/angular",
       "version": "8.8.19",
       "iconsInJs": false,
-      "initialBytes": 162700,
-      "initialGzipBytes": 50939,
-      "lazyBytes": 10043
+      "initialBytes": 27680,
+      "initialGzipBytes": 10907,
+      "lazyBytes": 12762
     }
   ]
 }
