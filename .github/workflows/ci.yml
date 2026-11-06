@@ -24,3 +24,7 @@ jobs:
         run: npm run nx -- affected:build --base=origin/main --head=HEAD
       - name: test
         run: npm run nx -- affected:test --base=origin/main --head=HEAD
+      # Not affected-gated on purpose: a dependency bump moves these numbers
+      # without touching a single source file of ours.
+      - name: check bundle stats
+        run: npm run bundle-stats:check
