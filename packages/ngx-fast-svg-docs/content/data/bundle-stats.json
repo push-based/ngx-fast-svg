@@ -12,8 +12,8 @@
       "package": "@push-based/ngx-fast-svg",
       "version": "workspace",
       "iconsInJs": false,
-      "initialBytes": 11073,
-      "initialGzipBytes": 3716,
+      "initialBytes": 8609,
+      "initialGzipBytes": 2880,
       "lazyBytes": 0
     },
     {
