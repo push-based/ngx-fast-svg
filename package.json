@@ -14,7 +14,9 @@
     "serve:prod": "npm run serve -- --configuration=production",
     "build": "nx build ngx-fast-svg-docs",
     "build:prod": "npm run build -- --configuration production",
-    "build:content": "nx run ngx-fast-svg-docs:build-content"
+    "build:content": "nx run ngx-fast-svg-docs:build-content",
+    "bundle-stats": "node tools/bundle-stats/measure.mts",
+    "bundle-stats:check": "node tools/bundle-stats/measure.mts --check"
   },
   "private": true,
   "dependencies": {

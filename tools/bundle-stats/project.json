@@ -1,0 +1,69 @@
+{
+  "name": "bundle-stats",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "tools/bundle-stats/fixtures",
+  "implicitDependencies": [
+    "ngx-fast-lib"
+  ],
+  "targets": {
+    "build-fixture": {
+      "executor": "@angular/build:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/**/*",
+        "{workspaceRoot}/package-lock.json",
+        "{workspaceRoot}/tsconfig.base.json",
+        "^production"
+      ],
+      "options": {
+        "index": "tools/bundle-stats/fixtures/index.html",
+        "browser": "tools/bundle-stats/fixtures/baseline/main.ts",
+        "outputPath": "dist/bundle-stats/baseline",
+        "tsConfig": "tools/bundle-stats/tsconfig.json",
+        "polyfills": [
+          "zone.js"
+        ],
+        "optimization": true,
+        "outputHashing": "none",
+        "sourceMap": false,
+        "namedChunks": false,
+        "extractLicenses": true,
+        "progress": false
+      },
+      "configurations": {
+        "baseline": {
+          "browser": "tools/bundle-stats/fixtures/baseline/main.ts",
+          "outputPath": "dist/bundle-stats/baseline"
+        },
+        "fast-svg": {
+          "browser": "tools/bundle-stats/fixtures/fast-svg/main.ts",
+          "outputPath": "dist/bundle-stats/fast-svg"
+        },
+        "material": {
+          "browser": "tools/bundle-stats/fixtures/material/main.ts",
+          "outputPath": "dist/bundle-stats/material"
+        },
+        "ionic": {
+          "browser": "tools/bundle-stats/fixtures/ionic/main.ts",
+          "outputPath": "dist/bundle-stats/ionic"
+        },
+        "font-awesome": {
+          "browser": "tools/bundle-stats/fixtures/font-awesome/main.ts",
+          "outputPath": "dist/bundle-stats/font-awesome"
+        },
+        "angular": {
+          "browser": "tools/bundle-stats/fixtures/angular/main.ts",
+          "outputPath": "dist/bundle-stats/angular"
+        },
+        "ant": {
+          "browser": "tools/bundle-stats/fixtures/ant/main.ts",
+          "outputPath": "dist/bundle-stats/ant"
+        }
+      }
+    }
+  }
+}

@@ -16,6 +16,23 @@ interface TocEntry {
   level: 2 | 3;
 }
 
+interface BundleStatsLibrary {
+  id: string;
+  name: string;
+  package: string;
+  version: string;
+  iconsInJs: boolean;
+  initialBytes: number;
+  initialGzipBytes: number;
+  lazyBytes: number;
+}
+
+interface BundleStats {
+  angular: string;
+  baseline: { initialBytes: number; initialGzipBytes: number };
+  libraries: BundleStatsLibrary[];
+}
+
 interface FrontMatter {
   title: string;
   description: string;
@@ -27,6 +44,14 @@ interface FrontMatter {
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const contentDir = join(packageRoot, 'content');
 const outDir = join(packageRoot, 'src', 'app', 'content', 'generated');
+
+/**
+ * Placeholder a docs page uses to pull in the measured bundle sizes. The build
+ * fails when the data file is gone or when no page uses the token, so the
+ * measurement pipeline in tools/bundle-stats cannot be dropped unnoticed.
+ */
+const BUNDLE_STATS_TOKEN = '{{bundle-stats}}';
+const bundleStatsFile = join(contentDir, 'data', 'bundle-stats.json');
 
 /* Both themes are emitted as light-dark() colors; the page's color-scheme picks one. */
 const THEMES = { light: 'github-light', dark: 'github-dark' } as const;
@@ -92,6 +117,44 @@ function parseFrontMatter(raw: string, file: string): { meta: FrontMatter; body:
   };
 }
 
+function kb(bytes: number): string {
+  return `${(bytes / 1024).toFixed(2)} KB`;
+}
+
+/** Renders the measured sizes as a markdown table, so it is parsed like the rest of the page. */
+function renderBundleStats(stats: BundleStats): string {
+  const rows = stats.libraries
+    .slice()
+    .sort((a, b) => a.initialGzipBytes - b.initialGzipBytes)
+    .map((lib) => {
+      const onDemand = lib.lazyBytes > 0 ? kb(lib.lazyBytes) : '—';
+      const icons = lib.iconsInJs ? 'in the bundle' : 'fetched at runtime';
+      return `| \`${lib.name}\` | ${kb(lib.initialGzipBytes)} | ${kb(lib.initialBytes)} | ${icons} | ${onDemand} |`;
+    });
+
+  return [
+    '| Library | Added (gzip) | Added (raw) | Icons | Loaded on demand |',
+    '| ------- | -----------: | ----------: | ----- | ---------------: |',
+    ...rows,
+    '',
+    `Measured on Angular ${stats.angular} against a baseline application of ` +
+      `${kb(stats.baseline.initialGzipBytes)} gzipped. ` +
+      'Regenerate with `npm run bundle-stats`.',
+  ].join('\n');
+}
+
+async function loadBundleStats(): Promise<BundleStats> {
+  try {
+    return JSON.parse(await readFile(bundleStatsFile, 'utf8')) as BundleStats;
+  } catch (cause) {
+    throw new Error(
+      `Cannot read ${bundleStatsFile}. The comparison page is generated from it; ` +
+        'run `npm run bundle-stats` to rebuild it.',
+      { cause }
+    );
+  }
+}
+
 let toc: TocEntry[] = [];
 let usedIds = new Set<string>();
 
@@ -128,6 +191,9 @@ async function buildDocs(): Promise<string[]> {
   const files = (await readdir(docsDir)).filter((f) => f.endsWith('.md')).sort();
   const index: { slug: string; title: string; description: string; order: number }[] = [];
 
+  const bundleStatsTable = renderBundleStats(await loadBundleStats());
+  let bundleStatsUsed = false;
+
   await mkdir(join(outDir, 'docs'), { recursive: true });
 
   for (const file of files) {
@@ -146,6 +212,11 @@ async function buildDocs(): Promise<string[]> {
           .replace(/^#\s[^\n]*\n/, '')
           .replace(/^##\s/gm, '### ')
           .replace(/^#\s/gm, '## ');
+    }
+
+    if (body.includes(BUNDLE_STATS_TOKEN)) {
+      body = body.split(BUNDLE_STATS_TOKEN).join(bundleStatsTable);
+      bundleStatsUsed = true;
     }
 
     toc = [];
@@ -168,6 +239,14 @@ async function buildDocs(): Promise<string[]> {
         `export const page: DocPage = ${JSON.stringify(page, null, 2)};\n`
     );
     index.push({ slug, title: meta.title, description: meta.description, order: meta.order });
+  }
+
+  if (!bundleStatsUsed) {
+    throw new Error(
+      `No docs page uses ${BUNDLE_STATS_TOKEN}. The measured bundle sizes in ` +
+        'content/data/bundle-stats.json would be published nowhere — put the token back, ' +
+        'or delete tools/bundle-stats and its CI job as well.'
+    );
   }
 
   index.sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
