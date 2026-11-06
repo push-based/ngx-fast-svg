@@ -15,8 +15,7 @@ import {
 } from '@angular/core';
 import { getZoneUnPatchedApi } from './internal/get-zone-unpatched-api';
 import { SvgRegistry } from './svg-registry.service';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { of, switchMap } from 'rxjs';
+import type { Subscription } from 'rxjs';
 
 /**
  * getZoneUnPatchedApi
@@ -111,10 +110,6 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
   width = input<string>('');
   height = input<string>('');
 
-  #url = toSignal(toObservable(this.name).pipe(switchMap((name) => {
-    return this.registry.url(name);
-  })))
-
   // When the browser loaded the svg resource we trigger the caching mechanism
   // re-fetch -> cache-hit -> get SVG -> cache in DOM
   loadedListener = () => {
@@ -152,6 +147,7 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
           }
 
           let img: HTMLImageElement | null = null;
+          let urlSub: Subscription | undefined;
 
           // if svg is not in cache we append
           if (!this.registry.isSvgCached(name)) {
@@ -177,15 +173,30 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
               - already loaded resources will get emitted from the cache immediately, even if loading is set to lazy :o
               - the image needs to have display other than none
             */
-            const url = this.#url();
-            if (url) {
+            // The default strategy resolves the url synchronously (of(url)), so
+            // this callback has already run by the time the lines below execute.
+            // A custom asynchronous config() appends the helper img when it
+            // resolves instead, which is why activating the lazy-loading hack
+            // lives in here rather than in the CSR branch further down.
+            urlSub = this.registry.url(name).subscribe((url) => {
+              if (!url) {
+                return;
+              }
               const i = this.getImg(url);
               this.renderer.appendChild(this.element.nativeElement, i);
 
               // get img
               img = elem.querySelector('img') as HTMLImageElement;
               addEventListener(img, 'load', this.loadedListener);
-            }
+
+              // Activate the lazy loading hack.
+              // Loading is triggered in the template over loading="lazy" and
+              // onload. Then the same image is fetched and rendered as SVG,
+              // which results in a cache hit for this svg.
+              if (!isPlatformServer(this.platform)) {
+                img.style.setProperty('display', 'block');
+              }
+            });
           }
 
           // Listen to svg changes
@@ -215,17 +226,9 @@ export class FastSvgComponent implements AfterViewInit, OnDestroy {
             // if SSR load svgs on server => ends up in DOM cache and ships to the client
             this.registry.fetchSvg(name);
           }
-          // CSR
-          else {
-            // Activate the lazy loading hack
-            // Loading is triggered in the template over loading="lazy" and onload
-            // Than the same image is fetched over fromFetch and rendered as SVG. (This will result in a cache hit for this svg)
-            //
-            // If the img is present activate it
-            img?.style.setProperty('display', 'block');
-          }
 
           onCleanup(() => {
+            urlSub?.unsubscribe();
             sub.unsubscribe();
 
             if (img) {
